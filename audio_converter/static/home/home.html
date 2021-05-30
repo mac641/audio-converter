@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="de_DE, en_US">
+<head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="keywords" content="music, audio, converter, audio-converter"/>
+    <!--TODO: Rename when fitting name is defined-->
+    <title>Audio-Converter</title>
+    <meta name="description" content="The HTML5 H">
+    <meta name="author" content="Lukas Diehm, Marcel Arndt">
+
+    <link rel="stylesheet" href="home.css">
+    <!--TODO: Specify and add icon-->
+    <!--<link rel="icon" href="icon.png">-->
+
+</head>
+
+<body>
+    <!--[if IE]>
+        <p class="browserupgrade">
+            You are using an <strong>outdated</strong> browser. Please
+            <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+            your experience and security.
+        </p>
+    <![endif]-->
+
+    <header id="home-header">
+        <!--TODO: Define logo and add it here-->
+        <img id="home-logo" src="logo.png" alt="The logo should be here somewhere...">
+        <form method="get" action="../login/login.html">
+            <button id="home-login-button" type="submit">Login</button>
+        </form>
+        <!--TODO: Add language selection overlay-->
+        <form method="get" action="">
+            <button id="home-language-button">Language</button>
+        </form>
+    </header>
+
+    <div id="home-main-dialog">
+        <h1>Audio-Converter</h1>
+        <h3>A tool to convert audio files.</h3>
+
+        <form method="get" action="../convert/convert.html">
+            <button id="home-getStarted-button" type="submit">Get started</button>
+        </form>
+    </div>
+</body>
+</html>
