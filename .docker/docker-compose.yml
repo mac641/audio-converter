@@ -7,12 +7,9 @@ services:
     image: audio_converter:dev
     ports:
       - "5000:5000"
-    volumes:
-      - "..:./app"
+
   prod:
     build:
       context: ..
       dockerfile: ./.docker/prod.Dockerfile
     image: audio_converter:latest
-    volumes:
-      - "..:./app"
