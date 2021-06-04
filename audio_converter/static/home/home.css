@@ -1,17 +1,9 @@
-:root {
-    /*TODO: Define colors*/
-    --main-color: #000000FF;
-    --button-color: #FFFFFFFF;
-    --bg-color: #D3D3D3FF;
-    --text-color: #A9A9A9FF;
-}
+@import "../root.css";
 
 body {
     background-color: var(--bg-color);
     max-width: 100%;
     overflow: hidden;
-
-    /*TODO: Define font pack*/
 }
 
 #home-header {
