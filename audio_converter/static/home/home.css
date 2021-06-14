@@ -4,13 +4,16 @@ body {
     background-color: var(--bg-color);
     max-width: 100%;
     overflow: hidden;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 #home-header {
     background-color: var(--main-color);
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    justify-content: center;*/
     top: 0;
     left: 0;
     width: 100%;
@@ -30,10 +33,10 @@ body {
     margin-left: 40px;
 }
 
-#home-login-button, #home-language-button, #home-getStarted-button {
+#home-signin-button, #home-language-button, #home-getStarted-button {
     -webkit-appearance: button;
     -moz-appearance: button;
-    appearance: button;
+    appearance: inherit;
     border-radius: 15px;
     background: var(--button-color);
     padding: 0;
@@ -41,7 +44,7 @@ body {
     height: 55px;
 }
 
-#home-login-button {
+#home-signin-button {
     margin-top: 30px;
     margin-right: 40px;
     margin-left: 40px;
@@ -77,5 +80,43 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#home-footer {
+    position: absolute;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#home-footer-copyright {
+    color: var(--text-color);
+    position: absolute;
+    left: 0;
+    margin-left: 40px;
+}
+
+#home-footer-links-wrapper {
+    position: absolute;
+    right: 0;
+    display: flex;
+    margin-right: 40px;
+}
+
+#home-footer-imprint-link {
+    float: right;
+    margin-left: 20px;
+}
+
+#home-footer-privacy-link {
+    float: left;
 }
 

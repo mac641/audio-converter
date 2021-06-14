@@ -1,9 +1,38 @@
 :root {
     /*TODO: Define colors*/
     --main-color: #000000FF;
+    --main-complementary-color: #FFFFFFFF;
     --button-color: #FFFFFFFF;
     --bg-color: #D3D3D3FF;
     --text-color: #A9A9A9FF;
+    --link-color: #FF00AAFF;
+    --link-color-visited: #A0EF00FF;
+    --link-color-hover: #CA4589FF;
+    --link-color-active: #BBCC90FF;
 
     /*TODO: Define font pack*/
+}
+
+a:link {
+    color: var(--link-color);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: var(--link-color-visited);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-color-hover);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: var(--link-color-active);
+    background-color: transparent;
+    text-decoration: underline;
 }
