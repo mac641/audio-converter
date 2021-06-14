@@ -1,0 +1,122 @@
+@import "../root.css";
+
+body {
+    background-color: var(--bg-color);
+    max-width: 100%;
+    overflow: hidden;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#home-header {
+    background-color: var(--main-color);
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    justify-content: center;*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 115px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+#home-logo {
+    /*TODO: Specify logo size*/
+    width: 75px;
+    height: 75px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+#home-signin-button, #home-language-button, #home-getStarted-button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: inherit;
+    border-radius: 15px;
+    background: var(--button-color);
+    padding: 0;
+    width: 120px;
+    height: 55px;
+}
+
+#home-signin-button {
+    margin-top: 30px;
+    margin-right: 40px;
+    margin-left: 40px;
+    float: right;
+}
+
+#home-language-button {
+    margin-top: 30px;
+    margin-right: 40px;
+    float: right;
+}
+
+#home-main-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%)
+}
+
+#home-main-dialog h1 {
+    font-size: 70pt;
+    text-align: center;
+}
+
+#home-main-dialog h3 {
+    color: var(--text-color);
+    font-size: 50pt;
+    text-align: center;
+}
+
+#home-main-dialog form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#home-footer {
+    position: absolute;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#home-footer-copyright {
+    color: var(--text-color);
+    position: absolute;
+    left: 0;
+    margin-left: 40px;
+}
+
+#home-footer-links-wrapper {
+    position: absolute;
+    right: 0;
+    display: flex;
+    margin-right: 40px;
+}
+
+#home-footer-imprint-link {
+    float: right;
+    margin-left: 20px;
+}
+
+#home-footer-privacy-link {
+    float: left;
+}
+
