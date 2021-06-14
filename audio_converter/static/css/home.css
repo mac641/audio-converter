@@ -1,4 +1,4 @@
-@import "../root.css";
+@import "root.css";
 
 body {
     background-color: var(--bg-color);
