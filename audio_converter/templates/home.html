@@ -28,9 +28,10 @@
 <header id="home-header">
     <!--TODO: Define logo and add it here-->
     <img id="home-logo" src="logo.png" alt="The logo should be here somewhere...">
-    <form method="get" action="signin.html">
-        <button id="home-signin-button" type="submit">Sign In</button>
-    </form>
+{#    <form method="get" action="signin.html">#}
+{#        <button id="home-signin-button" type="submit">Sign In</button>#}
+{#    </form>#}
+    <p><a href="{{ url_for('login') }}" id="home-signin-button">Sing in</a></p>
     <!--TODO: Add language selection overlay-->
     <form method="get" action="">
         <button id="home-language-button">Language</button>
