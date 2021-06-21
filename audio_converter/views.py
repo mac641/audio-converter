@@ -7,10 +7,24 @@ from audio_converter import app
 
 
 @app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html')
-
 
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/convert')
+def convert():
+    return render_template('convert.html')
+
+
+@app.route('/imprint')
+def imprint():
+    return render_template('imprint.html')
+
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')

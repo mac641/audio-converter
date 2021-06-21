@@ -1,22 +1,6 @@
-<!doctype html>
+{% extends "base.html" %}
 
-<html lang="de_DE, en_US">
-<head>
-    <meta charset="utf-8">
-    <meta name="theme-color" content="#000000"/>
-    <meta name="keywords" content="music, audio, converter, audio-converter"/>
-    <!--TODO: Rename when fitting name is defined-->
-    <title>Sign In - Audio-Converter</title>
-    <meta name="description" content="A tool to convert audio files">
-    <meta name="author" content="Lukas Diehm, Marcel Arndt">
-
-    <link rel="stylesheet" href="../../static/css/signin.css">
-    <!--TODO: Specify and add icon-->
-    <!--<link rel="icon" href="icon.png">-->
-
-</head>
-
-<body>
+{% block content %}
 <form action="{{ url_for_security('login') }}" method="POST">
   {{ login_user_form.hidden_tag() }}
   {{ login_user_form.email(placeholder='Email') }}
@@ -24,5 +8,5 @@
   {{ login_user_form.remember.label }} {{ login_user_form.remember }}
   {{ login_user_form.submit }}
 </form>
-</body>
+{% endblock %}
 
