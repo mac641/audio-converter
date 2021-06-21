@@ -21,3 +21,12 @@ def convert():
 def signin():
     return render_template('signin.html')
 
+
+@app.route('/imprint')
+def imprint():
+    return render_template('imprint.html')
+
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
