@@ -3,6 +3,7 @@ from flask_admin import Admin
 from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -21,5 +22,6 @@ admin = Admin(app, name='Audio Converter', template_mode='bootstrap3')
 from audio_converter import admin_models
 
 from audio_converter import views
+mail = Mail(app)
 
 # TODO: initialize security feature
