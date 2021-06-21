@@ -10,7 +10,11 @@
     <meta name="description" content="A tool to convert audio files">
     <meta name="author" content="Lukas Diehm, Marcel Arndt">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% if self.head() %}
+        {% block head %}{% endblock %}
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% endif %}
     <!--TODO: Specify and add icon-->
     <!--<link rel="icon" href="icon.png">-->
 
