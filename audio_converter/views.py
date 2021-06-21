@@ -17,7 +17,7 @@ def convert():
     return render_template('convert.html')
 
 
-app.route('/signin')
-def login():
+@app.route('/signin')
+def signin():
     return render_template('signin.html')
 

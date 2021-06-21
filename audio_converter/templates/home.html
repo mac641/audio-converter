@@ -5,7 +5,7 @@
     <h1>Audio-Converter</h1>
     <h3>A tool to convert audio files.</h3>
 
-    <form method="get" action="convert.html">
+    <form method="get" action="{{ url_for('templates', filename='convert.html') }}">
         <button id="home-getStarted-button" type="submit">Get started</button>
     </form>
 </div>
