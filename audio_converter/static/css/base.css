@@ -57,6 +57,10 @@ body {
     float: right;
 }
 
+#home-language-button-icon {
+    width: 50px;
+}
+
 #home-footer {
     position: absolute;
     border: 0;
