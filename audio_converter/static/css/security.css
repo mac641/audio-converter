@@ -1,7 +1,9 @@
 @import "root.css";
 
-.Security{
-    left: 40vh;
-    height: 50vh;
-    width: 20vh;
+.conversationBox{
+  display: block;
+  margin-top: 25vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10vw;
 }
