@@ -19,7 +19,6 @@ def login():
 def register():
     return render_template('register_user.html')
 
-
 @app.route('/convert')
 def convert():
     return render_template('convert.html')
