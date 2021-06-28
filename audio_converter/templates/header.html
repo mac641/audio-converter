@@ -8,8 +8,19 @@
         <button id="index-signin-button" type="submit">{{ _('Sign In') }}</button>
     </form>
     <!--TODO: Add language selection overlay-->
-    <button id="index-language-button" type="button">
-        <img id="index-language-button-icon" src="{{ url_for('static', filename='img/uk.png') }}"
-             alt="{{ _('Can someone pass me that logo, please?') }}">
-    </button>
+    {% if lang == 'en' %}
+        <button id="index-language-button" type="button"
+                onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='de') }}'">
+            <img id="index-language-button-icon" src="{{ url_for('static', filename='img/germany.png') }}"
+                 alt="{{ _('Can someone pass me that logo, please?') }}">
+        </button>
+    {% endif %}
+
+    {% if lang == 'de' %}
+        <button id="index-language-button" type="button"
+                onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='en') }}'">
+            <img id="index-language-button-icon" src="{{ url_for('static', filename='img/uk.png') }}"
+                 alt="{{ _('Can someone pass me that logo, please?') }}">
+        </button>
+    {% endif %}
 </header>
