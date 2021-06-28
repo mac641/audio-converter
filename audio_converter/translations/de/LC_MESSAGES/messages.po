@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-28 14:00+0200\n"
-"PO-Revision-Date: 2021-06-28 14:00+0200\n"
+"POT-Creation-Date: 2021-06-28 18:20+0200\n"
+"PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -20,15 +20,44 @@ msgstr ""
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:10
 msgid "A tool to convert audio files."
-msgstr "Ein Tool, um Audio-Dateien in ein anderes Format zu konvertieren."
+msgstr "Konvertiere deine Audiodateien!"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:13
 msgid "Get started"
 msgstr "Los geht's!"
 
+#: audio_converter/blueprints/multilingual/templates/multilingual/security/forgot_password.html:8
+msgid "Send password reset instructions"
+msgstr "Fordere einen Link zum Rücksetzen des Passworts an."
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/security/login_user.html:8
+msgid "Login"
+msgstr "Einloggen"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/security/register_user.html:8
+msgid "Register"
+msgstr "Registrieren"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/security/reset_password.html:8
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/security/email/welcome.html:1
+#, python-format
+msgid "Welcome %(email)s!"
+msgstr "Willkommen, %(email)!"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/security/email/welcome.html:4
+msgid "You can confirm your email through the link below:"
+msgstr "Bestätige deine Email Adresse, indem Du auf den unten angegebenen Link klickst:"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/security/email/welcome.html:6
+msgid "Confirm my account"
+msgstr "Bestätige dein Konto"
+
 #: audio_converter/templates/base.html:10
 msgid "A tool to convert audio files"
-msgstr "Ein Tool, um Audio-Dateien in ein anderes Format zu konvertieren."
+msgstr "Konvertiere deine Audiodateien!"
 
 #: audio_converter/templates/base.html:26
 msgid ""
@@ -38,14 +67,12 @@ msgid ""
 "    your experience and security."
 msgstr ""
 "Du verwendest einen <strong>veralteten</strong> Webbrowser. Bitte\n"
-"    <a href=\"https://browsehappy.com/\">upgrade deinen Browser</a>, um "
-"dein\n"
-"    Browsererlebnis und die Sicherheit deines Webbrowsers weiterhin \n"
-"gew&auml;hrleisten zu k&ouml;nnen."
+"    <a href=\"https://browsehappy.com/\">upgrade deinen Webbrowser</a>, um \n"
+"    Sicherheitslücken zu schließen und um dein Surferlebnis zu verbessern."
 
 #: audio_converter/templates/footer.html:4
 msgid "Privacy Notice"
-msgstr "Datenschutzhinweis"
+msgstr "Datenschutzerklärung"
 
 #: audio_converter/templates/footer.html:5
 msgid "Imprint"
@@ -55,11 +82,8 @@ msgstr "Impressum"
 msgid "The logo should be here somewhere..."
 msgstr "Hier sollte das Logo irgendwo sein..."
 
-#: audio_converter/templates/header.html:8
-msgid "Sign In"
-msgstr "Anmelden"
-
-#: audio_converter/templates/header.html:13
+#: audio_converter/templates/header.html:25
+#: audio_converter/templates/header.html:33
 msgid "Can someone pass me that logo, please?"
-msgstr "Kann mir bitte irgendjemand das Logo reichen?"
+msgstr "Könnte mir bitte jemand das Logo reichen?"
 

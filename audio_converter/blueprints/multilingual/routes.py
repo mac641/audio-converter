@@ -27,19 +27,25 @@ def before_request():
 
 @multilingual.route('/')
 @multilingual.route('/index')
+@multilingual.route('/logout')
 def index():
     print(g.lang_code)
     return render_template('multilingual/index.html', title='Audio-Converter', lang=g.lang_code)
 
 
+@multilingual.route('/login')
+def login():
+    return render_template('multilingual/security/../../templates/security/login_user.html', title='Audio-Converter - ' + _('Sign In'), lang=g.lang_code)
+
+
+@multilingual.route('/register')
+def register():
+    return render_template('multilingual/security/../../templates/security/register_user.html', title='Audio-Converter - ' + _('Register'), lang=g.lang_code)
+
+
 @multilingual.route('/convert')
 def convert():
     return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code)
-
-
-@multilingual.route('/signin')
-def signin():
-    return render_template('multilingual/signin.html', title='Audio-Converter - ' + _('Sign In'), lang=g.lang_code)
 
 
 @multilingual.route('/imprint')

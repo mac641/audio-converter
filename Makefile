@@ -1,6 +1,9 @@
 update-requirements: requirements.txt
 	pip3 freeze > requirements.txt
 
+install-requirements: requirements.txt
+	pip3 install -r requirements.txt
+
 scan-translation:
 	pybabel extract -F audio_converter/babel.cfg -o audio_converter/translations/messages.pot audio_converter/
 
