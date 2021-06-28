@@ -1,8 +1,9 @@
 from flask import Flask, request, g, redirect, url_for
-# from flask_admin import Admin
+from flask_admin import Admin
 from flask_migrate import Migrate
-# from flask_security import Security, SQLAlchemyUserDatastore
+from flask_security import Security, SQLAlchemyUserDatastore
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
 from flask_babel import Babel
 
 app = Flask(__name__)
@@ -15,11 +16,15 @@ from audio_converter import models
 
 # TODO: implement database models and add to SQLAlchemy
 # TODO: implement admin_models and initialize admin feature
+user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+security = Security(app, user_datastore)
 
+admin = Admin(app, name='Audio Converter', template_mode='bootstrap3')
 from audio_converter import admin_models
 
 from audio_converter.blueprints.multilingual import routes, multilingual
 app.register_blueprint(multilingual)
+mail = Mail(app)
 
 # TODO: initialize security feature
 

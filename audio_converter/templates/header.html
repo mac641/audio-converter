@@ -4,9 +4,19 @@
         <img id="index-logo" src="{{ url_for('static', filename='img/logo.png') }}"
              alt={{ _("The logo should be here somewhere...") }}>
     </a>
-    <form method="get" action="{{ url_for('multilingual.signin') }}">
-        <button id="index-signin-button" type="submit">{{ _('Sign In') }}</button>
-    </form>
+    {% if not current_user.is_authenticated %}
+        <form method="get" action="{{ url_for('login') }}">
+            <button id="home-signin-button" type="submit">Sign In</button>
+        </form>
+        <form method="get" action="{{ url_for('register') }}">
+            <button id="home-signup-button" type="submit">Sign Up</button>
+        </form>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+        <form method="get" action="{{ url_for('logout') }}">
+            <button id="home-signout-button" type="submit">Sign out</button>
+        </form>
+    {% endif %}
     <!--TODO: Add language selection overlay-->
     {% if lang == 'en' %}
         <button id="index-language-button" type="button"
