@@ -1,13 +1,13 @@
 <!doctype html>
 
-<html lang="de_DE, en_US">
+<html lang="en_US, de_DE">
 <head>
     <meta charset="utf-8">
     <meta name="theme-color" content="#000000"/>
     <meta name="keywords" content="music, audio, converter, audio-converter"/>
     <!--TODO: Rename when fitting name is defined-->
     <title>{{ title }}</title>
-    <meta name="description" content="A tool to convert audio files">
+    <meta name="description" content={{ _("A tool to convert audio files") }}>
     <meta name="author" content="Lukas Diehm, Marcel Arndt">
 
     {% if self.head() %}
@@ -23,9 +23,9 @@
 <body>
 <!--[if IE]>
 <p class="browserupgrade">
-    You are using an <strong>outdated</strong> browser. Please
+    {{ _('You are using an <strong>outdated</strong> browser. Please
     <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-    your experience and security.
+    your experience and security.') }}
 </p>
 <![endif]-->
 

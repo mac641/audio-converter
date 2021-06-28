@@ -1,13 +1,15 @@
-<header id="home-header">
+<header id="index-header">
     <!--TODO: Define logo and add it here-->
-    <a id="home-logo-link" href="{{ url_for('home') }}">
-        <img id="home-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="The logo should be here somewhere...">
+    <a id="index-logo-link" href="{{ url_for('multilingual.index') }}">
+        <img id="index-logo" src="{{ url_for('static', filename='img/logo.png') }}"
+             alt={{ _("The logo should be here somewhere...") }}>
     </a>
-    <form method="get" action="{{ url_for('signin') }}">
-        <button id="home-signin-button" type="submit">Sign In</button>
+    <form method="get" action="{{ url_for('multilingual.signin') }}">
+        <button id="index-signin-button" type="submit">{{ _('Sign In') }}</button>
     </form>
     <!--TODO: Add language selection overlay-->
-    <button id="home-language-button" type="button">
-        <img id="home-language-button-icon" src="{{ url_for('static', filename='img/uk.png') }}">
+    <button id="index-language-button" type="button">
+        <img id="index-language-button-icon" src="{{ url_for('static', filename='img/uk.png') }}"
+             alt="{{ _('Can someone pass me that logo, please?') }}">
     </button>
 </header>

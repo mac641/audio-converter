@@ -18,7 +18,8 @@ from audio_converter import models
 
 from audio_converter import admin_models
 
-from audio_converter import views
+from audio_converter.blueprints.multilingual import routes, multilingual
+app.register_blueprint(multilingual)
 
 # TODO: initialize security feature
 
@@ -29,3 +30,5 @@ def get_locale():
     if not g.get('lang_code', None):
         g.lang_code = request.accept_languages.best_match(app.config['LANGUAGES'])
     return g.lang_code
+
+# link: https://medium.com/@nicolas_84494/flask-create-a-multilingual-web-application-with-language-specific-urls-5d994344f5fd

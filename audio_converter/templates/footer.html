@@ -1,7 +1,7 @@
-<footer id="home-footer">
-    <div id="home-footer-copyright">&copy; 2021,&nbsp; Audio-Converter</div>
-    <div id="home-footer-links-wrapper">
-        <a id="home-footer-privacy-link" href="{{ url_for('privacy') }}">Privacy Notice</a>
-        <a id="home-footer-imprint-link" href="{{ url_for('imprint') }}">Imprint</a>
+<footer id="index-footer">
+    <div id="index-footer-copyright">{{ _('&copy; 2021,&nbsp; Audio-Converter') }}</div>
+    <div id="index-footer-links-wrapper">
+        <a id="index-footer-privacy-link" href="{{ url_for('multilingual.privacy') }}">{{ _('Privacy Notice') }}</a>
+        <a id="index-footer-imprint-link" href="{{ url_for('multilingual.imprint') }}">{{ _('Imprint') }}</a>
     </div>
 </footer>
