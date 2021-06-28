@@ -20,6 +20,10 @@ def login():
 def register():
     return render_template('register_user.html')
 
+@app.route('/logout')
+def logout():
+    return render_template('home.html')
+
 
 @app.route('/convert')
 def convert():
