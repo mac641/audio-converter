@@ -11,6 +11,13 @@ from audio_converter import app
 def home():
     return render_template('home.html')
 
+@app.route('/login')
+def login():
+    return render_template('login_user.html')
+
+@app.route('/register')
+def register():
+    return render_template('register_user.html')
 
 @app.route('/login')
 def login():
