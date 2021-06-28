@@ -2,13 +2,13 @@ update-requirements: requirements.txt
 	pip3 freeze > requirements.txt
 
 scan-translation:
-	pybabel extract -F babel.cfg -o translate.pot audio-converter/
+	pybabel extract -F audio_converter/babel.cfg -o audio_converter/translations/messages.pot audio_converter/
 
-create-translation: translate.pot
-	pybabel init -i translate.pot -d audio-converter/translations -l de
+create-translation: audio_converter/translations/messages.pot
+	pybabel init -i audio_converter/translations/messages.pot -d audio_converter/translations -l de
 
 compile-translations:
-	pybabel compile -d audio-converter/translations
+	pybabel compile -d audio_converter/translations
 
 translate: scan-translation create-translation compile-translations
 
