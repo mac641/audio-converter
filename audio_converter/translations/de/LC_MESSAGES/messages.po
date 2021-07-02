@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-28 18:20+0200\n"
+"POT-Creation-Date: 2021-07-02 17:34+0200\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -26,35 +26,6 @@ msgstr "Konvertiere deine Audiodateien!"
 msgid "Get started"
 msgstr "Los geht's!"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/security/forgot_password.html:8
-msgid "Send password reset instructions"
-msgstr "Fordere einen Link zum Rücksetzen des Passworts an."
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/security/login_user.html:8
-msgid "Login"
-msgstr "Einloggen"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/security/register_user.html:8
-msgid "Register"
-msgstr "Registrieren"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/security/reset_password.html:8
-msgid "Reset password"
-msgstr "Passwort zurücksetzen"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/security/email/welcome.html:1
-#, python-format
-msgid "Welcome %(email)s!"
-msgstr "Willkommen, %(email)!"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/security/email/welcome.html:4
-msgid "You can confirm your email through the link below:"
-msgstr "Bestätige deine Email Adresse, indem Du auf den unten angegebenen Link klickst:"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/security/email/welcome.html:6
-msgid "Confirm my account"
-msgstr "Bestätige dein Konto"
-
 #: audio_converter/templates/base.html:10
 msgid "A tool to convert audio files"
 msgstr "Konvertiere deine Audiodateien!"
@@ -67,7 +38,8 @@ msgid ""
 "    your experience and security."
 msgstr ""
 "Du verwendest einen <strong>veralteten</strong> Webbrowser. Bitte\n"
-"    <a href=\"https://browsehappy.com/\">upgrade deinen Webbrowser</a>, um \n"
+"    <a href=\"https://browsehappy.com/\">upgrade deinen Webbrowser</a>, "
+"um \n"
 "    Sicherheitslücken zu schließen und um dein Surferlebnis zu verbessern."
 
 #: audio_converter/templates/footer.html:4
@@ -82,8 +54,465 @@ msgstr "Impressum"
 msgid "The logo should be here somewhere..."
 msgstr "Hier sollte das Logo irgendwo sein..."
 
+#: audio_converter/templates/header.html:9
+#: audio_converter/templates/security/login_user.html:8
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:57
+msgid "Sign In"
+msgstr "Einloggen"
+
+#: audio_converter/templates/header.html:12
+#: audio_converter/templates/security/register_user.html:8
+msgid "Sign Up"
+msgstr "Registrieren"
+
+#: audio_converter/templates/header.html:17
+msgid "Sign out"
+msgstr "Ausloggen"
+
 #: audio_converter/templates/header.html:25
 #: audio_converter/templates/header.html:33
 msgid "Can someone pass me that logo, please?"
 msgstr "Könnte mir bitte jemand das Logo reichen?"
+
+#: audio_converter/templates/security/forgot_password.html:8
+msgid "Send password reset instructions"
+msgstr "Fordere einen Link zum Rücksetzen des Passworts an."
+
+#: audio_converter/templates/security/reset_password.html:8
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: audio_converter/templates/security/email/welcome.html:1
+#, python-format
+msgid "Welcome %(email)s!"
+msgstr "Willkommen, %(email)!"
+
+#: audio_converter/templates/security/email/welcome.html:4
+msgid "You can confirm your email through the link below:"
+msgstr ""
+"Bestätige deine Email Adresse, indem Du auf den unten angegebenen Link "
+"klickst:"
+
+#: audio_converter/templates/security/email/welcome.html:6
+msgid "Confirm my account"
+msgstr "Bestätige dein Konto"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:209
+msgid "Login Required"
+msgstr "Hierfür musst du eingeloggt sein"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:210
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:211
+msgid "Please confirm your email"
+msgstr "Bitte bestätige deine Email Adresse"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:212
+msgid "Login instructions"
+msgstr "Anweisungen zum Anmelden"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:213
+msgid "Your password has been reset"
+msgstr "Dein Passwort wurde zurückgesetzt"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:214
+msgid "Your password has been changed"
+msgstr "Dein Passwort wurde geändert"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:215
+#, fuzzy
+msgid "Password reset instructions"
+msgstr "Fordere einen Link zum Rücksetzen des Passworts an."
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:218
+msgid "Two-factor Login"
+msgstr "Zwei-Faktor Authentifizierung"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:219
+msgid "Two-factor Rescue"
+msgstr "Zwei-Faktor Wiederherstellung"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:263
+msgid "Verification Code"
+msgstr "Verifizierungs-Code"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:278
+msgid "Input not appropriate for requested API"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:279
+msgid "You do not have permission to view this resource."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:281
+msgid "You are not authenticated. Please supply the correct credentials."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:285
+msgid "You must re-authenticate to access this endpoint"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:289
+#, python-format
+msgid "Thank you. Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:292
+msgid "Thank you. Your email has been confirmed."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:293
+msgid "Your email has already been confirmed."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:294
+msgid "Invalid confirmation token."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:296
+#, python-format
+msgid "%(email)s is already associated with an account."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:300
+#, python-format
+msgid ""
+"Identity attribute '%(attr)s' with value '%(value)s' is already "
+"associated with an account."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:306
+msgid "Password does not match"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:307
+msgid "Passwords do not match"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:308
+msgid "Redirections outside the domain are forbidden"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:310
+#, python-format
+msgid "Instructions to reset your password have been sent to %(email)s."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:314
+#, python-format
+msgid ""
+"You did not reset your password within %(within)s. New instructions have "
+"been sent to %(email)s."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:320
+#, fuzzy
+msgid "Invalid reset password token."
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:321
+msgid "Email requires confirmation."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:323
+#, python-format
+msgid "Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:327
+#, python-format
+msgid ""
+"You did not confirm your email within %(within)s. New instructions to "
+"confirm your email have been sent to %(email)s."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:335
+#, python-format
+msgid ""
+"You did not signin within %(within)s. New instructions to signin have "
+"been sent to %(email)s."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:342
+#, python-format
+msgid "Instructions to signin have been sent to %(email)s."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:345
+msgid "Invalid signin token."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:346
+msgid "Account is disabled."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:347
+msgid "Email not provided"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:348
+msgid "Invalid email address"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:349
+msgid "Invalid code"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:350
+msgid "Password not provided"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:351
+msgid "No password is set for this user"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:353
+#, python-format
+msgid "Password must be at least %(length)s characters"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:356
+msgid "Password not complex enough"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:357
+msgid "Password on breached list"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:359
+msgid "Failed to contact breached passwords site"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:362
+msgid "Phone number not valid e.g. missing country code"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:363
+msgid "Specified user does not exist"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:364
+#, fuzzy
+msgid "Invalid password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:365
+msgid "Password or code submitted is not valid"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:366
+msgid "You have successfully logged in."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:367
+#, fuzzy
+msgid "Forgot password?"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:369
+msgid ""
+"You successfully reset your password and you have been logged in "
+"automatically."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:376
+msgid "Your new password must be different than your previous password."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:379
+msgid "You successfully changed your password."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:380
+msgid "Please log in to access this page."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:381
+msgid "Please reauthenticate to access this page."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:382
+msgid "Reauthentication successful"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:384
+msgid "You can only access this endpoint when not logged in."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:387
+msgid "Failed to send code. Please try again later"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:388
+msgid "Invalid Token"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:389
+msgid "Your token has been confirmed"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:391
+msgid "You successfully changed your two-factor method."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:395
+msgid "You currently do not have permissions to access this page"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:398
+msgid "Marked method is not valid"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:400
+msgid "You successfully disabled two factor authorization."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:403
+msgid "Requested method is not valid"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:405
+#, python-format
+msgid "Setup must be completed within %(within)s. Please start over."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:408
+msgid "Unified sign in setup successful"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:409
+msgid "You must specify a valid identity to sign in"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/core.py:410
+#, python-format
+msgid "Use this code to sign in: %(code)s."
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:53
+msgid "Email Address"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:54
+#, fuzzy
+msgid "Password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:55
+msgid "Remember Me"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:56
+msgid "Login"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:58
+msgid "Register"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:59
+msgid "Resend Confirmation Instructions"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:60
+#, fuzzy
+msgid "Recover Password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:61
+#, fuzzy
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:62
+#, fuzzy
+msgid "Retype Password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:63
+#, fuzzy
+msgid "New Password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:64
+#, fuzzy
+msgid "Change Password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:65
+msgid "Send Login Link"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:66
+#, fuzzy
+msgid "Verify Password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:67
+msgid "Change Method"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:68
+msgid "Phone Number"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:69
+msgid "Authentication Code"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:70
+msgid "Submit"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:71
+msgid "Submit Code"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:72
+msgid "Error(s)"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:73
+msgid "Identity"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:74
+msgid "Send Code"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/forms.py:75
+msgid "Passcode"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/unified_signin.py:131
+#, fuzzy
+msgid "Code or Password"
+msgstr "Passwort zurücksetzen"
+
+#: venv/lib/python3.9/site-packages/flask_security/unified_signin.py:136
+#: venv/lib/python3.9/site-packages/flask_security/unified_signin.py:262
+msgid "Available Methods"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/unified_signin.py:137
+msgid "Via email"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/unified_signin.py:137
+msgid "Via SMS"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/unified_signin.py:264
+msgid "Set up using email"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/unified_signin.py:267
+msgid "Set up using an authenticator app (e.g. google, lastpass, authy)"
+msgstr ""
+
+#: venv/lib/python3.9/site-packages/flask_security/unified_signin.py:269
+msgid "Set up using SMS"
+msgstr ""
 

@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
-from flask_babel import Babel
+from flask_babelex import Babel
 
 app = Flask(__name__)
 app.config.from_object('config')

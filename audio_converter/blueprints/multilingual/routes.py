@@ -1,7 +1,7 @@
 from datetime import datetime
 import os.path
 from flask import redirect, render_template, request, send_from_directory, Blueprint, g, abort
-from flask_babel import _, refresh
+from flask_babelex import _
 from flask_security import login_required
 from werkzeug.utils import secure_filename
 from audio_converter import app
