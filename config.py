@@ -1,6 +1,6 @@
 from local_config import Settings
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.sqlite'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///./database.sqlite'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SECRET_KEY = Settings.SECRET_KEY
 SECURITY_PASSWORD_SALT = Settings.SECURITY_PASSWORD_SALT
