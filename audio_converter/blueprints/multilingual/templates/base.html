@@ -9,9 +9,10 @@
     <title>{{ title }}</title>
     <meta name="description" content={{ _("A tool to convert audio files") }}>
     <meta name="author" content="Lukas Diehm, Marcel Arndt">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% if self.head() %}
-        {% block head %}{% endblock %}
+    {% if self.styles() %}
+        {% block styles %}{% endblock styles %}
     {% else %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     {% endif %}

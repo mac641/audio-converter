@@ -2,7 +2,7 @@ from datetime import datetime
 import os.path
 from flask import redirect, render_template, request, send_from_directory, Blueprint, g, abort
 from flask_babelex import _
-from flask_security import login_required
+from flask_security import login_required, LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm
 from werkzeug.utils import secure_filename
 from audio_converter import app
 
@@ -32,14 +32,28 @@ def index():
     return render_template('multilingual/index.html', title='Audio-Converter', lang=g.lang_code)
 
 
-@multilingual.route('/login')
+@multilingual.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('security/login_user.html', title='Audio-Converter - ' + _('Sign In'), lang=g.lang_code)
+    return render_template('security/login_user.html', title='Audio-Converter - ' + _('Sign In'), lang=g.lang_code,
+                           login_user_form=LoginForm())
 
 
-@multilingual.route('/register')
+@multilingual.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('security/register_user.html', title='Audio-Converter - ' + _('Register'), lang=g.lang_code)
+    return render_template('security/register_user.html', title='Audio-Converter - ' + _('Register'), lang=g.lang_code,
+                           register_user_form=RegisterForm())
+
+
+@multilingual.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    return render_template('security/reset_password.html', title='Audio-Converter - ' + _('Reset Password'),
+                           lang=g.lang_code, reset_password_form=ResetPasswordForm())
+
+
+@multilingual.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    return render_template('security/forgot_password.html', title='Audio-Converter - ' + _('Forgot Password'),
+                           lang=g.lang_code, forgot_password_form=ForgotPasswordForm())
 
 
 @multilingual.route('/convert')
