@@ -13,8 +13,7 @@
         </form>
     {% endif %}
     {% if current_user.is_authenticated %}
-        {# TODO: where does security.logout point to? #}
-        <form method="get" action="{{ url_for('security.logout') }}">
+        <form method="get" action="{{ url_for('multilingual.index') }}">
             <button id="index-signout-button" type="submit">{{ _("Sign out") }}</button>
         </form>
     {% endif %}

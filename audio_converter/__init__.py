@@ -14,7 +14,6 @@ migrate = Migrate(app, db)
 
 from audio_converter import models
 
-# TODO: implement database models and add to SQLAlchemy
 # TODO: implement admin_models and initialize admin feature
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
 security = Security(app=app, datastore=user_datastore, register_blueprint=False)
@@ -25,8 +24,6 @@ from audio_converter import admin_models
 from audio_converter.blueprints.multilingual import routes, multilingual
 app.register_blueprint(multilingual)
 mail = Mail(app)
-
-# TODO: initialize security feature
 
 # Set up babel
 babel = Babel(app)
