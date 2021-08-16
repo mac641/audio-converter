@@ -1,7 +1,7 @@
 <header id="home-header">
     <!--TODO: Define logo and add it here-->
     <a id="home-logo-link" href="{{ url_for('home') }}">
-        <img id="home-logo" src="logo.png" alt="The logo should be here somewhere...">
+        <img id="home-logo" src="/static/img/Logo.png" alt="Logo">
     </a>
     {% if not current_user.is_authenticated %}
         <form method="get" action="{{ url_for('login') }}">

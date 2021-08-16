@@ -25,12 +25,10 @@ body {
 }
 
 #home-logo {
-    /*TODO: Specify logo size*/
-    width: 75px;
-    height: 75px;
+    height: 100px;
     float: left;
-    margin-top: 20px;
-    margin-left: 40px;
+    margin-top: 12px;
+    margin-left: 24px;
 }
 
 #home-signin-button, #home-signup-button, #home-signout-button, #home-language-button, #home-getStarted-button {
