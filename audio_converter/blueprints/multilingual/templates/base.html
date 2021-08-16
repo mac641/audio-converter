@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="theme-color" content="#000000"/>
     <meta name="keywords" content="music, audio, converter, audio-converter"/>
-    <!--TODO: Rename when fitting name is defined-->
     <title>{{ title }}</title>
     <meta name="description" content={{ _("A tool to convert audio files") }}>
     <meta name="author" content="Lukas Diehm, Marcel Arndt">
@@ -13,12 +12,8 @@
 
     {% if self.styles() %}
         {% block styles %}{% endblock styles %}
-    {% else %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     {% endif %}
-    <!--TODO: Specify and add icon-->
-    <!--<link rel="icon" href="icon.png">-->
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 </head>
 
 <body>

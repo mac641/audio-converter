@@ -25,12 +25,10 @@ body {
 }
 
 #index-logo {
-    /*TODO: Specify logo size*/
-    width: 75px;
-    height: 75px;
+    height: 100px;
     float: left;
-    margin-top: 20px;
-    margin-left: 40px;
+    margin-top: 12px;
+    margin-left: 24px;
 }
 
 #index-signin-button, #index-signup-button, #index-signout-button, #index-language-button, #index-getStarted-button {
