@@ -1,6 +1,6 @@
 from local_config import Settings
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///./database.sqlite'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.sqlite'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SECRET_KEY = Settings.SECRET_KEY
 SECURITY_PASSWORD_SALT = Settings.SECURITY_PASSWORD_SALT
@@ -12,6 +12,7 @@ SECURITY_BLUEPRINT_NAME = 'multilingual'
 
 SECURITY_EMAIL_SENDER = Settings.MAIL_USERNAME
 SECURITY_SEND_REGISTER_EMAIL = True
+SEND_PASSWORD_RESET_EMAIL = True
 FLASK_ADMIN_SWATCH = 'cerulean'
 
 MAIL_SERVER = 'smtp.web.de'

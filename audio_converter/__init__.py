@@ -25,7 +25,7 @@ from audio_converter.blueprints.multilingual import routes, multilingual
 app.register_blueprint(multilingual)
 mail = Mail(app)
 
-# Set up babel
+# Set up Babel
 babel = Babel(app)
 @babel.localeselector
 def get_locale():
