@@ -1,0 +1,10 @@
+@import "root.css";
+
+.textBox{
+    overflow-y: scroll !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
+    height: 85vh;
+}
