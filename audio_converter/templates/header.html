@@ -5,10 +5,10 @@
     </a>
     {% if not current_user.is_authenticated %}
         <form method="get" action="{{ url_for('login') }}">
-            <button id="home-signin-button" type="submit">Sign In</button>
+        <input id="home-signin-button" type="image" src="/static/img/Log-in.png">
         </form>
         <form method="get" action="{{ url_for('register') }}">
-            <button id="home-signup-button" type="submit">Sign Up</button>
+            <input id="home-signup-button" type="image" src="/static/img/Sign-up.png">
         </form>
     {% endif %}
     {% if current_user.is_authenticated %}
@@ -22,3 +22,6 @@
 {#    </form>#}
 
 </header>
+<div id="home-header-break">
+
+</div>

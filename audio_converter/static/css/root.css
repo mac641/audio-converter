@@ -9,6 +9,7 @@
     --link-color-visited: #A0EF00FF;
     --link-color-hover: #CA4589FF;
     --link-color-active: #BBCC90FF;
+    --signal-color: linear-gradient(to bottom, #0070ff, #009aff 50%, #0070ff);
 
     /*TODO: Define font pack*/
 }
