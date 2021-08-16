@@ -9,10 +9,10 @@
 {% block content %}
     <div id="index-main-dialog">
         <h1>Audio-Converter</h1>
-        <h3>{{ _('A tool to convert audio files.') }}</h3>
+        <h3>{{ _('A tool to convert audio files') }}.</h3>
 
         <form method="get" action="{{ url_for('multilingual.convert') }}">
-            <button id="index-getStarted-button" type="submit">{{ _('Get started') }}</button>
+            <button id="index-getStarted-button" type="submit">{{ _('Get started') }}!</button>
         </form>
     </div>
 {% endblock %}

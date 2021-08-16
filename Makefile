@@ -1,3 +1,9 @@
+docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
+	docker-compose up --build --remove-orphans dev
+
+docker_prod: .docker/docker-compose.yml .docker/prod.Dockerfile
+	docker-compose up --build --remove-orphans prod
+
 update-requirements: requirements.txt
 	pip3 freeze > requirements.txt
 
@@ -13,15 +19,9 @@ create-translations: audio_converter/translations/messages.pot
 update-translations: audio_converter/translations/messages.pot
 	pybabel update -i audio_converter/translations/messages.pot -d audio_converter/translations
 
-compile-translations:
-	pybabel compile -d audio_converter/translations
-
-new-translate: scan-translations create-translations
+create-translate: scan-translations create-translations
 
 update-translate: scan-translations update-translations
 
-docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
-	docker-compose up --build --remove-orphans dev
-
-docker_prod: .docker/docker-compose.yml .docker/prod.Dockerfile
-	docker-compose up --build --remove-orphans prod
+compile-translations:
+	pybabel compile -d audio_converter/translations
