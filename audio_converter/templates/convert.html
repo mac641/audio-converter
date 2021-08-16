@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
+{% block head %}
+{{ dropzone.load_css() }}
+{% endblock %}
+
 {% block content %}
 <!--TODO: fill me up :D-->
+{#    <form action="" method="post" enctype="multipart/form-data">#}
+{#        <div><label for="title_field">Titel:</label> <input id="title_field" type="text" name="title"/></div>#}
+{#        <div><input type="file" name="image_file" accept="image/*"/></div>#}
+{#        <div><input type="submit"/></div>#}
+{#    </form>#}
+    {{ dropzone.create(action='convert') }}
+    {{ dropzone.config() }}
 {% endblock %}
