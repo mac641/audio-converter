@@ -33,7 +33,7 @@ body {
     margin-left: 40px;
 }
 
-#home-signin-button, #home-signup-button, #home-language-button, #home-getStarted-button {
+#home-signin-button, #home-signup-button, #home-signout-button, #home-language-button, #home-getStarted-button {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: inherit;
@@ -52,6 +52,13 @@ body {
 }
 
 #home-signup-button {
+    margin-top: 30px;
+    margin-right: 40px;
+    margin-left: 40px;
+    float: right;
+}
+
+#home-signout-button {
     margin-top: 30px;
     margin-right: 40px;
     margin-left: 40px;
