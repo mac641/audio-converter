@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    {% endblock styles %}
+{% endblock head %}
+
+{% block content %}
+    <div id="index-main-dialog">
+        <h1>Audio-Converter</h1>
+        <h3>{{ _('A tool to convert audio files') }}.</h3>
+
+        <form method="get" action="{{ url_for('multilingual.convert') }}">
+            <button id="index-getStarted-button" type="submit">{{ _('Get started') }}!</button>
+        </form>
+    </div>
+{% endblock %}
