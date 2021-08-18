@@ -1,0 +1,26 @@
+@import "base.css";
+
+#index-main-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%)
+}
+
+#index-main-dialog h1 {
+    font-size: 70pt;
+    text-align: center;
+}
+
+#index-main-dialog h3 {
+    color: var(--text-color);
+    font-size: 50pt;
+    text-align: center;
+}
+
+#index-main-dialog form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

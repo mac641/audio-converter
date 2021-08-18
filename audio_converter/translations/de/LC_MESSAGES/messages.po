@@ -1,0 +1,103 @@
+# German translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-08-16 17:24+0200\n"
+"PO-Revision-Date: 2021-06-28 18:20+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: audio_converter/blueprints/multilingual/templates/base.html:10
+#: audio_converter/blueprints/multilingual/templates/multilingual/index.html:12
+msgid "A tool to convert audio files"
+msgstr "Konvertiere deine Audiodateien"
+
+#: audio_converter/blueprints/multilingual/templates/base.html:27
+msgid ""
+"You are using an <strong>outdated</strong> browser. Please\n"
+"    <a href=\"https://browsehappy.com/\">upgrade your browser</a> to "
+"improve\n"
+"    your experience and security."
+msgstr ""
+"Du verwendest einen <strong>veralteten</strong> Webbrowser. Bitte\n"
+"    <a href=\"https://browsehappy.com/\">upgrade deinen Webbrowser</a>, "
+"um \n"
+"    Sicherheitslücken zu schließen und um dein Surferlebnis zu verbessern."
+
+#: audio_converter/blueprints/multilingual/templates/footer.html:4
+msgid "Privacy Notice"
+msgstr "Datenschutzerklärung"
+
+#: audio_converter/blueprints/multilingual/templates/footer.html:5
+msgid "Imprint"
+msgstr "Impressum"
+
+#: audio_converter/blueprints/multilingual/templates/header.html:5
+msgid "The logo should be here somewhere..."
+msgstr "Hier sollte das Logo irgendwo sein..."
+
+#: audio_converter/blueprints/multilingual/templates/header.html:9
+#: audio_converter/templates/security/login_user.html:7
+msgid "Sign In"
+msgstr "Einloggen"
+
+#: audio_converter/blueprints/multilingual/templates/header.html:12
+#: audio_converter/templates/security/register_user.html:7
+msgid "Sign Up"
+msgstr "Registrieren"
+
+#: audio_converter/blueprints/multilingual/templates/header.html:17
+msgid "Sign out"
+msgstr "Ausloggen"
+
+#: audio_converter/blueprints/multilingual/templates/header.html:25
+#: audio_converter/blueprints/multilingual/templates/header.html:33
+msgid "Can someone pass me that logo, please?"
+msgstr "Könnte mir bitte jemand das Logo reichen?"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/index.html:15
+msgid "Get started"
+msgstr "Los geht's"
+
+#: audio_converter/templates/security/forgot_password.html:7
+msgid "Send password reset instructions"
+msgstr "Fordere einen Link zum Zurücksetzen des Passworts an"
+
+#: audio_converter/templates/security/login_user.html:15
+msgid "Forgot password"
+msgstr "Passwort vergessen"
+
+#: audio_converter/templates/security/reset_password.html:7
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: audio_converter/templates/security/email/reset_instructions.html:1
+msgid "Click here to reset your password"
+msgstr "Hier klicken, um dein Passwort zurückzusetzen"
+
+#: audio_converter/templates/security/email/welcome.html:1
+#, fuzzy, python-format
+msgid "Welcome %(email)s"
+msgstr "Willkommen, %(email)"
+
+#: audio_converter/templates/security/email/welcome.html:4
+msgid "You can confirm your email through the link below:"
+msgstr ""
+"Bestätige deine Email Adresse, indem Du auf den unten angegebenen Link "
+"klickst:"
+
+#: audio_converter/templates/security/email/welcome.html:6
+msgid "Confirm my account"
+msgstr "Bestätige dein Konto"
+

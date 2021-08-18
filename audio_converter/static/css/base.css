@@ -9,7 +9,7 @@ body {
     margin: 0;
 }
 
-#home-header {
+#index-header {
     background-color: var(--main-color);
     /*    display: flex;*/
     /*    align-items: center;*/
@@ -24,16 +24,14 @@ body {
     align-items: center;
 }
 
-#home-logo {
-    /*TODO: Specify logo size*/
-    width: 75px;
-    height: 75px;
+#index-logo {
+    height: 100px;
     float: left;
-    margin-top: 20px;
-    margin-left: 40px;
+    margin-top: 12px;
+    margin-left: 24px;
 }
 
-#home-signin-button, #home-signup-button, #home-signout-button, #home-language-button, #home-getStarted-button {
+#index-signin-button, #index-signup-button, #index-signout-button, #index-language-button, #index-getStarted-button {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: inherit;
@@ -44,59 +42,38 @@ body {
     height: 55px;
 }
 
-#home-signin-button {
+#index-signin-button {
     margin-top: 30px;
     margin-right: 40px;
     margin-left: 40px;
     float: right;
 }
 
-#home-signup-button {
+#index-signup-button {
     margin-top: 30px;
     margin-right: 40px;
     margin-left: 40px;
     float: right;
 }
 
-#home-signout-button {
+#index-signout-button {
     margin-top: 30px;
     margin-right: 40px;
     margin-left: 40px;
     float: right;
 }
 
-#home-language-button {
+#index-language-button {
     margin-top: 30px;
     margin-right: 40px;
     float: right;
 }
 
-#home-main-dialog {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: 0 -50% 0 0;
-    transform: translate(-50%, -50%)
+#index-language-button-icon {
+    width: 50px;
 }
 
-#home-main-dialog h1 {
-    font-size: 70pt;
-    text-align: center;
-}
-
-#home-main-dialog h3 {
-    color: var(--text-color);
-    font-size: 50pt;
-    text-align: center;
-}
-
-#home-main-dialog form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#home-footer {
+#index-footer {
     position: absolute;
     border: 0;
     padding: 0;
@@ -111,26 +88,25 @@ body {
     justify-content: center;
 }
 
-#home-footer-copyright {
+#index-footer-copyright {
     color: var(--text-color);
     position: absolute;
     left: 0;
     margin-left: 40px;
 }
 
-#home-footer-links-wrapper {
+#index-footer-links-wrapper {
     position: absolute;
     right: 0;
     display: flex;
     margin-right: 40px;
 }
 
-#home-footer-imprint-link {
+#index-footer-imprint-link {
     float: right;
     margin-left: 20px;
 }
 
-#home-footer-privacy-link {
+#index-footer-privacy-link {
     float: left;
 }
-
