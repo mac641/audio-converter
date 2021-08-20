@@ -13,7 +13,7 @@ install-requirements: requirements.txt
 	pip3 install -r requirements.txt
 
 uninstall-requirements:
-	pip uninstall -y -r <(pip freeze)
+	pip3 uninstall -y -r <(pip3 freeze)
 
 # Babel
 scan-translations:
