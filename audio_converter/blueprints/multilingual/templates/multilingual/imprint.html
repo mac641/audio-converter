@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/imprint_privacy.css') }}">
+{% block head %}
+    {% block styles %}
+        link rel="stylesheet" href="{{ url_for('static', filename='css/imprint_privacy.css') }}">
+    {% endblock styles %}
+{% endblock head %}
 
+{% block content %}
     <div class='textBox'>
         <h1>Impressum</h1>
         <p>Stand: 16. August 2021</p>
@@ -76,5 +80,4 @@
             <br>
         Website Impressum von <a href="https://www.impressum-generator.de">impressum-generator.de</a>
     </div>
-
 {% endblock %}

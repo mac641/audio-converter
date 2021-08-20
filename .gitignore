@@ -2,8 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-/database.sqlite
-/local_config.py
+database.sqlite
+local_config.py
 
 # C extensions
 *.so
@@ -54,7 +54,6 @@ coverage.xml
 .pytest_cache/
 
 # Translations
-*.mo
 *.pot
 
 # Django stuff:

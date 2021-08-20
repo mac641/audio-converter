@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/imprint_privacy.css') }}">
+{% block head %}
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/imprint_privacy.css') }}">
+    {% endblock styles %}
+{% endblock head %}
 
+{% block content %}
     <div class='textBox'>
         <h1>Datenschutzerklärung</h1>
         <p>Stand: 16. August 2021</p>
@@ -245,4 +249,4 @@
                            target="_blank" rel="noopener noreferrer nofollow">Erstellt mit kostenlosem
             Datenschutz-Generator.de von Dr. Thomas Schwenke</a></p>
     </div>
-{% endblock %}  
+{% endblock %}

@@ -1,27 +1,27 @@
 <!doctype html>
 
-<html lang="de_DE, en_US">
+<html lang="en_UK, de_DE">
 <head>
     <meta charset="utf-8">
     <meta name="theme-color" content="#000000"/>
     <meta name="keywords" content="music, audio, converter, audio-converter"/>
-    <!--TODO: Rename when fitting name is defined-->
-    <title>{% block title %}Audio-Converter{% endblock %}</title>
-    <meta name="description" content="A tool to convert audio files">
+    <title>{{ title }}</title>
+    <meta name="description" content={{ _("A tool to convert audio files") }}>
     <meta name="author" content="Lukas Diehm, Marcel Arndt">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    {% if self.styles() %}
+        {% block styles %}{% endblock styles %}
+    {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <!--TODO: Specify and add icon-->
-    <!--<link rel="icon" href="icon.png">-->
-
 </head>
 
 <body>
 <!--[if IE]>
 <p class="browserupgrade">
-    You are using an <strong>outdated</strong> browser. Please
+    {{ _('You are using an <strong>outdated</strong> browser. Please
     <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-    your experience and security.
+    your experience and security.') }}
 </p>
 <![endif]-->
 
@@ -36,5 +36,4 @@
         {% include "footer.html" %}
     {% endblock %}
 </div>
-
 </body>

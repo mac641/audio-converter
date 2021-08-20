@@ -19,8 +19,8 @@ button, input[type="button"], input[type="submit"] {
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
 }
 
-#home-header {
-    /*background-color: var(--main-color);
+#index-header {
+    /*background-color: var(--main-color);*/
     /*    display: flex;*/
     /*    align-items: center;*/
     /*    justify-content: center;*/
@@ -44,7 +44,7 @@ button, input[type="button"], input[type="submit"] {
     background: var(--signal-color);
 }
 
-#home-logo {
+#index-logo {
     height: 50px;
     float: left;
     margin-top: 14px;
@@ -52,6 +52,7 @@ button, input[type="button"], input[type="submit"] {
 }
 
 /*#home-signout-button, #home-language-button, #home-getStarted-button {
+#index-signin-button, #index-signup-button, #index-signout-button, #index-language-button, #index-getStarted-button {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: inherit;
@@ -62,7 +63,7 @@ button, input[type="button"], input[type="submit"] {
     height: 55px;
 }*/
 
-#home-signin-button {
+#index-signin-button {
     height: 30px;
     width: auto;
     margin-top: 24px;
@@ -70,7 +71,7 @@ button, input[type="button"], input[type="submit"] {
     float: right;
 }
 
-#home-signup-button {
+#index-signup-button {
   height: 30px;
     width: auto;
     margin-top: 24px;
@@ -78,45 +79,24 @@ button, input[type="button"], input[type="submit"] {
     float: right;
 }
 
-#home-signout-button {
+#index-signout-button {
     margin-top: 30px;
     margin-right: 40px;
     margin-left: 40px;
     float: right;
 }
 
-#home-language-button {
+#index-language-button {
     margin-top: 30px;
     margin-right: 40px;
     float: right;
 }
 
-#home-main-dialog {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: 0 -50% 0 0;
-    transform: translate(-50%, -50%)
+#index-language-button-icon {
+    width: 50px;
 }
 
-#home-main-dialog h1 {
-    font-size: 70pt;
-    text-align: center;
-}
-
-#home-main-dialog h3 {
-    color: var(--text-color);
-    font-size: 50pt;
-    text-align: center;
-}
-
-#home-main-dialog form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#home-footer {
+#index-footer {
     position: absolute;
     border: 0;
     padding: 0;
@@ -131,26 +111,25 @@ button, input[type="button"], input[type="submit"] {
     justify-content: center;
 }
 
-#home-footer-copyright {
+#index-footer-copyright {
     color: var(--text-color);
     position: absolute;
     left: 0;
     margin-left: 40px;
 }
 
-#home-footer-links-wrapper {
+#index-footer-links-wrapper {
     position: absolute;
     right: 0;
     display: flex;
     margin-right: 40px;
 }
 
-#home-footer-imprint-link {
+#index-footer-imprint-link {
     float: right;
     margin-left: 20px;
 }
 
-#home-footer-privacy-link {
+#index-footer-privacy-link {
     float: left;
 }
-
