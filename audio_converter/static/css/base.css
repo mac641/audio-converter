@@ -8,7 +8,17 @@ body {
     padding: 0;
     margin: 0;
 }
-button, input[type="button"], input[type="submit"] {
+/*button, input[type="button"], input[type="submit"] {*/
+/*    -webkit-appearance: button;*/
+/*    -moz-appearance: button;*/
+/*    appearance: inherit;*/
+/*    background: var(--signal-color);*/
+/*    border-radius: 45% 25%;*/
+/*    border: solid darkblue thin;*/
+/*    padding: 6%;*/
+/*    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);*/
+/*}*/
+.signalButton {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: inherit;
@@ -87,7 +97,10 @@ button, input[type="button"], input[type="submit"] {
 }
 
 #index-language-button {
-    margin-top: 30px;
+    height: 28px;
+    width: auto;
+    border: solid #d3d3d3 1px;
+    margin-top: 24px;
     margin-right: 40px;
     float: right;
 }
