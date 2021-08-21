@@ -18,3 +18,5 @@ services:
       context: ..
       dockerfile: ./.docker/prod.Dockerfile
     image: audio_converter:latest
+    ports:
+      - "5000:5000"
