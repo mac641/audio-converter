@@ -1,14 +1,19 @@
-version: "3.9"  # optional since v1.27.0
+version: "3.9"
+
 services:
   dev:
+    container_name: audio-converter_dev
     build:
       context: ..
       dockerfile: ./.docker/dev.Dockerfile
     image: audio_converter:dev
+    volumes:
+      - "$PWD:/app:rw"
     ports:
       - "5000:5000"
 
   prod:
+    container_name: audio-converter_prod
     build:
       context: ..
       dockerfile: ./.docker/prod.Dockerfile
