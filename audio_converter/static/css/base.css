@@ -106,9 +106,33 @@ body {
     float: right;
 }
 
-#index-language-button-icon {
-    width: 50px;
+#index-account-button {
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
+    margin-right: 40px;
+    float: right;
 }
+
+#index-setting-button {
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
+    margin-right: 40px;
+    float: right;
+}
+
+#index-history-button {
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
+    margin-right: 40px;
+    float: right;
+}
+
+/*#index-language-button-icon {*/
+/*    width: 50px;*/
+/*}*/
 
 #index-footer {
     position: absolute;
