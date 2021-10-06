@@ -1,9 +1,11 @@
 # Docker
 docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
-	docker-compose -f .docker/docker-compose.yml up -d --build --remove-orphans dev
+	docker-compose -f .docker/docker-compose.yml build --no-cache --force-rm dev; \
+docker-compose -f .docker/docker-compose.yml up -d --remove-orphans dev
 
 docker_prod: .docker/docker-compose.yml .docker/prod.Dockerfile
-	docker-compose -f .docker/docker-compose.yml up -d --build --remove-orphans prod
+	docker-compose -f .docker/docker-compose.yml build --no-cache --force-rm prod; \
+docker-compose -f .docker/docker-compose.yml up -d --remove-orphans prod
 
 # pip requirements
 update-requirements: requirements.txt
