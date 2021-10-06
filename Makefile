@@ -1,9 +1,9 @@
 # Docker
 docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
-	docker-compose up --build --remove-orphans dev
+	docker-compose -f .docker/docker-compose.yml up -d --build --remove-orphans dev
 
 docker_prod: .docker/docker-compose.yml .docker/prod.Dockerfile
-	docker-compose up --build --remove-orphans prod
+	docker-compose -f .docker/docker-compose.yml up -d --build --remove-orphans prod
 
 # pip requirements
 update-requirements: requirements.txt
@@ -14,6 +14,10 @@ install-requirements: requirements.txt
 
 uninstall-requirements:
 	pip3 uninstall -y -r <(pip3 freeze)
+
+update-packages:
+	pip3 list -o | grep -v -i warning | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 |
+	xargs -n1 pip3 install -U
 
 # Babel
 scan-translations:

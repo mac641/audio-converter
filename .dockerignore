@@ -1,4 +1,6 @@
-.docker
+docker-compose.yml
+*.Dockerfile
+.dockerignore
 .designs
 .gitignore
 LICENSE

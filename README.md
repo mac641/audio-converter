@@ -1,6 +1,17 @@
 # audio-converter
 This repo contains a Python project which allows you to convert audio files from within your web browser.
 
+## Production Usage
+Start the production server by typing `make docker_prod` in your terminal.
+
+## How to contribute
+1. Make sure you have `docker`/`podman` and `docker-compose` installed.
+2. If using PyCharm, add a new *Docker-Compose* Interpreter 
+   ([Jetbrains Guide: Configuring Docker Compose as a remote interpreter](https://www.jetbrains.com/help/pycharm/using-docker-compose-as-a-remote-interpreter.html#tw))
+   to enable linting.
+3. For testing your code, you can either start `audio-converter_dev` by typing `make docker_dev` in your terminal or add 
+   a configuration to your PyCharm.
+
 ## Zoom Meeting
 [Click here](https://hs-augsburg.zoom.us/j/94338900433?pwd=a2NhUDJMRk1OeTYwMnZpQ3lJbXo1UT09)
 
