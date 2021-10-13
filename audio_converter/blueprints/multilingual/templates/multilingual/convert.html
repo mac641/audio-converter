@@ -2,10 +2,13 @@
 
 {% block head %}
     {% block styles %}
+        {{ dropzone.load_css() }}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/convert.css') }}">
     {% endblock styles %}
 {% endblock head %}
 
 {% block content %}
-    <!--TODO: fill me up :D-->
+    {{ dropzone.create(id='convert_upload', action='multilingual.convert_upload') }}
+    {{ dropzone.config(id='convert_upload') }}
+    {{ dropzone.load_js() }}
 {% endblock %}

@@ -1,3 +1,5 @@
+import os
+
 from local_config import Settings
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.sqlite'
@@ -25,6 +27,8 @@ MAIL_PASSWORD = Settings.MAIL_PASSWORD
 LANGUAGES = ['en', 'de']
 
 # Convert feature - Dropzone
-UPLOAD_PATH = 'uploads'
+UPLOAD_PATH = os.getcwd() + '/uploads'
 DROPZONE_MAX_FILE_SIZE = 200
-DROPZONE_ALLOWED_FILE_TYPE = 'audio'
+DROPZONE_ALLOWED_FILE_CUSTOM = True
+DROPZONE_ALLOWED_FILE_TYPE = '.mp3'
+DROPZONE_TIMEOUT = 5*60*1000

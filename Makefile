@@ -1,11 +1,21 @@
 # Docker
-docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
+run_docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
 	docker-compose -f .docker/docker-compose.yml build --no-cache --force-rm dev; \
 docker-compose -f .docker/docker-compose.yml up -d --remove-orphans dev
 
-docker_prod: .docker/docker-compose.yml .docker/prod.Dockerfile
+run_docker_prod: .docker/docker-compose.yml .docker/prod.Dockerfile
 	docker-compose -f .docker/docker-compose.yml build --no-cache --force-rm prod; \
 docker-compose -f .docker/docker-compose.yml up -d --remove-orphans prod
+
+.PHONY: stop_docker_dev
+stop_docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
+	docker-compose -f .docker/docker-compose.yml down --remove-orphans dev || \
+docker-compose -f .docker/docker-compose.yml kill dev
+
+.PHONY: stop_docker_prod
+stop_docker_prod: .docker/docker-compose.yml .docker/dev.Dockerfile
+	docker-compose -f .docker/docker-compose.yml down --remove-orphans prod || \
+docker-compose -f .docker/docker-compose.yml kill prod
 
 # pip requirements
 update-requirements: requirements.txt
@@ -22,6 +32,7 @@ update-packages:
 	xargs -n1 pip3 install -U
 
 # Babel
+.PHONY: scan-translations
 scan-translations:
 	pybabel extract -F audio_converter/babel.cfg -o audio_converter/translations/messages.pot .
 

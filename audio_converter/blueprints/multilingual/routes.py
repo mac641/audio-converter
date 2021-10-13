@@ -1,11 +1,9 @@
-from datetime import datetime
 import os.path
 
-from flask import redirect, render_template, request, send_from_directory, Blueprint, g, abort, after_this_request, \
-    url_for
+from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for
 from flask_babelex import _
 from flask_login import current_user
-from flask_security import login_required, RegisterForm, ConfirmRegisterForm, views
+from flask_security import RegisterForm, ConfirmRegisterForm, views
 from flask_security.recoverable import send_reset_password_instructions, reset_password_token_status, update_password
 from flask_security.registerable import register_user
 from flask_security.twofactor import tf_login, tf_verify_validility_token, is_tf_setup
@@ -13,6 +11,8 @@ from flask_security.utils import suppress_form_csrf, config_value, view_commit, 
     base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash
 from flask_security.views import _ctx, _security
 from werkzeug.datastructures import MultiDict
+
+import audio_converter
 from audio_converter import app
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
@@ -267,8 +267,8 @@ def reset_password(token):
         after_this_request(view_commit)
         update_password(user, form.password.data)
         if config_value("TWO_FACTOR") and (
-            config_value("TWO_FACTOR_REQUIRED")
-            or (form.user.tf_totp_secret and form.user.tf_primary_method)
+                config_value("TWO_FACTOR_REQUIRED")
+                or (form.user.tf_totp_secret and form.user.tf_primary_method)
         ):
             return tf_login(user, primary_authn_via="reset")
         login_user(user, authn_via=["reset"])
@@ -337,9 +337,24 @@ def forgot_password():
     )
 
 
-@multilingual.route('/convert')
+@multilingual.route('/convert', methods=['POST', 'GET'])
 def convert():
     return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code)
+
+
+@multilingual.route('/convert_upload', methods=['POST', 'GET'])
+def convert_upload():
+    upload_path = app.config['UPLOAD_PATH']
+    if not os.path.isdir(upload_path):
+        os.mkdir(upload_path)
+
+    if request.method == 'POST':
+        files = request.files.values()
+        for file in files:
+            file.save(os.path.join(upload_path, file.filename))
+        return 'upload successful'
+
+    return 'There was a problem uploading your files. Please try again!'
 
 
 @multilingual.route('/imprint')
