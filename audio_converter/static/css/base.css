@@ -8,6 +8,7 @@ body {
     padding: 0;
     margin: 0;
 }
+
 /*button, input[type="button"], input[type="submit"] {*/
 /*    -webkit-appearance: button;*/
 /*    -moz-appearance: button;*/
@@ -18,15 +19,24 @@ body {
 /*    padding: 6%;*/
 /*    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);*/
 /*}*/
-.signalButton {
+button, input[type="button"], input[type="submit"] {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: inherit;
     background: var(--signal-color);
-    border-radius: 45% 25%;
+    border-radius: 25%;
     border: solid darkblue thin;
-    padding: 6%;
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+}
+
+button:hover, input[type="button"]:hover, input[type="submit"]:hover  {
+    cursor: pointer;
+}
+
+.mainButton, button {
+    height: 10vh;
+    width: 10vw;
+    font-size: 150%;
 }
 
 #index-header {
@@ -36,7 +46,7 @@ body {
     /*    justify-content: center;*/
     /*background: linear-gradient(to bottom, #a9a9a9, #d3d3d3, #a9a9a9);*/
     /*background: linear-gradient(to bottom, #2b2b2b, #363636 50%, #2b2b2b);*/
-        background: #18171e;
+    background: #18171e;
 
 
     top: 0;
@@ -48,7 +58,8 @@ body {
     margin: 0;
     align-items: center;
 }
-#home-header-break {
+
+#index-header-break {
     height: 5px;
     width: 100%;
     background: var(--signal-color);
@@ -82,7 +93,7 @@ body {
 }
 
 #index-signup-button {
-  height: 30px;
+    height: 30px;
     width: auto;
     margin-top: 24px;
     margin-right: 40px;
@@ -99,12 +110,22 @@ body {
 
 #index-language-button {
     height: 28px;
-    width: auto;
+    width: 47px;
     border: solid #d3d3d3 1px;
     margin-top: 24px;
     margin-right: 40px;
     float: right;
 }
+
+#index-language-button:hover {
+    height: 24px;
+    width: 43px;
+    border: solid #d3d3d3 3px;
+    margin-top: 24px;
+    margin-right: 40px;
+    float: right;
+}
+
 
 #index-account-button {
     height: 30px;
@@ -150,7 +171,7 @@ body {
 }
 
 #index-footer-copyright {
-    color: var(--text-color);
+    color: var(--text-color2);
     position: absolute;
     left: 0;
     margin-left: 40px;

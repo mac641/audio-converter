@@ -1,17 +1,18 @@
 :root {
-    /*TODO: Define colors*/
     --main-color: #000000FF;
     --main-complementary-color: #FFFFFFFF;
     --button-color: #FFFFFFFF;
     --bg-color: #D3D3D3FF;
     --text-color: #A9A9A9FF;
-    --link-color: #FF00AAFF;
+    --text-color2: #6F6F6F;
+    --link-color: #6F6F6F;
     --link-color-visited: #A0EF00FF;
-    --link-color-hover: #CA4589FF;
+    --link-color-hover: #0070ff;
     --link-color-active: #BBCC90FF;
     --signal-color: linear-gradient(to bottom, #0070ff, #009aff 50%, #0070ff);
-
-    /*TODO: Define font pack*/
+}
+body{
+     font-family: 'Roboto', sans-serif;
 }
 
 a:link {
