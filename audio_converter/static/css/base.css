@@ -9,16 +9,6 @@ body {
     margin: 0;
 }
 
-/*button, input[type="button"], input[type="submit"] {*/
-/*    -webkit-appearance: button;*/
-/*    -moz-appearance: button;*/
-/*    appearance: inherit;*/
-/*    background: var(--signal-color);*/
-/*    border-radius: 45% 25%;*/
-/*    border: solid darkblue thin;*/
-/*    padding: 6%;*/
-/*    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);*/
-/*}*/
 button, input[type="button"], input[type="submit"] {
     -webkit-appearance: button;
     -moz-appearance: button;
@@ -29,7 +19,7 @@ button, input[type="button"], input[type="submit"] {
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
 }
 
-button:hover, input[type="button"]:hover, input[type="submit"]:hover  {
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     cursor: pointer;
 }
 
@@ -40,15 +30,7 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover  {
 }
 
 #index-header {
-    /*background-color: var(--main-color);*/
-    /*    display: flex;*/
-    /*    align-items: center;*/
-    /*    justify-content: center;*/
-    /*background: linear-gradient(to bottom, #a9a9a9, #d3d3d3, #a9a9a9);*/
-    /*background: linear-gradient(to bottom, #2b2b2b, #363636 50%, #2b2b2b);*/
     background: #18171e;
-
-
     top: 0;
     left: 0;
     width: 100%;
@@ -71,18 +53,6 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover  {
     margin-top: 14px;
     margin-left: 20px;
 }
-
-/*#home-signout-button, #home-language-button, #home-getStarted-button {
-#index-signin-button, #index-signup-button, #index-signout-button, #index-language-button, #index-getStarted-button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: inherit;
-    border-radius: 15px;
-    background: var(--signal-color);
-    padding: 0;
-    width: 120px;
-    height: 55px;
-}*/
 
 #index-signin-button {
     height: 30px;
@@ -126,7 +96,6 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover  {
     float: right;
 }
 
-
 #index-account-button {
     height: 30px;
     width: auto;
@@ -150,10 +119,6 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover  {
     margin-right: 40px;
     float: right;
 }
-
-/*#index-language-button-icon {*/
-/*    width: 50px;*/
-/*}*/
 
 #index-footer {
     position: absolute;
