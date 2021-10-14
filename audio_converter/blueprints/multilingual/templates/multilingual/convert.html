@@ -8,7 +8,15 @@
 {% endblock head %}
 
 {% block content %}
-    {{ dropzone.create(id='convert_upload', action='multilingual.convert_upload') }}
-    {{ dropzone.config(id='convert_upload') }}
+    {{ dropzone.create(action='multilingual.convert_upload') }}
+    <label id="convert-audio-file-format-label">Destination file format:</label>
+    <select name="convert-audio-file-format-select" id="convert-audio-file-format-select">
+        {% for file_type in allowed_audio_file_types %}
+        <option value="{{ file_type }}">{{ file_type }}</option>
+        {% endfor %}
+    </select>
+    <button id="convert-upload-submit">Convert</button>
+
     {{ dropzone.load_js() }}
+    {{ dropzone.config(custom_options='createImageThumbnails: false, disablePreviews: true') }}
 {% endblock %}

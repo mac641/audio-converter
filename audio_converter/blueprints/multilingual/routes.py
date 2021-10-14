@@ -1,5 +1,3 @@
-import os.path
-
 from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for
 from flask_babelex import _
 from flask_login import current_user
@@ -12,8 +10,8 @@ from flask_security.utils import suppress_form_csrf, config_value, view_commit, 
 from flask_security.views import _ctx, _security
 from werkzeug.datastructures import MultiDict
 
-import audio_converter
 from audio_converter import app
+from audio_converter.blueprints.multilingual.convert.upload import upload
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
 
@@ -42,10 +40,7 @@ def index():
 
 @multilingual.route('/login', methods=['GET', 'POST'])
 def login():
-    # return render_template('security/login_user.html', title='Audio-Converter - ' + _('Sign In'), lang=g.lang_code,
-    #                        login_user_form=LoginForm())
-
-    # Source code copied from flask_security/views.py - login() method
+    # NOTE: Source code copied from flask_security/views.py - login() method
     # Only minor import and template variable adjustments
     if current_user.is_authenticated and request.method == "POST":
         if _security._want_json(request):
@@ -125,19 +120,7 @@ def logout():
 
 @multilingual.route('/register', methods=['GET', 'POST'])
 def register():
-    # if request.method == 'POST':
-    #     views.register()
-    #     # return redirect(index())
-    #
-    # if app.config['SECURITY_CONFIRMABLE']:
-    #     register_form = ConfirmRegisterForm()
-    # else:
-    #     register_form = RegisterForm()
-    #
-    # return render_template('security/register_user.html', title='Audio-Converter - ' + _('Register'), lang=g.lang_code,
-    #                        register_user_form=register_form)
-
-    # Source code copied from flask_security/views.py - register() method
+    # NOTE: Source code copied from flask_security/views.py - register() method
     # Only minor import and template variable adjustments
     if _security.confirmable or request.is_json:
         form_class = ConfirmRegisterForm
@@ -188,7 +171,7 @@ def confirm_email(token=None):
 # FIXME: Reset password token generation and routing when clicking on link in email
 @multilingual.route('/reset_password', methods=['GET', 'POST'])
 def reset_password(token):
-    # Source code copied from flask_security/views.py - reset_password() method
+    # NOTE: Source code copied from flask_security/views.py - reset_password() method
     # Only minor import and template variable adjustments
     expired, invalid, user = reset_password_token_status(token)
     form_class = _security.reset_password_form
@@ -293,16 +276,10 @@ def reset_password(token):
         lang=g.lang_code,
     )
 
-    # return render_template('security/reset_password.html', title='Audio-Converter - ' + _('Reset Password'),
-    #                        lang=g.lang_code, reset_password_form=ResetPasswordForm())
-
 
 @multilingual.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
-    # return render_template('security/forgot_password.html', title='Audio-Converter - ' + _('Forgot Password'),
-    #                        lang=g.lang_code, forgot_password_form=ForgotPasswordForm())
-
-    # Source code copied from flask_security/views.py - forgot_password() method
+    # NOTE: Source code copied from flask_security/views.py - forgot_password() method
     # Only minor import and template variable adjustments
     form_class = _security.forgot_password_form
 
@@ -339,22 +316,13 @@ def forgot_password():
 
 @multilingual.route('/convert', methods=['POST', 'GET'])
 def convert():
-    return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code)
+    return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code,
+                           allowed_audio_file_types=app.config['ALLOWED_AUDIO_FILE_TYPES'])
 
 
 @multilingual.route('/convert_upload', methods=['POST', 'GET'])
 def convert_upload():
-    upload_path = app.config['UPLOAD_PATH']
-    if not os.path.isdir(upload_path):
-        os.mkdir(upload_path)
-
-    if request.method == 'POST':
-        files = request.files.values()
-        for file in files:
-            file.save(os.path.join(upload_path, file.filename))
-        return 'upload successful'
-
-    return 'There was a problem uploading your files. Please try again!'
+    return upload(request)
 
 
 @multilingual.route('/imprint')

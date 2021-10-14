@@ -7,8 +7,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 from flask_babelex import Babel
 
+import config
+
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object(config)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
