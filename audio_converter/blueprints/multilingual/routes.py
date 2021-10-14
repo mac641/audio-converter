@@ -342,6 +342,11 @@ def convert():
     return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code)
 
 
+@multilingual.route('/settings')
+def settings():
+    return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'), lang=g.lang_code)
+
+
 @multilingual.route('/imprint')
 def imprint():
     return render_template('multilingual/imprint.html', title='Audio-Converter - ' + _('Imprint'), lang=g.lang_code)
