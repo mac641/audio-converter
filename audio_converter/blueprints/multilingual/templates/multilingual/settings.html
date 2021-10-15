@@ -2,10 +2,26 @@
 
 {% block head %}
     {% block styles %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/convert.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
     {% endblock styles %}
 {% endblock head %}
 
 {% block content %}
-    <!--TODO: fill me up :D-->
+    <h1>&nbsp; {{ _('Settings') }}</h1>
+    <div class="settingsBox">
+        <h2>&nbsp; {{ _('Account') }}</h2>
+        <hr>
+        awesome personal data...
+    <div class="resetPassword">
+
+    </div>
+    </div>
+    <div class="settingsBox">
+        <h2>&nbsp; {{ _('Audio converter') }}</h2>
+        <hr>
+        awesome general settings...
+    </div>
+    <div class="saveButton">
+    <button type="submit">{{ _('Save') }}</button>
+    </div>
 {% endblock %}

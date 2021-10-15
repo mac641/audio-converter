@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-16 17:24+0200\n"
+"POT-Creation-Date: 2021-10-14 16:15+0200\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: audio_converter/blueprints/multilingual/templates/base.html:10
+#: audio_converter/blueprints/multilingual/templates/base.html:9
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:12
 msgid "A tool to convert audio files"
 msgstr "Konvertiere deine Audiodateien"
 
-#: audio_converter/blueprints/multilingual/templates/base.html:27
+#: audio_converter/blueprints/multilingual/templates/base.html:22
 msgid ""
 "You are using an <strong>outdated</strong> browser. Please\n"
 "    <a href=\"https://browsehappy.com/\">upgrade your browser</a> to "
@@ -43,32 +43,49 @@ msgstr "Datenschutzerklärung"
 msgid "Imprint"
 msgstr "Impressum"
 
-#: audio_converter/blueprints/multilingual/templates/header.html:5
+#: audio_converter/blueprints/multilingual/templates/header.html:4
 msgid "The logo should be here somewhere..."
 msgstr "Hier sollte das Logo irgendwo sein..."
 
-#: audio_converter/blueprints/multilingual/templates/header.html:9
+#: audio_converter/blueprints/multilingual/templates/header.html:8
 #: audio_converter/templates/security/login_user.html:7
 msgid "Sign In"
 msgstr "Einloggen"
 
-#: audio_converter/blueprints/multilingual/templates/header.html:12
+#: audio_converter/blueprints/multilingual/templates/header.html:11
 #: audio_converter/templates/security/register_user.html:7
 msgid "Sign Up"
 msgstr "Registrieren"
 
-#: audio_converter/blueprints/multilingual/templates/header.html:17
+#: audio_converter/blueprints/multilingual/templates/header.html:16
 msgid "Sign out"
 msgstr "Ausloggen"
 
-#: audio_converter/blueprints/multilingual/templates/header.html:25
-#: audio_converter/blueprints/multilingual/templates/header.html:33
+#: audio_converter/blueprints/multilingual/templates/header.html:24
+#: audio_converter/blueprints/multilingual/templates/header.html:32
 msgid "Can someone pass me that logo, please?"
 msgstr "Könnte mir bitte jemand das Logo reichen?"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:15
 msgid "Get started"
 msgstr "Los geht's"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:10
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:12
+msgid "Account"
+msgstr "Konto"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:17
+#, fuzzy
+msgid "Audio converter"
+msgstr "Audio converter"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:22
+msgid "Save"
+msgstr "Speichern"
 
 #: audio_converter/templates/security/forgot_password.html:7
 msgid "Send password reset instructions"
@@ -100,4 +117,10 @@ msgstr ""
 #: audio_converter/templates/security/email/welcome.html:6
 msgid "Confirm my account"
 msgstr "Bestätige dein Konto"
+
+#~ msgid "personal data"
+#~ msgstr ""
+
+#~ msgid "general"
+#~ msgstr ""
 

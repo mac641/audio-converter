@@ -267,8 +267,8 @@ def reset_password(token):
         after_this_request(view_commit)
         update_password(user, form.password.data)
         if config_value("TWO_FACTOR") and (
-            config_value("TWO_FACTOR_REQUIRED")
-            or (form.user.tf_totp_secret and form.user.tf_primary_method)
+                config_value("TWO_FACTOR_REQUIRED")
+                or (form.user.tf_totp_secret and form.user.tf_primary_method)
         ):
             return tf_login(user, primary_authn_via="reset")
         login_user(user, authn_via=["reset"])
@@ -344,7 +344,11 @@ def convert():
 
 @multilingual.route('/settings')
 def settings():
-    return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'), lang=g.lang_code)
+    # if not current_user.is_authenticated:
+    #     return redirect(url_for('multilingual.login'))
+    # else:
+    return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
+                           lang=g.lang_code)
 
 
 @multilingual.route('/imprint')
