@@ -9,24 +9,31 @@ body {
     margin: 0;
 }
 
+
 button, input[type="button"], input[type="submit"] {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: inherit;
     background: var(--signal-color);
-    border-radius: 25%;
+    border-radius: 20px;
     border: solid darkblue thin;
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+    padding: 1em 2em;
 }
 
 button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     cursor: pointer;
 }
 
+button:active, input[type="button"]:active, input[type="submit"]:active {
+    animation: gradient 200ms;
+    background: var(--signal-color-effect);
+}
+
 .mainButton, button {
-    height: 10vh;
-    width: 10vw;
+    padding: 2em 3em;
     font-size: 150%;
+    border-radius: 40px;
 }
 
 #index-header {
@@ -54,12 +61,27 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     margin-left: 20px;
 }
 
+#index-logo:active {
+    animation: gradient 200ms;
+    height: 44px;
+    margin-top: 17px;
+    margin-left: 23px;
+}
+
 #index-signin-button {
     height: 30px;
     width: auto;
     margin-top: 24px;
     margin-right: 40px;
     float: right;
+}
+
+#index-signin-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
 }
 
 #index-signup-button {
@@ -70,12 +92,28 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     float: right;
 }
 
+#index-signup-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
+}
+
 #index-signout-button {
     height: 30px;
     width: auto;
     margin-top: 24px;
     margin-right: 40px;
     float: right;
+}
+
+#index-signout-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
 }
 
 #index-language-button {
@@ -87,13 +125,13 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     float: right;
 }
 
-#index-language-button:hover {
-    height: 24px;
-    width: 43px;
-    border: solid #d3d3d3 3px;
-    margin-top: 24px;
-    margin-right: 40px;
-    float: right;
+#index-language-button:active {
+    animation: gradient 200ms;
+    height: 22px;
+    width: 41px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
 }
 
 #index-account-button {
@@ -104,12 +142,28 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     float: right;
 }
 
+#index-account-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
+}
+
 #index-setting-button {
     height: 30px;
     width: auto;
     margin-top: 24px;
     margin-right: 40px;
     float: right;
+}
+
+#index-setting-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
 }
 
 #index-history-button {
@@ -120,6 +174,14 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     float: right;
 }
 
+#index-history-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
+}
+
 #index-footer {
     position: absolute;
     border: 0;
@@ -128,25 +190,26 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 30px;
     background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top: solid 1px var(--text-color);
 }
 
 #index-footer-copyright {
     color: var(--text-color2);
     position: absolute;
     left: 0;
-    margin-left: 40px;
+    margin-left: 10px;
 }
 
 #index-footer-links-wrapper {
     position: absolute;
     right: 0;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
 }
 
 #index-footer-imprint-link {
