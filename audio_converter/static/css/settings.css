@@ -4,14 +4,19 @@
     display: inline-block;
     height: 70vh;
     width: 40vw;
-    border: solid 1px black;
+    border: solid thin var(--text-color);
     border-radius: 20px;
-    margin: 0 0 0 calc(20vw / 3);
+    margin: 3vh 0 0 calc(20vw / 3);
+    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+}
+
+.settingsBoxHyphen{
+    color: var(--text-color);
 }
 
 .saveButton {
-      position: absolute;
-    top: 90%;
+    position: absolute;
+    top: 92%;
     left: 50%;
     margin: 0 -50% 0 0;
     transform: translate(-50%, -50%)

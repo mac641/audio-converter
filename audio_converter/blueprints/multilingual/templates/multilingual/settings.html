@@ -10,15 +10,22 @@
     <h1>&nbsp; {{ _('Settings') }}</h1>
     <div class="settingsBox">
         <h2>&nbsp; {{ _('Account') }}</h2>
-        <hr>
-        awesome personal data...
+        <hr class="settingsBoxHyphen">
+        <ul>
+            <li>
+                <a href="{{ url_for('multilingual.change_password') }}">{{ _('Reset password') }}</a>
+            </li>
+            <li>
+                another cool stuff...
+            </li>
+        </ul>
     <div class="resetPassword">
 
     </div>
     </div>
     <div class="settingsBox">
         <h2>&nbsp; {{ _('Audio converter') }}</h2>
-        <hr>
+         <hr class="settingsBoxHyphen">
         awesome general settings...
     </div>
     <div class="saveButton">

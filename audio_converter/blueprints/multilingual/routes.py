@@ -5,14 +5,19 @@ from flask import redirect, render_template, request, send_from_directory, Bluep
     url_for
 from flask_babelex import _
 from flask_login import current_user
-from flask_security import login_required, RegisterForm, ConfirmRegisterForm, views
+from flask_security import login_required, RegisterForm, ConfirmRegisterForm, views, anonymous_user_required
+from flask_security.changeable import change_user_password
+from flask_security.passwordless import send_login_instructions
 from flask_security.recoverable import send_reset_password_instructions, reset_password_token_status, update_password
 from flask_security.registerable import register_user
 from flask_security.twofactor import tf_login, tf_verify_validility_token, is_tf_setup
 from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect, \
-    base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash
+    base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash, url_for_security, \
+    get_token_status
 from flask_security.views import _ctx, _security
 from werkzeug.datastructures import MultiDict
+from werkzeug.local import LocalProxy
+
 from audio_converter import app
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
@@ -178,11 +183,19 @@ def register():
     )
 
 
-@multilingual.route('confirm_email', methods=['GET', 'POST'])
+@multilingual.route('/confirm_email', methods=['GET', 'POST'])
 def confirm_email(token=None):
     if token is None:
         token = request.args.get('token')
     return views.confirm_email(token)
+
+
+_datastore = LocalProxy(lambda: _security.datastore)
+
+
+def _commit(response=None):
+    _datastore.commit()
+    return response
 
 
 # FIXME: Reset password token generation and routing when clicking on link in email
@@ -293,8 +306,76 @@ def reset_password(token):
         lang=g.lang_code,
     )
 
-    # return render_template('security/reset_password.html', title='Audio-Converter - ' + _('Reset Password'),
-    #                        lang=g.lang_code, reset_password_form=ResetPasswordForm())
+
+# @unauth_csrf(fall_through=True)
+@multilingual.route('/send_login', methods=['GET', 'POST'])
+def send_login():
+    """View function that sends login instructions for passwordless login"""
+
+    form_class = _security.passwordless_login_form
+
+    if request.is_json:
+        form = form_class(MultiDict(request.get_json()), meta=suppress_form_csrf())
+    else:
+        form = form_class(meta=suppress_form_csrf())
+
+    if form.validate_on_submit():
+        send_login_instructions(form.user)
+        if not _security._want_json(request):
+            do_flash(*get_message("LOGIN_EMAIL_SENT", email=form.user.email))
+
+    if _security._want_json(request):
+        return base_render_json(form)
+
+    return _security.render_template(
+        config_value("SEND_LOGIN_TEMPLATE"),
+        send_login_form=form,
+        **_ctx("send_login"),
+        title='Audio-Converter - ' + _('Send Login'),
+        lang=g.lang_code
+    )
+
+
+@anonymous_user_required
+def token_login(token):
+    """View function that handles passwordless login via a token
+    Like reset-password and confirm - this is usually a GET via an email
+    so from the request we can't differentiate form-based apps from non.
+    """
+
+    expired, invalid, user = login_token_status(token)
+
+    if not user or invalid:
+        m, c = get_message("INVALID_LOGIN_TOKEN")
+        if _security.redirect_behavior == "spa":
+            return redirect(get_url(_security.login_error_view, qparams={c: m}))
+        do_flash(m, c)
+        return redirect(url_for_security("login"))
+    if expired:
+        send_login_instructions(user)
+        m, c = get_message(
+            "LOGIN_EXPIRED", email=user.email, within=_security.login_within
+        )
+        if _security.redirect_behavior == "spa":
+            return redirect(
+                get_url(
+                    _security.login_error_view,
+                    qparams=user.get_redirect_qparams({c: m}),
+                )
+            )
+        do_flash(m, c)
+        return redirect(url_for_security("login"))
+
+    login_user(user, authn_via=["token"])
+    after_this_request(view_commit)
+    if _security.redirect_behavior == "spa":
+        return redirect(
+            get_url(_security.post_login_view, qparams=user.get_redirect_qparams())
+        )
+
+    do_flash(*get_message("PASSWORDLESS_LOGIN_SUCCESSFUL"))
+
+    return redirect(get_post_login_redirect())
 
 
 @multilingual.route('/forgot_password', methods=['GET', 'POST'])
@@ -337,6 +418,47 @@ def forgot_password():
     )
 
 
+# def _render_json(form, include_user=True, include_auth_token=False):
+#     has_errors = len(form.errors) > 0
+
+
+# @login_required
+@multilingual.route('/change_password', methods=['GET', 'POST'])
+def change_password():
+    """View function which handles a change password request."""
+
+    form_class = _security.change_password_form
+
+    if request.is_json:
+        form = form_class(MultiDict(request.get_json()), meta=suppress_form_csrf())
+    else:
+        form = form_class(meta=suppress_form_csrf())
+
+    if form.validate_on_submit():
+        after_this_request(view_commit)
+        change_user_password(current_user._get_current_object(), form.new_password.data)
+        if _security._want_json(request):
+            form.user = current_user
+            return base_render_json(form, include_auth_token=True)
+
+        do_flash(*get_message("PASSWORD_CHANGE"))
+        return redirect(
+            get_url(_security.post_change_view) or get_url(_security.post_login_view)
+        )
+
+    if _security._want_json(request):
+        form.user = current_user
+        return base_render_json(form)
+
+    return _security.render_template(
+        config_value("CHANGE_PASSWORD_TEMPLATE"),
+        change_password_form=form,
+        **_ctx("change_password"),
+        title='Audio-Converter - ' + _('Change password'),
+        lang=g.lang_code,
+    )
+
+
 @multilingual.route('/convert')
 def convert():
     return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code)
@@ -344,10 +466,10 @@ def convert():
 
 @multilingual.route('/settings')
 def settings():
-    # if not current_user.is_authenticated:
-    #     return redirect(url_for('multilingual.login'))
-    # else:
-    return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
+    if not current_user.is_authenticated:
+        return redirect(url_for('multilingual.login'))
+    else:
+        return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
                            lang=g.lang_code)
 
 
@@ -359,3 +481,14 @@ def imprint():
 @multilingual.route('/privacy')
 def privacy():
     return render_template('multilingual/privacy.html', title='Audio-Converter - ' + _('Privacy'), lang=g.lang_code)
+
+
+def login_token_status(token):
+    """Returns the expired status, invalid status, and user of a login token.
+    For example::
+
+        expired, invalid, user = login_token_status('...')
+
+    :param token: The login token
+    """
+    return get_token_status(token, "login", "LOGIN")

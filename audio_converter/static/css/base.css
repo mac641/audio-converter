@@ -30,8 +30,8 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
     background: var(--signal-color-effect);
 }
 
-.mainButton, button {
-    padding: 2em 3em;
+.mainButton {
+    padding: 1.5em 1.5em;
     font-size: 150%;
     border-radius: 40px;
 }

@@ -4,14 +4,14 @@
              alt={{ _("The logo should be here somewhere...") }}>
     </a>
 
-  {% if lang == 'en' %}
-               <input id="index-language-button" type="image" src="{{ url_for('static', filename='img/Flag-de.png') }}"
-                onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='de') }}'">
+    {% if lang == 'en' %}
+        <input id="index-language-button" type="image" src="{{ url_for('static', filename='img/Flag-de.png') }}"
+               onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='de') }}'">
     {% endif %}
 
     {% if lang == 'de' %}
         <input id="index-language-button" type="image" src="{{ url_for('static', filename='img/Flag-en.png') }}"
-                onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='en') }}'">
+               onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='en') }}'">
     {% endif %}
 
     {% if not current_user.is_authenticated %}
@@ -24,11 +24,13 @@
     {% endif %}
     {% if current_user.is_authenticated %}
         <form method="get" action="{{ url_for('multilingual.logout') }}">
-        <input id="index-signout-button" type="image" src="{{ url_for('static', filename='img/Log-out.png') }}">
+            <input id="index-signout-button" type="image" src="{{ url_for('static', filename='img/Log-out.png') }}">
         </form>
-         <input id="index-account-button" type="image" src="{{ url_for('static', filename='img/Person.png') }}">
-         <input id="index-setting-button" type="image" src="{{ url_for('static', filename='img/Gear.png') }}">
-         <input id="index-history-button" type="image" src="{{ url_for('static', filename='img/Folder.png') }}">
+        <form method="get" action="{{ url_for('multilingual.settings') }}">
+            <input id="index-setting-button" type="image" src="{{ url_for('static', filename='img/Gear.png') }}">
+        </form>
+        {#         <input id="index-account-button" type="image" src="{{ url_for('static', filename='img/Person.png') }}">#}
+        <input id="index-history-button" type="image" src="{{ url_for('static', filename='img/Folder.png') }}">
     {% endif %}
 
 </header>
