@@ -11,7 +11,8 @@ from flask_security.views import _ctx, _security
 from werkzeug.datastructures import MultiDict
 
 from audio_converter import app
-from audio_converter.blueprints.multilingual.convert.upload import upload
+from audio_converter.blueprints.multilingual.convert_feature.upload import upload
+from audio_converter.blueprints.multilingual.convert_feature.convert import process
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
 
@@ -323,6 +324,19 @@ def convert():
 @multilingual.route('/convert_upload', methods=['POST', 'GET'])
 def convert_upload():
     return upload(request)
+
+
+@multilingual.route('/convert_process', methods=['POST', 'GET'])
+def convert_process():
+    process_return_value = process(request)
+    if process_return_value[1] == 200:
+        redirect('convert_download', process_return_value[1], process_return_value)
+
+
+@multilingual.route('convert_download', methods=['POST', 'GET'])
+def convert_download():
+    return render_template('multilingual/download.html', title='Audio Converter - ' + _('Conversion Results'),
+                    lang=g.lang_code)
 
 
 @multilingual.route('/imprint')

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/download.css') }}">
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    <div id="convert-download-dialog">
+        <div id="convert-download-icon-background">
+            <img id="convert-download-icon" src="https://img.icons8.com/doodle/96/000000/zip.png"/>
+        </div>
+        <button id="convert-download-button">Download</button>
+    </div>
+{% endblock %}

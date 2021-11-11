@@ -1,0 +1,38 @@
+#convert-download-dialog {
+    border: 2px solid var(--link-color);
+    height: 60vh;
+    width: 40vw;
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    margin: 0 -25% 0 0;
+    transform: translate(-40%, -25%);
+}
+
+#convert-download-icon-background {
+    height: 30vh;
+    width: 20vw;
+    background: var(--button-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+}
+
+#convert-download-button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: inherit;
+    border-radius: 15px;
+    background: var(--button-color);
+    padding: 0;
+    width: 120px;
+    height: 55px;
+    color: var(--main-color);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+}

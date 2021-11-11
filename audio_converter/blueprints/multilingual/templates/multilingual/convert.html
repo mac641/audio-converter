@@ -9,14 +9,41 @@
 
 {% block content %}
     {{ dropzone.create(action='multilingual.convert_upload') }}
-    <label id="convert-audio-file-format-label">Destination file format:</label>
+    <label id="convert-audio-file-format-label">{{ _('Destination file format') }}:</label>
     <select name="convert-audio-file-format-select" id="convert-audio-file-format-select">
         {% for file_type in allowed_audio_file_types %}
-        <option value="{{ file_type }}">{{ file_type }}</option>
+            <option value="{{ file_type }}">{{ file_type }}</option>
         {% endfor %}
     </select>
-    <button id="convert-upload-submit">Convert</button>
+    <button id="convert-submit">{{ _('Convert') }}</button>
 
     {{ dropzone.load_js() }}
     {{ dropzone.config(custom_options='createImageThumbnails: false, disablePreviews: true') }}
+
+    <script type="text/javascript">
+        const convertSubmit = document.getElementById('convert-submit');
+        const fileType = document.getElementById('convert-audio-file-format-select').value;
+
+        function handleConvert() {
+            // TODO: display loading screen
+            fetch({{ url_for('multilingual.convert_process') }}, {
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                method: 'POST',
+                body: `${fileType}`
+            }).then((res: Response) => {
+                console.log(res);
+            });
+        }
+
+        convertSubmit.onclick((e: MouseEvent) => {
+            if (e.button !== 0) return;
+            handleConvert();
+        });
+        window.onkeydown((e: KeyboardEvent) => {
+            if (e.key !== 'Enter') return;
+            handleConvert();
+        });
+    </script>
 {% endblock %}

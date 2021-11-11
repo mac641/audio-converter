@@ -1,4 +1,5 @@
 import os
+from flask_babelex import _
 
 from local_config import Settings
 
@@ -28,6 +29,7 @@ LANGUAGES = ['en', 'de']
 
 # Convert feature - Dropzone
 UPLOAD_PATH = os.getcwd() + '/uploads'
+CONVERSION_PATH = os.getcwd() + '/converted'
 ALLOWED_AUDIO_FILE_TYPES = [
     '.wav',
     '.flac',
@@ -44,9 +46,5 @@ DROPZONE_MAX_FILES = 30
 DROPZONE_UPLOAD_MULTIPLE = True
 DROPZONE_PARALLEL_UPLOADS = 2
 
-DROPZONE_DEFAULT_MESSAGE = 'Drag and drop your music files here or click into the dropzone to open a file browser.'
-# TODO: Change this to loading page which shows the conversion progress or index after downloading all files
-DROPZONE_REDIRECT_VIEW = 'multilingual.index'
+DROPZONE_DEFAULT_MESSAGE = _('Drag and drop your music files here or click into the dropzone to open a file browser.')
 DROPZONE_TIMEOUT = 5*60*1000
-DROPZONE_UPLOAD_ON_CLICK = True
-DROPZONE_UPLOAD_BTN_ID='convert-upload-submit'
