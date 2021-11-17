@@ -1,17 +1,14 @@
-from datetime import datetime
-import os.path
 
-from flask import redirect, render_template, request, send_from_directory, Blueprint, g, abort, after_this_request, \
-    url_for
+from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for
 from flask_babelex import _
 from flask_login import current_user
-from flask_security import login_required, RegisterForm, ConfirmRegisterForm, views, anonymous_user_required
+from flask_security import RegisterForm, ConfirmRegisterForm, views, unauth_csrf, auth_required
 from flask_security.changeable import change_user_password
 from flask_security.passwordless import send_login_instructions
 from flask_security.recoverable import send_reset_password_instructions, reset_password_token_status, update_password
 from flask_security.registerable import register_user
 from flask_security.twofactor import tf_login, tf_verify_validility_token, is_tf_setup
-from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect, \
+from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect,\
     base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash, get_token_status
 from flask_security.views import _ctx, _security
 from werkzeug.datastructures import MultiDict
@@ -123,6 +120,7 @@ def login():
 
 
 @multilingual.route('/logout')
+@auth_required()
 def logout():
     return views.logout()
 
@@ -188,6 +186,7 @@ def _commit(response=None):
 
 # FIXME: Set token not on None and delete "if token is None:" statement.
 @multilingual.route('/reset_password', methods=['GET', 'POST'])
+@auth_required()
 def reset_password(token=None):
     if token is None:
         token = request.args.get('token')
@@ -297,8 +296,8 @@ def reset_password(token=None):
     )
 
 
-# @unauth_csrf(fall_through=True)
 @multilingual.route('/send_login', methods=['GET', 'POST'])
+@unauth_csrf(fall_through=True)
 def send_login():
     """View function that sends login instructions for passwordless login"""
     # Source code copied from flask_security/views.py - send_login() method
@@ -329,7 +328,6 @@ def send_login():
 
 
 # FIXME: Set token not on None and delete "if token is None:" statement.
-@anonymous_user_required
 def token_login(token=None):
     """View function that handles passwordless login via a token
     Like reset-password and confirm - this is usually a GET via an email
@@ -413,8 +411,10 @@ def forgot_password():
         lang=g.lang_code
     )
 
-# @login_required
+
+
 @multilingual.route('/change_password', methods=['GET', 'POST'])
+@auth_required()
 def change_password():
     """View function which handles a change password request."""
     # Source code copied from flask_security/views.py - change_password() method
@@ -457,6 +457,7 @@ def convert():
 
 
 @multilingual.route('/settings')
+@auth_required()
 def settings():
     if not current_user.is_authenticated:
         return redirect(url_for('multilingual.login'))
@@ -476,6 +477,7 @@ def privacy():
 
 
 def login_token_status(token):
+    # Source code copied from flask_security/views.py - login_token_status() method
     """Returns the expired status, invalid status, and user of a login token.
     For example::
 
