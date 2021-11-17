@@ -9,68 +9,177 @@ body {
     margin: 0;
 }
 
+
+button, input[type="button"], input[type="submit"] {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: inherit;
+    background: var(--signal-color);
+    border-radius: 20px;
+    border: solid darkblue thin;
+    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+    padding: 1em 2em;
+}
+
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+button:active, input[type="button"]:active, input[type="submit"]:active {
+    animation: gradient 200ms;
+    background: var(--signal-color-effect);
+}
+
+.mainButton {
+    padding: 1.5em 1.5em;
+    font-size: 150%;
+    border-radius: 40px;
+}
+
 #index-header {
-    background-color: var(--main-color);
-    /*    display: flex;*/
-    /*    align-items: center;*/
-    /*    justify-content: center;*/
+    background: #18171e;
     top: 0;
     left: 0;
     width: 100%;
-    height: 115px;
+    height: 75px;
     border: 0;
     padding: 0;
     margin: 0;
     align-items: center;
 }
 
-#index-logo {
-    height: 100px;
-    float: left;
-    margin-top: 12px;
-    margin-left: 24px;
+#index-header-break {
+    height: 5px;
+    width: 100%;
+    background: var(--signal-color);
 }
 
-#index-signin-button, #index-signup-button, #index-signout-button, #index-language-button, #index-getStarted-button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: inherit;
-    border-radius: 15px;
-    background: var(--button-color);
-    padding: 0;
-    width: 120px;
-    height: 55px;
+#index-logo {
+    height: 50px;
+    float: left;
+    margin-top: 14px;
+    margin-left: 20px;
+}
+
+#index-logo:active {
+    animation: gradient 200ms;
+    height: 44px;
+    margin-top: 17px;
+    margin-left: 23px;
 }
 
 #index-signin-button {
-    margin-top: 30px;
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
     margin-right: 40px;
-    margin-left: 40px;
     float: right;
+}
+
+#index-signin-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
 }
 
 #index-signup-button {
-    margin-top: 30px;
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
     margin-right: 40px;
-    margin-left: 40px;
     float: right;
+}
+
+#index-signup-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
 }
 
 #index-signout-button {
-    margin-top: 30px;
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
     margin-right: 40px;
-    margin-left: 40px;
     float: right;
+}
+
+#index-signout-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
 }
 
 #index-language-button {
-    margin-top: 30px;
+    height: 28px;
+    width: 47px;
+    border: solid #d3d3d3 1px;
+    margin-top: 24px;
     margin-right: 40px;
     float: right;
 }
 
-#index-language-button-icon {
-    width: 50px;
+#index-language-button:active {
+    animation: gradient 200ms;
+    height: 22px;
+    width: 41px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
+}
+
+#index-account-button {
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
+    margin-right: 40px;
+    float: right;
+}
+
+#index-account-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
+}
+
+#index-setting-button {
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
+    margin-right: 40px;
+    float: right;
+}
+
+#index-setting-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
+}
+
+#index-history-button {
+    height: 30px;
+    width: auto;
+    margin-top: 24px;
+    margin-right: 40px;
+    float: right;
+}
+
+#index-history-button:active {
+    animation: gradient 200ms;
+    height: 24px;
+    margin-top: 27px;
+    margin-right: 43px;
+    margin-left: 3px;
 }
 
 #index-footer {
@@ -81,25 +190,26 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 30px;
     background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top: solid 1px var(--text-color);
 }
 
 #index-footer-copyright {
-    color: var(--text-color);
+    color: var(--text-color2);
     position: absolute;
     left: 0;
-    margin-left: 40px;
+    margin-left: 10px;
 }
 
 #index-footer-links-wrapper {
     position: absolute;
     right: 0;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
 }
 
 #index-footer-imprint-link {

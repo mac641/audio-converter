@@ -1,15 +1,17 @@
-import sys
 from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for
 from flask_babelex import _
 from flask_login import current_user
-from flask_security import RegisterForm, ConfirmRegisterForm, views
+from flask_security import RegisterForm, ConfirmRegisterForm, views, unauth_csrf, auth_required
+from flask_security.changeable import change_user_password
+from flask_security.passwordless import send_login_instructions
 from flask_security.recoverable import send_reset_password_instructions, reset_password_token_status, update_password
 from flask_security.registerable import register_user
 from flask_security.twofactor import tf_login, tf_verify_validility_token, is_tf_setup
-from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect, \
-    base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash
+from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect,\
+    base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash, get_token_status
 from flask_security.views import _ctx, _security
 from werkzeug.datastructures import MultiDict
+from werkzeug.local import LocalProxy
 
 from audio_converter import app
 from audio_converter.blueprints.multilingual.convert_feature.upload import upload
@@ -116,13 +118,14 @@ def login():
 
 
 @multilingual.route('/logout')
+@auth_required()
 def logout():
     return views.logout()
 
 
 @multilingual.route('/register', methods=['GET', 'POST'])
 def register():
-    # NOTE: Source code copied from flask_security/views.py - register() method
+    # Source code copied from flask_security/views.py - register() method
     # Only minor import and template variable adjustments
     if _security.confirmable or request.is_json:
         form_class = ConfirmRegisterForm
@@ -154,6 +157,7 @@ def register():
     if _security._want_json(request):
         return base_render_json(form)
 
+    app.logger.info('Registering...')
     return render_template(
         config_value('REGISTER_USER_TEMPLATE'),
         register_user_form=form,
@@ -163,17 +167,29 @@ def register():
     )
 
 
-@multilingual.route('confirm_email', methods=['GET', 'POST'])
+# FIXME: Set token not on None and delete "if token is None:" statement.
+@multilingual.route('/confirm_email', methods=['GET', 'POST'])
 def confirm_email(token=None):
     if token is None:
         token = request.args.get('token')
     return views.confirm_email(token)
 
 
-# FIXME: Reset password token generation and routing when clicking on link in email
+_datastore = LocalProxy(lambda: _security.datastore)
+
+
+def _commit(response=None):
+    _datastore.commit()
+    return response
+
+
+# FIXME: Set token not on None and delete "if token is None:" statement.
 @multilingual.route('/reset_password', methods=['GET', 'POST'])
-def reset_password(token):
-    # NOTE: Source code copied from flask_security/views.py - reset_password() method
+@auth_required()
+def reset_password(token=None):
+    if token is None:
+        token = request.args.get('token')
+    # Source code copied from flask_security/views.py - reset_password() method
     # Only minor import and template variable adjustments
     expired, invalid, user = reset_password_token_status(token)
     form_class = _security.reset_password_form
@@ -267,6 +283,7 @@ def reset_password(token):
                 get_url(_security.post_reset_view) or get_url(_security.post_login_view)
             )
 
+    app.logger.info('Resetting your password!')
     if _security._want_json(request):
         return base_render_json(form)
     return _security.render_template(
@@ -277,6 +294,82 @@ def reset_password(token):
         title='Audio-Converter - ' + _('Reset Password'),
         lang=g.lang_code,
     )
+
+
+@multilingual.route('/send_login', methods=['GET', 'POST'])
+@unauth_csrf(fall_through=True)
+def send_login():
+    """View function that sends login instructions for passwordless login"""
+    # Source code copied from flask_security/views.py - send_login() method
+    # Only minor import and template variable adjustments
+
+    form_class = _security.passwordless_login_form
+
+    if request.is_json:
+        form = form_class(MultiDict(request.get_json()), meta=suppress_form_csrf())
+    else:
+        form = form_class(meta=suppress_form_csrf())
+
+    if form.validate_on_submit():
+        send_login_instructions(form.user)
+        if not _security._want_json(request):
+            do_flash(*get_message("LOGIN_EMAIL_SENT", email=form.user.email))
+
+    if _security._want_json(request):
+        return base_render_json(form)
+
+    return _security.render_template(
+        config_value("SEND_LOGIN_TEMPLATE"),
+        send_login_form=form,
+        **_ctx("send_login"),
+        title='Audio-Converter - ' + _('Send Login'),
+        lang=g.lang_code
+    )
+
+
+# FIXME: Set token not on None and delete "if token is None:" statement.
+def token_login(token=None):
+    """View function that handles passwordless login via a token
+    Like reset-password and confirm - this is usually a GET via an email
+    so from the request we can't differentiate form-based apps from non.
+    """
+    if token is None:
+        token = request.args.get('token')
+    expired, invalid, user = login_token_status(token)
+    # Source code copied from flask_security/views.py - token_login() method
+    # Only minor import and template variable adjustments
+
+    if not user or invalid:
+        m, c = get_message("INVALID_LOGIN_TOKEN")
+        if _security.redirect_behavior == "spa":
+            return redirect(get_url(_security.login_error_view, qparams={c: m}))
+        do_flash(m, c)
+        return redirect(url_for("login"))
+    if expired:
+        send_login_instructions(user)
+        m, c = get_message(
+            "LOGIN_EXPIRED", email=user.email, within=_security.login_within
+        )
+        if _security.redirect_behavior == "spa":
+            return redirect(
+                get_url(
+                    _security.login_error_view,
+                    qparams=user.get_redirect_qparams({c: m}),
+                )
+            )
+        do_flash(m, c)
+        return redirect(url_for("login"))
+
+    login_user(user, authn_via=["token"])
+    after_this_request(view_commit)
+    if _security.redirect_behavior == "spa":
+        return redirect(
+            get_url(_security.post_login_view, qparams=user.get_redirect_qparams())
+        )
+
+    do_flash(*get_message("PASSWORDLESS_LOGIN_SUCCESSFUL"))
+
+    return redirect(get_post_login_redirect())
 
 
 @multilingual.route('/forgot_password', methods=['GET', 'POST'])
@@ -307,6 +400,7 @@ def forgot_password():
             )
         )
 
+    app.logger.info('"Forgot password" link will be sent...')
     return _security.render_template(
         config_value("FORGOT_PASSWORD_TEMPLATE"),
         forgot_password_form=form,
@@ -314,6 +408,56 @@ def forgot_password():
         title='Audio-Converter - ' + _('Forgot Password'),
         lang=g.lang_code
     )
+
+
+@multilingual.route('/change_password', methods=['GET', 'POST'])
+@auth_required()
+def change_password():
+    """View function which handles a change password request."""
+    # Source code copied from flask_security/views.py - change_password() method
+    # Only minor import and template variable adjustments
+    form_class = _security.change_password_form
+
+    if request.is_json:
+        form = form_class(MultiDict(request.get_json()), meta=suppress_form_csrf())
+    else:
+        form = form_class(meta=suppress_form_csrf())
+
+    if form.validate_on_submit():
+        after_this_request(view_commit)
+        change_user_password(current_user._get_current_object(), form.new_password.data)
+        if _security._want_json(request):
+            form.user = current_user
+            return base_render_json(form, include_auth_token=True)
+
+        do_flash(*get_message("PASSWORD_CHANGE"))
+        return redirect(
+            get_url(_security.post_change_view) or get_url(_security.post_login_view)
+        )
+
+    if _security._want_json(request):
+        form.user = current_user
+        return base_render_json(form)
+
+    return _security.render_template(
+        config_value("CHANGE_PASSWORD_TEMPLATE"),
+        change_password_form=form,
+        **_ctx("change_password"),
+        title='Audio-Converter - ' + _('Change password'),
+        lang=g.lang_code,
+    )
+
+
+def login_token_status(token):
+    # Source code copied from flask_security/views.py - login_token_status() method
+    """Returns the expired status, invalid status, and user of a login token.
+    For example::
+
+        expired, invalid, user = login_token_status('...')
+
+    :param token: The login token
+    """
+    return get_token_status(token, "login", "LOGIN")
 
 
 @multilingual.route('/convert', methods=['POST', 'GET'])
@@ -342,11 +486,23 @@ def convert_download():
                     lang=g.lang_code)
 
 
+@multilingual.route('/settings')
+@auth_required()
+def settings():
+    if not current_user.is_authenticated:
+        return redirect(url_for('multilingual.login'))
+    else:
+        return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
+                               lang=g.lang_code)
+
+
 @multilingual.route('/imprint')
 def imprint():
+    app.logger.info('Redirecting to imprint route...')
     return render_template('multilingual/imprint.html', title='Audio-Converter - ' + _('Imprint'), lang=g.lang_code)
 
 
 @multilingual.route('/privacy')
 def privacy():
+    app.logger.info('Redirecting to privacy route...')
     return render_template('multilingual/privacy.html', title='Audio-Converter - ' + _('Privacy'), lang=g.lang_code)

@@ -1,35 +1,39 @@
 <header id="index-header">
     <a id="index-logo-link" href="{{ url_for('multilingual.index') }}">
-        <img id="index-logo" src="{{ url_for('static', filename='img/logo.png') }}"
+        <img id="index-logo" src="{{ url_for('static', filename='img/Logo.png') }}"
              alt={{ _("The logo should be here somewhere...") }}>
     </a>
+
+    {% if lang == 'en' %}
+        <input id="index-language-button" type="image" src="{{ url_for('static', filename='img/Flag-de.png') }}"
+               onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='de') }}'">
+    {% endif %}
+
+    {% if lang == 'de' %}
+        <input id="index-language-button" type="image" src="{{ url_for('static', filename='img/Flag-en.png') }}"
+               onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='en') }}'">
+    {% endif %}
+
     {% if not current_user.is_authenticated %}
         <form method="get" action="{{ url_for('multilingual.login') }}">
-            <button id="index-signin-button" type="submit">{{ _("Sign In") }}</button>
+            <input id="index-signin-button" type="image" src="{{ url_for('static', filename='img/Log-in.png') }}">
         </form>
         <form method="get" action="{{ url_for('multilingual.register') }}">
-            <button id="index-signup-button" type="submit">{{ _("Sign Up") }}</button>
+            <input id="index-signup-button" type="image" src="{{ url_for('static', filename='img/Sign-up.png') }}">
         </form>
     {% endif %}
     {% if current_user.is_authenticated %}
         <form method="get" action="{{ url_for('multilingual.logout') }}">
-            <button id="index-signout-button" type="submit">{{ _("Sign out") }}</button>
+            <input id="index-signout-button" type="image" src="{{ url_for('static', filename='img/Log-out.png') }}">
         </form>
+        <form method="get" action="{{ url_for('multilingual.settings') }}">
+            <input id="index-setting-button" type="image" src="{{ url_for('static', filename='img/Gear.png') }}">
+        </form>
+        {#         <input id="index-account-button" type="image" src="{{ url_for('static', filename='img/Person.png') }}">#}
+        <input id="index-history-button" type="image" src="{{ url_for('static', filename='img/Folder.png') }}">
     {% endif %}
 
-    {% if lang == 'en' %}
-        <button id="index-language-button" type="button"
-                onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='de') }}'">
-            <img id="index-language-button-icon" src="{{ url_for('static', filename='img/germany.png') }}"
-                 alt="{{ _('Can someone pass me that logo, please?') }}">
-        </button>
-    {% endif %}
-
-    {% if lang == 'de' %}
-        <button id="index-language-button" type="button"
-                onclick="window.location.href = '{{ url_for(request.endpoint, lang_code='en') }}'">
-            <img id="index-language-button-icon" src="{{ url_for('static', filename='img/uk.png') }}"
-                 alt="{{ _('Can someone pass me that logo, please?') }}">
-        </button>
-    {% endif %}
 </header>
+<div id="index-header-break">
+
+</div>
