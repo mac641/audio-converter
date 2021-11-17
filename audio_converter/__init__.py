@@ -1,3 +1,5 @@
+import logging
+
 from flask import Flask, request, g, redirect, url_for
 from flask_admin import Admin
 from flask_migrate import Migrate
@@ -8,6 +10,9 @@ from flask_babelex import Babel
 
 app = Flask(__name__)
 app.config.from_object('config')
+
+# Instantiate logging
+logging.basicConfig(filename='audio-converter.log', level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
