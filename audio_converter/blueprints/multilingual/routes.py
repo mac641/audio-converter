@@ -129,18 +129,6 @@ def logout():
 
 @multilingual.route('/register', methods=['GET', 'POST'])
 def register():
-    # if request.method == 'POST':
-    #     views.register()
-    #     # return redirect(index())
-    #
-    # if app.config['SECURITY_CONFIRMABLE']:
-    #     register_form = ConfirmRegisterForm()
-    # else:
-    #     register_form = RegisterForm()
-    #
-    # return render_template('security/register_user.html', title='Audio-Converter - ' + _('Register'), lang=g.lang_code,
-    #                        register_user_form=register_form)
-
     # Source code copied from flask_security/views.py - register() method
     # Only minor import and template variable adjustments
     if _security.confirmable or request.is_json:
@@ -182,6 +170,7 @@ def register():
     )
 
 
+# FIXME: Set token not on None and delete "if token is None:" statement.
 @multilingual.route('/confirm_email', methods=['GET', 'POST'])
 def confirm_email(token=None):
     if token is None:
@@ -197,9 +186,11 @@ def _commit(response=None):
     return response
 
 
-# FIXME: Reset password token generation and routing when clicking on link in email
+# FIXME: Set token not on None and delete "if token is None:" statement.
 @multilingual.route('/reset_password', methods=['GET', 'POST'])
-def reset_password(token):
+def reset_password(token=None):
+    if token is None:
+        token = request.args.get('token')
     # Source code copied from flask_security/views.py - reset_password() method
     # Only minor import and template variable adjustments
     expired, invalid, user = reset_password_token_status(token)
@@ -310,6 +301,8 @@ def reset_password(token):
 @multilingual.route('/send_login', methods=['GET', 'POST'])
 def send_login():
     """View function that sends login instructions for passwordless login"""
+    # Source code copied from flask_security/views.py - send_login() method
+    # Only minor import and template variable adjustments
 
     form_class = _security.passwordless_login_form
 
@@ -335,14 +328,18 @@ def send_login():
     )
 
 
+# FIXME: Set token not on None and delete "if token is None:" statement.
 @anonymous_user_required
-def token_login(token):
+def token_login(token=None):
     """View function that handles passwordless login via a token
     Like reset-password and confirm - this is usually a GET via an email
     so from the request we can't differentiate form-based apps from non.
     """
-
+    if token is None:
+        token = request.args.get('token')
     expired, invalid, user = login_token_status(token)
+    # Source code copied from flask_security/views.py - token_login() method
+    # Only minor import and template variable adjustments
 
     if not user or invalid:
         m, c = get_message("INVALID_LOGIN_TOKEN")
@@ -416,16 +413,12 @@ def forgot_password():
         lang=g.lang_code
     )
 
-
-# def _render_json(form, include_user=True, include_auth_token=False):
-#     has_errors = len(form.errors) > 0
-
-
 # @login_required
 @multilingual.route('/change_password', methods=['GET', 'POST'])
 def change_password():
     """View function which handles a change password request."""
-
+    # Source code copied from flask_security/views.py - change_password() method
+    # Only minor import and template variable adjustments
     form_class = _security.change_password_form
 
     if request.is_json:
@@ -469,7 +462,7 @@ def settings():
         return redirect(url_for('multilingual.login'))
     else:
         return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
-                           lang=g.lang_code)
+                               lang=g.lang_code)
 
 
 @multilingual.route('/imprint')
