@@ -169,6 +169,7 @@ def register():
     if _security._want_json(request):
         return base_render_json(form)
 
+    app.logger.info('Registering...')
     return render_template(
         config_value('REGISTER_USER_TEMPLATE'),
         register_user_form=form,
@@ -282,6 +283,7 @@ def reset_password(token):
                 get_url(_security.post_reset_view) or get_url(_security.post_login_view)
             )
 
+    app.logger.info('Resetting your password!')
     if _security._want_json(request):
         return base_render_json(form)
     return _security.render_template(
@@ -328,6 +330,7 @@ def forgot_password():
             )
         )
 
+    app.logger.info('"Forgot password" link will be sent...')
     return _security.render_template(
         config_value("FORGOT_PASSWORD_TEMPLATE"),
         forgot_password_form=form,
@@ -339,14 +342,17 @@ def forgot_password():
 
 @multilingual.route('/convert')
 def convert():
+    app.logger.info('Redirecting to convert route...')
     return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code)
 
 
 @multilingual.route('/imprint')
 def imprint():
+    app.logger.info('Redirecting to imprint route...')
     return render_template('multilingual/imprint.html', title='Audio-Converter - ' + _('Imprint'), lang=g.lang_code)
 
 
 @multilingual.route('/privacy')
 def privacy():
+    app.logger.info('Redirecting to privacy route...')
     return render_template('multilingual/privacy.html', title='Audio-Converter - ' + _('Privacy'), lang=g.lang_code)
