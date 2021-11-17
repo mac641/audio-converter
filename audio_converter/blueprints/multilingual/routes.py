@@ -535,6 +535,16 @@ def settings():
                                lang=g.lang_code)
 
 
+@multilingual.route('/history')
+@auth_required()
+def history():
+    if not current_user.is_authenticated:
+        return redirect(url_for('multilingual.login'))
+    else:
+        return render_template('multilingual/history.html', title='Audio-Converter - ' + _('History'),
+                               lang=g.lang_code)
+
+
 @multilingual.route('/imprint')
 def imprint():
     app.logger.info('Redirecting to imprint route...')

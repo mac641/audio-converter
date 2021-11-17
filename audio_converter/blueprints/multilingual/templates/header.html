@@ -29,9 +29,9 @@
         <form method="get" action="{{ url_for('multilingual.settings') }}">
             <input id="index-setting-button" type="image" src="{{ url_for('static', filename='img/Gear.png') }}" title={{ _('Settings')}}>
         </form>
-        {#         <input id="index-account-button" type="image" src="{{ url_for('static', filename='img/Person.png') }}">#}
-        <input id="index-history-button" type="image" src="{{ url_for('static', filename='img/Folder.png') }}" title={{ _('History')}}>
-
+        <form method="get" action="{{ url_for('multilingual.history') }}">
+            <input id="index-history-button" type="image" src="{{ url_for('static', filename='img/Folder.png') }}" title={{ _('History')}}>
+        </form>
         {% if current_user.has_role('admin') %}
             <form method="get" action="{{ url_for('admin.index') }}">
                 <input id="index-setting-button" type="image" src="{{ url_for('static', filename='img/Person.png') }}" title={{ _('Admin')}}>

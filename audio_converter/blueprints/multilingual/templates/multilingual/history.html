@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
+    {% endblock styles %}
+{% endblock head %}
+
+{% block content %}
+<h1>&nbsp; {{ _('History') }}</h1>
+{% endblock %}
