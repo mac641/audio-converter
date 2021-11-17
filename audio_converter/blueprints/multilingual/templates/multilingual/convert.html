@@ -26,22 +26,22 @@
 
         function handleConvert() {
             // TODO: display loading screen
-            fetch({{ url_for('multilingual.convert_process') }}, {
+            fetch("{{ url_for('multilingual.convert_process') }}", {
                 headers: {
                     'Content-Type': 'text/plain'
                 },
                 method: 'POST',
                 body: `${fileType}`
-            }).then((res: Response) => {
+            }).then((res) => {
                 console.log(res);
             });
         }
 
-        convertSubmit.onclick((e: MouseEvent) => {
+        convertSubmit.addEventListener('click', e => {
             if (e.button !== 0) return;
             handleConvert();
         });
-        window.onkeydown((e: KeyboardEvent) => {
+        window.addEventListener('keydown', e => {
             if (e.key !== 'Enter') return;
             handleConvert();
         });

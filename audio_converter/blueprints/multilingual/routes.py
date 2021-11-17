@@ -1,3 +1,4 @@
+import sys
 from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for
 from flask_babelex import _
 from flask_login import current_user
@@ -330,7 +331,9 @@ def convert_upload():
 def convert_process():
     process_return_value = process(request)
     if process_return_value[1] == 200:
-        redirect('convert_download', process_return_value[1], process_return_value)
+        return redirect('convert_download')
+    else:
+      return process_return_value
 
 
 @multilingual.route('convert_download', methods=['POST', 'GET'])
