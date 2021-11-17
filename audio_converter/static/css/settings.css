@@ -1,0 +1,30 @@
+@import "root.css";
+
+.settingsBox{
+  display: block;
+  margin-top: 20vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20vw;
+  border: solid 1px var(--text-color);
+  padding: 3em;
+  border-radius: 20px;
+  box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+}
+
+.settingsBoxHyphen {
+    color: var(--text-color);
+}
+
+.settingsBoxHyphen2 {
+    color: #E6E2E2;
+    margin: 0 -2.5vw;
+}
+
+.saveButton {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%)
+}
