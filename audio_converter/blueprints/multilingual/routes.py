@@ -12,8 +12,7 @@ from flask_security.recoverable import send_reset_password_instructions, reset_p
 from flask_security.registerable import register_user
 from flask_security.twofactor import tf_login, tf_verify_validility_token, is_tf_setup
 from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect, \
-    base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash, url_for_security, \
-    get_token_status
+    base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash, get_token_status
 from flask_security.views import _ctx, _security
 from werkzeug.datastructures import MultiDict
 from werkzeug.local import LocalProxy
@@ -350,7 +349,7 @@ def token_login(token):
         if _security.redirect_behavior == "spa":
             return redirect(get_url(_security.login_error_view, qparams={c: m}))
         do_flash(m, c)
-        return redirect(url_for_security("login"))
+        return redirect(url_for("login"))
     if expired:
         send_login_instructions(user)
         m, c = get_message(
@@ -364,7 +363,7 @@ def token_login(token):
                 )
             )
         do_flash(m, c)
-        return redirect(url_for_security("login"))
+        return redirect(url_for("login"))
 
     login_user(user, authn_via=["token"])
     after_this_request(view_commit)
