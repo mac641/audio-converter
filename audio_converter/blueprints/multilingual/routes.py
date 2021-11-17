@@ -474,6 +474,7 @@ def convert_upload():
 @multilingual.route('/convert_process', methods=['POST', 'GET'])
 def convert_process():
     process_return_value = process(request)
+    app.logger.debug('Processed audio file template: ' + ''.join(map(str, process_return_value)))
     if process_return_value[1] == 200:
         return redirect('convert_download')
     else:
