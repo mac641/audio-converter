@@ -48,3 +48,11 @@ update-translate: scan-translations update-translations
 
 compile-translations:
 	pybabel compile -d audio_converter/translations
+
+# Misc
+.PHONY: clean
+clean: clean-logs
+
+.PHONY: clean-logs
+clean-logs:
+	/bin/rm -f *.log
