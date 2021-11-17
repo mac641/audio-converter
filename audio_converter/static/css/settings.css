@@ -1,17 +1,24 @@
 @import "root.css";
 
-.settingsBox {
-    display: inline-block;
-    height: 20vw;
-    width: 20vw;
-    border: solid thin var(--text-color);
-    border-radius: 20px;
-    margin: 20vh 0 0 calc(60vw / 3);
-    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+.settingsBox{
+  display: block;
+  margin-top: 20vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20vw;
+  border: solid 1px var(--text-color);
+  padding: 3em;
+  border-radius: 20px;
+  box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
 }
 
 .settingsBoxHyphen {
     color: var(--text-color);
+}
+
+.settingsBoxHyphen2 {
+    color: #E6E2E2;
+    margin: 0 -2.5vw;
 }
 
 .saveButton {
