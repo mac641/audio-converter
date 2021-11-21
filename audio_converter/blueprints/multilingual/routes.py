@@ -481,7 +481,7 @@ def convert_process():
       return process_return_value
 
 
-@multilingual.route('convert_download', methods=['POST', 'GET'])
+@multilingual.route('/convert_download', methods=['POST', 'GET'])
 def convert_download():
     return render_template('multilingual/download.html', title='Audio Converter - ' + _('Conversion Results'),
                     lang=g.lang_code)

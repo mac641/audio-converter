@@ -15,4 +15,4 @@ def process(request):
 
     file_type = request.data
 
-    return 'file type received' + str(file_type), 200
+    return 'file type received: ' + str(file_type), 200

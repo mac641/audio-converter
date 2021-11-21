@@ -22,9 +22,10 @@
 
     <script type="text/javascript">
         const convertSubmit = document.getElementById('convert-submit');
-        const fileType = document.getElementById('convert-audio-file-format-select').value;
 
         function handleConvert() {
+            const fileType = document.getElementById('convert-audio-file-format-select').value;
+
             // TODO: display loading screen
             fetch("{{ url_for('multilingual.convert_process') }}", {
                 headers: {
