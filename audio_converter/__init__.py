@@ -12,7 +12,8 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 # Instantiate logging
-logging.basicConfig(filename='audio-converter.log', level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logging.basicConfig(filename='audio-converter.log', level=logging.DEBUG,
+                    format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -27,16 +28,20 @@ admin = Admin(app, name='Audio Converter', template_mode='bootstrap3')
 from audio_converter import admin_models
 
 from audio_converter.blueprints.multilingual import routes, multilingual
+
 app.register_blueprint(multilingual)
 mail = Mail(app)
 
 # Set up Babel
 babel = Babel(app)
+
+
 @babel.localeselector
 def get_locale():
     if not g.get('lang_code', None):
         g.lang_code = request.accept_languages.best_match(app.config['LANGUAGES'])
     return g.lang_code
+
 
 @app.route('/')
 def home():
