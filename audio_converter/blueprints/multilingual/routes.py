@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for
+from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for, Response
 from flask_babelex import _
 from flask_login import current_user
 from flask_security import RegisterForm, ConfirmRegisterForm, views, unauth_csrf, auth_required
@@ -10,7 +10,7 @@ from flask_security.twofactor import tf_login, tf_verify_validility_token, is_tf
 from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect,\
     base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash, get_token_status
 from flask_security.views import _ctx, _security
-from werkzeug.datastructures import MultiDict
+from werkzeug.datastructures import MultiDict, Headers
 from werkzeug.local import LocalProxy
 
 from audio_converter import app
@@ -475,10 +475,10 @@ def convert_upload():
 def convert_process():
     process_return_value = process(request)
     app.logger.debug('Processed audio file template: ' + ''.join(map(str, process_return_value)))
-    if process_return_value[1] == 200:
-        return redirect('convert_download')
+    if process_return_value[1] == 301:
+        return redirect(url_for('multilingual.convert_download'), process_return_value[1])
     else:
-      return process_return_value
+        return process_return_value
 
 
 @multilingual.route('/convert_download', methods=['POST', 'GET'])

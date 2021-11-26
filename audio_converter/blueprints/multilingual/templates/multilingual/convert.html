@@ -35,6 +35,18 @@
                 body: `${fileType}`
             }).then((res) => {
                 console.log(res);
+                if (res.status === 301 || res.status === 200) {
+                    window.alert('Files received for processing!\n' +
+                        'In case you\'ve uploaded files which have been converted already, the server will skip them.\n' +
+                        'Press OK to continue...');
+                    window.location.replace(res.url);
+                    return;
+                }
+                res.text().then(value => {
+                    window.alert('The server ran into an error converting your files!\n\n' +
+                        `${value}\n\n` + 'Press OK to be redirected to the start page...');
+                    window.location.replace("{{ url_for('multilingual.index') }}");
+                });
             });
         }
 

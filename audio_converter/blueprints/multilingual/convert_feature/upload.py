@@ -5,9 +5,10 @@ from pathlib import Path
 from audio_converter import app
 
 allowed_audio_file_types = app.config['ALLOWED_AUDIO_FILE_TYPES']
+upload_path = app.config['UPLOAD_PATH']
 
 def upload(request):
-    upload_path = app.config['UPLOAD_PATH']
+    # FIXME: Ensure uploads will be deleted after every file has been uploaded
     if os.path.isdir(upload_path):
         shutil.rmtree(upload_path)
     os.mkdir(upload_path)
