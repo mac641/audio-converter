@@ -11,9 +11,7 @@ files = [f for f in os.listdir(upload_path) if os.path.isfile(os.path.join(uploa
 
 
 def process(request):
-    if os.path.isdir(conversion_path):
-        shutil.rmtree(conversion_path)
-    os.mkdir(conversion_path)
+    _delete_path(conversion_path)
 
     if request.method != 'POST' or len(request.data) == 0:
         return 'The requested files can\'t be converted due to unknown destination file type.' \
@@ -24,8 +22,16 @@ def process(request):
     # converted_files = _filter_already_converted_files(destination_file_type)
     # if _do_file_types_of_uploaded_files_match() or len(converted_files) > 0:
 
-
+    # Delete uploads after successful conversion
+    _delete_path(upload_path)
+    
     return 'file type received: ' + str(destination_file_type), 301
+
+
+def _delete_path(path):
+    if os.path.isdir(path):
+        shutil.rmtree(path)
+    os.mkdir(path)
 
 
 def _do_file_types_of_uploaded_files_match():

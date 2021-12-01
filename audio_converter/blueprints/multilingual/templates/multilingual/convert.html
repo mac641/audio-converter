@@ -15,14 +15,26 @@
             <option value="{{ file_type }}">{{ file_type }}</option>
         {% endfor %}
     </select>
-    <button id="convert-submit">{{ _('Convert') }}</button>
+    <button id="upload-convert-submit"
+            title="Note, in case you upload files which have been converted already, the server will ignore them.">
+        {{ _('Upload And Convert') }}
+    </button>
 
     {{ dropzone.load_js() }}
-    {{ dropzone.config(custom_options='createImageThumbnails: false, disablePreviews: true') }}
+    {{ dropzone.config(custom_init='dz = this;
+        document.getElementById("upload-convert-submit").addEventListener("click", e => {
+            if (e.button !== 0) return;
+            dz.processQueue();
+            handleConvert();
+        });
+        window.addEventListener("keydown", e => {
+            if (e.key !== "Enter") return;
+            dz.processQueue();
+            handleConvert();
+        });',
+    custom_options='autoProcessQueue: false, createImageThumbnails: false, disablePreviews: true') }}
 
     <script type="text/javascript">
-        const convertSubmit = document.getElementById('convert-submit');
-
         function handleConvert() {
             const fileType = document.getElementById('convert-audio-file-format-select').value;
 
@@ -36,27 +48,23 @@
             }).then((res) => {
                 console.log(res);
                 if (res.status === 301 || res.status === 200) {
-                    window.alert('Files received for processing!\n' +
-                        'In case you\'ve uploaded files which have been converted already, the server will skip them.\n' +
+                    /*
+                    // NOTE: This has been added as button hover title
+                    window.alert('Files received for processing!\n\n' +
+                        'In case you\'ve uploaded files which have been converted already,' +
+                        'the server will skip them.\n\n' +
                         'Press OK to continue...');
+                    */
                     window.location.replace(res.url);
                     return;
                 }
                 res.text().then(value => {
+                    // TODO: Delete files from server, if conversion fails
                     window.alert('The server ran into an error converting your files!\n\n' +
                         `${value}\n\n` + 'Press OK to be redirected to the start page...');
                     window.location.replace("{{ url_for('multilingual.index') }}");
                 });
             });
         }
-
-        convertSubmit.addEventListener('click', e => {
-            if (e.button !== 0) return;
-            handleConvert();
-        });
-        window.addEventListener('keydown', e => {
-            if (e.key !== 'Enter') return;
-            handleConvert();
-        });
     </script>
 {% endblock %}

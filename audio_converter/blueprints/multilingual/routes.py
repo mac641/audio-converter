@@ -7,10 +7,10 @@ from flask_security.passwordless import send_login_instructions
 from flask_security.recoverable import send_reset_password_instructions, reset_password_token_status, update_password
 from flask_security.registerable import register_user
 from flask_security.twofactor import tf_login, tf_verify_validility_token, is_tf_setup
-from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect,\
+from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect, \
     base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash, get_token_status
 from flask_security.views import _ctx, _security
-from werkzeug.datastructures import MultiDict, Headers
+from werkzeug.datastructures import MultiDict
 from werkzeug.local import LocalProxy
 
 from audio_converter import app
@@ -484,7 +484,7 @@ def convert_process():
 @multilingual.route('/convert_download', methods=['POST', 'GET'])
 def convert_download():
     return render_template('multilingual/download.html', title='Audio Converter - ' + _('Conversion Results'),
-                    lang=g.lang_code)
+                           lang=g.lang_code)
 
 
 @multilingual.route('/settings')
