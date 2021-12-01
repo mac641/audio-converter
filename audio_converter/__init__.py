@@ -1,7 +1,8 @@
 import logging
 
 from flask import Flask, request, g, redirect, url_for
-from flask_admin import Admin
+from flask_admin import Admin, AdminIndexView, expose
+from flask_admin.menu import MenuLink
 from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_sqlalchemy import SQLAlchemy
@@ -20,16 +21,31 @@ migrate = Migrate(app, db)
 
 from audio_converter import models
 
-# TODO: implement admin_models and initialize admin feature
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
 security = Security(app=app, datastore=user_datastore, register_blueprint=False)
 
-admin = Admin(app, name='Audio Converter', template_mode='bootstrap3')
-from audio_converter import admin_models
 
+class DashboardView(AdminIndexView):
+    def is_visible(self):
+        return False
+
+    @expose('/')
+    def index(self):
+        return self.render(
+            '/admin/master.html'
+        )
+
+
+admin = Admin(app, name='Admin Audio-Converter', template_mode='bootstrap3', index_view=DashboardView())
+admin.add_link(MenuLink(name='Home', url='/'))
+
+
+from audio_converter import admin_models
 from audio_converter.blueprints.multilingual import routes, multilingual
 
+
 app.register_blueprint(multilingual)
+# Set up Mail
 mail = Mail(app)
 
 # Set up Babel
