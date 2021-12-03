@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-14 16:15+0200\n"
+"POT-Creation-Date: 2021-12-03 15:04+0100\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "A tool to convert audio files"
 msgstr "Konvertiere deine Audiodateien"
 
-#: audio_converter/blueprints/multilingual/templates/base.html:22
+#: audio_converter/blueprints/multilingual/templates/base.html:23
 msgid ""
 "You are using an <strong>outdated</strong> browser. Please\n"
 "    <a href=\"https://browsehappy.com/\">upgrade your browser</a> to "
@@ -47,61 +47,124 @@ msgstr "Impressum"
 msgid "The logo should be here somewhere..."
 msgstr "Hier sollte das Logo irgendwo sein..."
 
-#: audio_converter/blueprints/multilingual/templates/header.html:8
-#: audio_converter/templates/security/login_user.html:7
-msgid "Sign In"
-msgstr "Einloggen"
+#: audio_converter/blueprints/multilingual/templates/header.html:4
+msgid "Home"
+msgstr "Home"
 
-#: audio_converter/blueprints/multilingual/templates/header.html:11
-#: audio_converter/templates/security/register_user.html:7
-msgid "Sign Up"
-msgstr "Registrieren"
+#: audio_converter/blueprints/multilingual/templates/header.html:9
+#: audio_converter/blueprints/multilingual/templates/header.html:14
+msgid "Language"
+msgstr "Sprache"
 
-#: audio_converter/blueprints/multilingual/templates/header.html:16
-msgid "Sign out"
-msgstr "Ausloggen"
+#: audio_converter/blueprints/multilingual/templates/header.html:19
+msgid "Sign-in"
+msgstr "Anmelden"
 
-#: audio_converter/blueprints/multilingual/templates/header.html:24
-#: audio_converter/blueprints/multilingual/templates/header.html:32
-msgid "Can someone pass me that logo, please?"
-msgstr "Könnte mir bitte jemand das Logo reichen?"
+#: audio_converter/blueprints/multilingual/templates/header.html:22
+msgid "Sign-up"
+msgstr "Regestrieren"
+
+#: audio_converter/blueprints/multilingual/templates/header.html:27
+#, fuzzy
+msgid "Sign-out"
+msgstr "Abmelden"
+
+#: audio_converter/blueprints/multilingual/templates/header.html:30
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:10
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: audio_converter/blueprints/multilingual/templates/header.html:33
+msgid "History"
+msgstr "Historie"
+
+#: audio_converter/blueprints/multilingual/templates/header.html:37
+msgid "Admin"
+msgstr "Admin"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:15
 msgid "Get started"
 msgstr "Los geht's"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:10
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:12
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:13
 msgid "Account"
 msgstr "Konto"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:17
+#: audio_converter/templates/security/reset_password.html:7
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:28
 #, fuzzy
 msgid "Audio converter"
 msgstr "Audio converter"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:22
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:38
 msgid "Save"
 msgstr "Speichern"
+
+#: audio_converter/templates/security/change_password.html:7
+#, fuzzy
+msgid "Change password"
+msgstr "Passwort zurücksetzen"
 
 #: audio_converter/templates/security/forgot_password.html:7
 msgid "Send password reset instructions"
 msgstr "Fordere einen Link zum Zurücksetzen des Passworts an"
 
+#: audio_converter/templates/security/login_user.html:7
+msgid "Sign In"
+msgstr "Einloggen"
+
 #: audio_converter/templates/security/login_user.html:15
 msgid "Forgot password"
 msgstr "Passwort vergessen"
 
-#: audio_converter/templates/security/reset_password.html:7
-msgid "Reset password"
-msgstr "Passwort zurücksetzen"
+#: audio_converter/templates/security/register_user.html:7
+msgid "Sign Up"
+msgstr "Registrieren"
+
+#: audio_converter/templates/security/send_login.html:7
+msgid "Login"
+msgstr "Anmelden"
+
+#: audio_converter/templates/security/email/change_notice.html:1
+msgid "Your password has been changed."
+msgstr "Dein Passwort wurde geändert"
+
+#: audio_converter/templates/security/email/change_notice.html:3
+msgid "If you did not change your password,"
+msgstr "Wenn du dein Passwort nicht geänderst hast,"
+
+#: audio_converter/templates/security/email/change_notice.html:3
+#, fuzzy
+msgid "click here to reset it"
+msgstr "Hier klicken, um dein Passwort zurückzusetzen"
+
+#: audio_converter/templates/security/email/login_instructions.html:1
+#, fuzzy, python-format
+msgid "Welcome %(email)s!"
+msgstr "Willkommen, %(email)"
+
+#: audio_converter/templates/security/email/login_instructions.html:3
+#, fuzzy
+msgid "You can log into your account through the link below:"
+msgstr ""
+"Bestätige deine Email Adresse, indem Du auf den unten angegebenen Link "
+"klickst:"
+
+#: audio_converter/templates/security/email/login_instructions.html:5
+msgid "Login now"
+msgstr "Melde dich jetzt an"
 
 #: audio_converter/templates/security/email/reset_instructions.html:1
 msgid "Click here to reset your password"
 msgstr "Hier klicken, um dein Passwort zurückzusetzen"
+
+#: audio_converter/templates/security/email/reset_notice.html:2
+msgid "Your password has been reset"
+msgstr "Dein Passwort wurde zurückgesetzt"
 
 #: audio_converter/templates/security/email/welcome.html:1
 #, fuzzy, python-format
@@ -123,4 +186,7 @@ msgstr "Bestätige dein Konto"
 
 #~ msgid "general"
 #~ msgstr ""
+
+#~ msgid "Can someone pass me that logo, please?"
+#~ msgstr "Könnte mir bitte jemand das Logo reichen?"
 
