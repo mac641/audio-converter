@@ -25,6 +25,7 @@ user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
 security = Security(app=app, datastore=user_datastore, register_blueprint=False)
 
 
+# the class must be initialized before admin. Removed the normal Home button of admin model.
 class DashboardView(AdminIndexView):
     def is_visible(self):
         return False
@@ -39,10 +40,8 @@ class DashboardView(AdminIndexView):
 admin = Admin(app, name='Admin Audio-Converter', template_mode='bootstrap3', index_view=DashboardView())
 admin.add_link(MenuLink(name='Home', url='/'))
 
-
 from audio_converter import admin_models
 from audio_converter.blueprints.multilingual import routes, multilingual
-
 
 app.register_blueprint(multilingual)
 # Set up Mail
