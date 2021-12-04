@@ -28,8 +28,8 @@ uninstall-requirements:
 	pip3 uninstall -y -r <(pip3 freeze)
 
 update-packages:
-	pip3 list -o | grep -v -i warning | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 |
-	xargs -n1 pip3 install -U
+	pip3 list -o | grep -v -i warning | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 | \
+xargs -n1 pip3 install -U
 
 # Babel
 .PHONY: scan-translations
