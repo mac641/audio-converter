@@ -13,3 +13,11 @@
 .errorTitle{
   color: var(--error-color);
 }
+
+.homeButton {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%)
+}

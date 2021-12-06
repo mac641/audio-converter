@@ -8,7 +8,12 @@
 
 {% block content %}
     <div class="errorBox">
-    <h1 class="errorTitle">Oops. Page Not Found (404)</h1>
-    <p>That page does not exist. Please try a different location</p>
+        <h1 class="errorTitle">{{ _('Oops. Page Not Found.')}} (404)</h1>
+        <p>{{ _('That page does not exist. Please try a different location.')}}</p>
+    </div>
+    <div class="homeButton">
+        <form method="get" action="{{ url_for('multilingual.index') }}">
+            <button type="submit">{{ _('Home') }}</button>
+        </form>
     </div>
 {% endblock content %}
