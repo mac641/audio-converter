@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/error.css') }}">
+    {% endblock styles %}
+{% endblock head %}
+
+{% block content %}
+    <div class="errorBox">
+    <h1 class="errorTitle">Something went wrong (500)</h1>
+    <p>We're experiencing some trouble on our end. Please try again in the near future</p>
+    </div>
+{% endblock content %}

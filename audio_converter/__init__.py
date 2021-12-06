@@ -42,8 +42,10 @@ admin.add_link(MenuLink(name='Home', url='/'))
 
 from audio_converter import admin_models
 from audio_converter.blueprints.multilingual import routes, multilingual
+from audio_converter.blueprints.multilingual.errors.handlers import errors
 
 app.register_blueprint(multilingual)
+app.register_blueprint(errors)
 # Set up Mail
 mail = Mail(app)
 

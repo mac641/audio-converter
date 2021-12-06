@@ -11,6 +11,7 @@
     --link-color-active: #BBCC90FF;
     --signal-color: linear-gradient(to bottom, #0070ff, #009aff 50%, #0070ff);
     --signal-color-effect: linear-gradient(to bottom, #009aff, #0070ff 50%, #009aff);
+    --error-color: red;
 }
 
 body {

@@ -1,0 +1,15 @@
+.errorBox{
+  display: block;
+  margin-top: 20vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30vw;
+  border: solid 1px var(--text-color);
+  padding: 3em;
+  border-radius: 20px;
+  box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+}
+
+.errorTitle{
+  color: var(--error-color);
+}
