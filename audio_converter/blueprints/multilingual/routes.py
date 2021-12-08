@@ -1,4 +1,3 @@
-
 from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for
 from flask_babelex import _
 from flask_login import current_user
@@ -8,7 +7,7 @@ from flask_security.passwordless import send_login_instructions
 from flask_security.recoverable import send_reset_password_instructions, reset_password_token_status, update_password
 from flask_security.registerable import register_user
 from flask_security.twofactor import tf_login, tf_verify_validility_token, is_tf_setup
-from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect,\
+from flask_security.utils import suppress_form_csrf, config_value, view_commit, login_user, get_post_register_redirect, \
     base_render_json, json_error_response, get_message, get_url, get_post_login_redirect, do_flash, get_token_status
 from flask_security.views import _ctx, _security
 from werkzeug.datastructures import MultiDict
@@ -33,7 +32,6 @@ def pull_lang_code(endpoint, values):
 def before_request():
     if g.lang_code not in app.config['LANGUAGES']:
         abort(404)
-        # TODO: create error page as HTML
 
 
 @multilingual.route('/')
@@ -415,7 +413,6 @@ def forgot_password():
     )
 
 
-
 @multilingual.route('/change_password', methods=['GET', 'POST'])
 @auth_required()
 def change_password():
@@ -492,3 +489,30 @@ def login_token_status(token):
     :param token: The login token
     """
     return get_token_status(token, "login", "LOGIN")
+
+
+@multilingual.app_errorhandler(403)
+def error_403(error):
+    return render_template('multilingual/error.html',
+                           lang=g.lang_code,
+                           title='Audio-Converter - Error_403',
+                           errortitle=_("You don't have permission to do that.") + ' (403)',
+                           msg=_('Please check your account and try again.')), 403
+
+
+@multilingual.app_errorhandler(404)
+def error_404(error):
+    return render_template('multilingual/error.html',
+                           lang=g.lang_code,
+                           title='Audio-Converter - Error 404',
+                           errortitle=_('Oops. Page Not Found.') + ' (404)',
+                           msg=_('That page does not exist. Please try a different location.')), 404
+
+
+@multilingual.app_errorhandler(500)
+def error_500(error):
+    return render_template('multilingual/error.html',
+                           lang=g.lang_code,
+                           title='Audio-Converter - Error_500',
+                           errortitle=_('Something went wrong') + ' (500)',
+                           msg=_("We're experiencing some trouble on our end. Please try again in the near future.")), 500

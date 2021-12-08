@@ -8,8 +8,8 @@
 
 {% block content %}
     <div class="errorBox">
-        <h1 class="errorTitle">{{ _("You don't have permission to do that.")}} (403)</h1>
-        <p>{{ _('Please check your account and try again.')}}</p>
+        <h1 class="errorTitle">{{ errortitle }}</h1>
+        <p>{{ msg }}</p>
     </div>
     <div class="homeButton">
         <form method="get" action="{{ url_for('multilingual.index') }}">
