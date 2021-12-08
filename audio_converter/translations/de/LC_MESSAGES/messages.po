@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-06 13:45+0100\n"
+"POT-Creation-Date: 2021-12-08 14:07+0100\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -48,6 +48,7 @@ msgid "The logo should be here somewhere..."
 msgstr "Hier sollte das Logo irgendwo sein..."
 
 #: audio_converter/blueprints/multilingual/templates/header.html:4
+#: audio_converter/blueprints/multilingual/templates/multilingual/error.html:16
 msgid "Home"
 msgstr "Home"
 
@@ -81,36 +82,6 @@ msgstr "Historie"
 #: audio_converter/blueprints/multilingual/templates/header.html:37
 msgid "Admin"
 msgstr "Admin"
-
-#: audio_converter/blueprints/multilingual/templates/errors/403.html:11
-msgid "You don't have permission to do that."
-msgstr "Sie haben keine Berechtigung dazu."
-
-#: audio_converter/blueprints/multilingual/templates/errors/403.html:12
-msgid "Please check your account and try again."
-msgstr "Bitte überprüfen Sie Ihr Konto und versuchen Sie es erneut."
-
-#: audio_converter/blueprints/multilingual/templates/errors/404.html:11
-msgid "Oops. Page Not Found."
-msgstr "Hoppla. Seite nicht gefunden."
-
-#: audio_converter/blueprints/multilingual/templates/errors/404.html:12
-msgid "That page does not exist. Please try a different location."
-msgstr ""
-"Diese Seite existiert nicht. Bitte versuchen Sie es mit einer anderen "
-"Adresse."
-
-#: audio_converter/blueprints/multilingual/templates/errors/500.html:11
-msgid "Something went wrong"
-msgstr "Etwas ist schief gelaufen"
-
-#: audio_converter/blueprints/multilingual/templates/errors/500.html:12
-msgid ""
-"We're experiencing some trouble on our end. Please try again in the near "
-"future."
-msgstr ""
-"Wir haben einige Probleme auf unserer Seite. Bitte versuchen Sie es "
-"demnächst erneut"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:15
 msgid "Get started"
@@ -210,13 +181,4 @@ msgstr ""
 #: audio_converter/templates/security/email/welcome.html:6
 msgid "Confirm my account"
 msgstr "Bestätige dein Konto"
-
-#~ msgid "personal data"
-#~ msgstr ""
-
-#~ msgid "general"
-#~ msgstr ""
-
-#~ msgid "Can someone pass me that logo, please?"
-#~ msgstr "Könnte mir bitte jemand das Logo reichen?"
 

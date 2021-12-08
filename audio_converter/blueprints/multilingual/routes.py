@@ -491,28 +491,26 @@ def login_token_status(token):
     return get_token_status(token, "login", "LOGIN")
 
 
+# TODO: Add translations to the error pages
 @multilingual.app_errorhandler(403)
 def error_403(error):
     return render_template('multilingual/error.html',
-                           lang=g.lang_code,
                            title='Audio-Converter - Error_403',
-                           errortitle=_("You don't have permission to do that.") + ' (403)',
-                           msg=_('Please check your account and try again.')), 403
+                           errortitle="You don't have permission to do that. (403)",
+                           msg='Please check your account and try again.'), 403
 
 
 @multilingual.app_errorhandler(404)
 def error_404(error):
     return render_template('multilingual/error.html',
-                           lang=g.lang_code,
                            title='Audio-Converter - Error 404',
-                           errortitle=_('Oops. Page Not Found.') + ' (404)',
-                           msg=_('That page does not exist. Please try a different location.')), 404
+                           errortitle='Oops. Page Not Found. (404)',
+                           msg='That page does not exist. Please try a different location.'), 404
 
 
 @multilingual.app_errorhandler(500)
 def error_500(error):
     return render_template('multilingual/error.html',
-                           lang=g.lang_code,
                            title='Audio-Converter - Error_500',
-                           errortitle=_('Something went wrong') + ' (500)',
-                           msg=_("We're experiencing some trouble on our end. Please try again in the near future.")), 500
+                           errortitle='Something went wrong. (500)',
+                           msg="We're experiencing some trouble on our end. Please try again in the near future."), 500
