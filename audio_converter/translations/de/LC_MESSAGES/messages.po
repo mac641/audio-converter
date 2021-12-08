@@ -48,10 +48,6 @@ msgid "The logo should be here somewhere..."
 msgstr "Hier sollte das Logo irgendwo sein..."
 
 #: audio_converter/blueprints/multilingual/templates/header.html:4
-#: audio_converter/blueprints/multilingual/templates/multilingual/error.html:16
-msgid "Home"
-msgstr "Home"
-
 #: audio_converter/blueprints/multilingual/templates/header.html:9
 #: audio_converter/blueprints/multilingual/templates/header.html:14
 msgid "Language"
@@ -181,4 +177,3 @@ msgstr ""
 #: audio_converter/templates/security/email/welcome.html:6
 msgid "Confirm my account"
 msgstr "Bestätige dein Konto"
-
