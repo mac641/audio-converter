@@ -16,12 +16,16 @@ app.config.from_object('config')
 logging.basicConfig(filename='audio-converter.log', level=logging.DEBUG,
                     format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
+app.logger.info('Set up Database')
 db = SQLAlchemy(app)
+app.logger.info('Set up Migrate')
 migrate = Migrate(app, db)
 
 from audio_converter import models
 
+app.logger.info('Initialization Databank')
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+app.logger.info('Set up Security')
 security = Security(app=app, datastore=user_datastore, register_blueprint=False)
 
 
@@ -37,6 +41,7 @@ class DashboardView(AdminIndexView):
         )
 
 
+app.logger.info('Set up Admin')
 admin = Admin(app, name='Admin Audio-Converter', template_mode='bootstrap3', index_view=DashboardView())
 admin.add_link(MenuLink(name='Home', url='/'))
 
@@ -44,10 +49,13 @@ from audio_converter import admin_models
 from audio_converter.blueprints.multilingual import routes, multilingual
 
 app.register_blueprint(multilingual)
+
 # Set up Mail
+app.logger.info('Set up Mail')
 mail = Mail(app)
 
 # Set up Babel
+app.logger.info('Set up Babel')
 babel = Babel(app)
 
 
