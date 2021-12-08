@@ -494,6 +494,7 @@ def login_token_status(token):
 # TODO: Add translations to the error pages
 @multilingual.app_errorhandler(403)
 def error_403(error):
+    app.logger.info('Error_403 attempted access to a forbidden page')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error_403',
                            errortitle="You don't have permission to do that. (403)",
@@ -502,6 +503,7 @@ def error_403(error):
 
 @multilingual.app_errorhandler(404)
 def error_404(error):
+    app.logger.info('Error_403 attempted access to a non-existent page')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error 404',
                            errortitle='Oops. Page Not Found. (404)',
@@ -510,6 +512,7 @@ def error_404(error):
 
 @multilingual.app_errorhandler(500)
 def error_500(error):
+    app.logger.info('Error_500 Internal error')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error_500',
                            errortitle='Something went wrong. (500)',
