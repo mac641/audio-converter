@@ -20,6 +20,33 @@
         {{ _('Upload And Convert') }}
     </button>
 
+    <script type="text/javascript">
+        function handleConvert() {
+            const fileType = document.getElementById('convert-audio-file-format-select').value;
+
+            // TODO: display loading screen
+            fetch('{{ url_for('multilingual.convert_process') }}', {
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                method: 'POST',
+                body: `${fileType}`
+            }).then((res) => {
+                console.log(res);
+                if (res.status === 301 || res.status === 200) {
+                    window.location.replace(res.url);
+                    return;
+                }
+                res.text().then(value => {
+                    // TODO: Delete files from server, if conversion fails
+                    window.alert('{{ _('The server ran into an error converting your files!') }}' +'\n\n' +
+                        `${value}\n\n` + '{{ _('Press OK to be redirected to the start page...') }}');
+                    window.location.replace("{{ url_for('multilingual.index') }}");
+                });
+            });
+        }
+    </script>
+
     {{ dropzone.load_js() }}
     {{ dropzone.config(custom_init='dz = this;
         document.getElementById("upload-convert-submit").addEventListener("click", function handler(e) {
@@ -35,31 +62,4 @@
             handleConvert();
         });',
     custom_options='autoProcessQueue: false, createImageThumbnails: false, disablePreviews: true') }}
-
-    <script type="text/javascript">
-        function handleConvert() {
-            const fileType = document.getElementById('convert-audio-file-format-select').value;
-
-            // TODO: display loading screen
-            fetch("{{ url_for('multilingual.convert_process') }}", {
-                headers: {
-                    'Content-Type': 'text/plain'
-                },
-                method: 'POST',
-                body: `${fileType}`
-            }).then((res) => {
-                console.log(res);
-                if (res.status === 301 || res.status === 200) {
-                    window.location.replace(res.url);
-                    return;
-                }
-                res.text().then(value => {
-                    // TODO: Delete files from server, if conversion fails
-                    window.alert({{ _('The server ran into an error converting your files!') }} + '\n\n' +
-                        `${value}\n\n` + {{ _('Press OK to be redirected to the start page...') }});
-                    window.location.replace("{{ url_for('multilingual.index') }}");
-                });
-            });
-        }
-    </script>
 {% endblock %}
