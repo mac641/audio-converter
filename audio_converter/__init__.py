@@ -63,6 +63,7 @@ babel = Babel(app)
 def get_locale():
     if not g.get('lang_code', None):
         g.lang_code = request.accept_languages.best_match(app.config['LANGUAGES'])
+        app.logger.info('Set up Language')
     return g.lang_code
 
 

@@ -235,6 +235,7 @@ def reset_password(token=None):
                     qparams=user.get_redirect_qparams({"token": token}),
                 )
             )
+        app.logger.info('Resetting your password!')
         return _security.render_template(
             config_value("RESET_PASSWORD_TEMPLATE"),
             reset_password_form=form,
@@ -448,7 +449,7 @@ def change_password():
         form.user = current_user
         return base_render_json(form)
 
-    app.logger.info('Changed Password')
+    app.logger.info('Redirecting to change password route...')
     return _security.render_template(
         config_value("CHANGE_PASSWORD_TEMPLATE"),
         change_password_form=form,
