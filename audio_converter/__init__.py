@@ -1,4 +1,5 @@
 import logging
+import system_config
 
 from flask import Flask, request, g, redirect, url_for
 from flask_admin import Admin, AdminIndexView, expose
@@ -10,7 +11,7 @@ from flask_mail import Mail
 from flask_babelex import Babel
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object(system_config)
 
 # Instantiate logging
 logging.basicConfig(filename='audio-converter.log', level=logging.DEBUG,
