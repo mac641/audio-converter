@@ -51,16 +51,20 @@
 
     {{ dropzone.load_js() }}
     {{ dropzone.config(custom_init='dz = this;
+        // Fix issue where uploading stopped after maximum number of parallel uploads was exceeded
+        dz.on(\'success\', function() {
+            dz.options.autoProcessQueue = true;
+        });
         document.getElementById("upload-convert-submit").addEventListener("click", function handler(e) {
             if (e.button !== 0) return;
-            dz.processQueue();
+            dz.processQueue()
         });
         window.addEventListener("keydown", function handler(e) {
             if (e.key !== "Enter") return;
-            dz.processQueue();
+            dz.processQueue()
         });
         // Call handleConvert() after every file has been uploaded
-        dz.on("queuecomplete", function(file) {
+        dz.on(\'queuecomplete\', function(file) {
             handleConvert();
         });',
     custom_options='autoProcessQueue: false, createImageThumbnails: false, disablePreviews: true') }}

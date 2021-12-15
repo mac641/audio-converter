@@ -24,7 +24,7 @@
         downloadButton.addEventListener('click', e => {
             if (e.button !== 0) return;
             const link = document.createElement('a');
-            link.href = "{{ url_for('multilingual.convert_download') }}";
+            link.href = '{{ url_for('multilingual.convert_download') }}';
             link.click();
         });
     </script>
