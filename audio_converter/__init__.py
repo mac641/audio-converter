@@ -17,12 +17,16 @@ app.config.from_object(system_config)
 logging.basicConfig(filename='audio-converter.log', level=logging.DEBUG,
                     format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
+app.logger.info('Set up database...')
 db = SQLAlchemy(app)
+app.logger.info('Set up migrate...')
 migrate = Migrate(app, db)
 
 from audio_converter import models
 
+app.logger.info('Initialize database...')
 user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+app.logger.info('Set up security...')
 security = Security(app=app, datastore=user_datastore, register_blueprint=False)
 
 
@@ -38,6 +42,7 @@ class DashboardView(AdminIndexView):
         )
 
 
+app.logger.info('Set up admin...')
 admin = Admin(app, name='Admin Audio-Converter', template_mode='bootstrap3', index_view=DashboardView())
 admin.add_link(MenuLink(name='Home', url='/'))
 
@@ -45,10 +50,13 @@ from audio_converter import admin_models
 from audio_converter.blueprints.multilingual import routes, multilingual
 
 app.register_blueprint(multilingual)
-# Set up Mail
+
+# Set up mail
+app.logger.info('Set up mail...')
 mail = Mail(app)
 
-# Set up Babel
+# Set up babel
+app.logger.info('Set up babel...')
 babel = Babel(app)
 
 
@@ -56,6 +64,7 @@ babel = Babel(app)
 def get_locale():
     if not g.get('lang_code', None):
         g.lang_code = request.accept_languages.best_match(app.config['LANGUAGES'])
+        app.logger.info('Import language codes...')
     return g.lang_code
 
 

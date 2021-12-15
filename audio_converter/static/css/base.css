@@ -32,8 +32,8 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
 
 .mainButton {
     padding: 1.5em 1.5em;
-    font-size: 150%;
-    border-radius: 40px;
+    font-size: 2vh;
+    border-radius: 40vh;
 }
 
 #index-header {
@@ -190,7 +190,7 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 30px;
+    height: 3vh;
     background: transparent;
     display: flex;
     align-items: center;
@@ -203,6 +203,7 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
     position: absolute;
     left: 0;
     margin-left: 10px;
+    font-size: 1.5vh;
 }
 
 #index-footer-links-wrapper {
@@ -215,8 +216,10 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
 #index-footer-imprint-link {
     float: right;
     margin-left: 20px;
+    font-size: 1.5vh;
 }
 
 #index-footer-privacy-link {
     float: left;
+    font-size: 1.5vh;
 }

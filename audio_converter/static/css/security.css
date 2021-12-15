@@ -10,4 +10,5 @@
   padding: 3em;
   border-radius: 20px;
   box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+  min-width: 190px;
 }

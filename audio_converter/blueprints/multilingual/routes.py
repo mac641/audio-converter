@@ -36,6 +36,7 @@ def before_request():
 
 @multilingual.route('/')
 def index():
+    app.logger.info('Redirecting to index route...')
     return render_template('multilingual/index.html', title='Audio-Converter', lang=g.lang_code)
 
 
@@ -108,6 +109,7 @@ def login():
                     qparams={"email": form.email.data},
                 )
             )
+        app.logger.info('Redirecting to login route...')
         return _security.render_template(
             config_value("LOGIN_USER_TEMPLATE"),
             login_user_form=form,
@@ -120,6 +122,7 @@ def login():
 @multilingual.route('/logout')
 @auth_required()
 def logout():
+    app.logger.info('Logout')
     return views.logout()
 
 
@@ -157,7 +160,7 @@ def register():
     if _security._want_json(request):
         return base_render_json(form)
 
-    app.logger.info('Registering...')
+    app.logger.info('Redirecting to register route...')
     return render_template(
         config_value('REGISTER_USER_TEMPLATE'),
         register_user_form=form,
@@ -172,6 +175,7 @@ def register():
 def confirm_email(token=None):
     if token is None:
         token = request.args.get('token')
+    app.logger.info('Confirm Email')
     return views.confirm_email(token)
 
 
@@ -231,6 +235,7 @@ def reset_password(token=None):
                     qparams=user.get_redirect_qparams({"token": token}),
                 )
             )
+        app.logger.info('Resetting your password!')
         return _security.render_template(
             config_value("RESET_PASSWORD_TEMPLATE"),
             reset_password_form=form,
@@ -286,6 +291,7 @@ def reset_password(token=None):
     app.logger.info('Resetting your password!')
     if _security._want_json(request):
         return base_render_json(form)
+    app.logger.info('Reset Password')
     return _security.render_template(
         config_value("RESET_PASSWORD_TEMPLATE"),
         reset_password_form=form,
@@ -299,7 +305,7 @@ def reset_password(token=None):
 @multilingual.route('/send_login', methods=['GET', 'POST'])
 @unauth_csrf(fall_through=True)
 def send_login():
-    """View function that sends login instructions for passwordless login"""
+    """View function that sends login instructions for password less login"""
     # Source code copied from flask_security/views.py - send_login() method
     # Only minor import and template variable adjustments
 
@@ -318,6 +324,7 @@ def send_login():
     if _security._want_json(request):
         return base_render_json(form)
 
+    app.logger.info('Instructions for password less login link will be sent...')
     return _security.render_template(
         config_value("SEND_LOGIN_TEMPLATE"),
         send_login_form=form,
@@ -442,6 +449,7 @@ def change_password():
         form.user = current_user
         return base_render_json(form)
 
+    app.logger.info('Redirecting to change password route...')
     return _security.render_template(
         config_value("CHANGE_PASSWORD_TEMPLATE"),
         change_password_form=form,
@@ -461,8 +469,10 @@ def convert():
 @auth_required()
 def settings():
     if not current_user.is_authenticated:
+        app.logger.info('Attempted access to setting route, detour to login.')
         return redirect(url_for('multilingual.login'))
     else:
+        app.logger.info('Redirecting to setting route...')
         return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
                                lang=g.lang_code)
 
@@ -494,7 +504,7 @@ def login_token_status(token):
 # TODO: Add translations to the error pages
 @multilingual.app_errorhandler(403)
 def error_403(error):
-    app.logger.info('Error_403 attempted access to a forbidden page')
+    app.logger.info('Error_403 attempted access to a forbidden page.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error_403',
                            errortitle="You don't have permission to do that. (403)",
@@ -503,7 +513,7 @@ def error_403(error):
 
 @multilingual.app_errorhandler(404)
 def error_404(error):
-    app.logger.info('Error_403 attempted access to a non-existent page')
+    app.logger.info('Error_403 attempted access to a non-existent page.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error 404',
                            errortitle='Oops. Page Not Found. (404)',
@@ -512,7 +522,7 @@ def error_404(error):
 
 @multilingual.app_errorhandler(500)
 def error_500(error):
-    app.logger.info('Error_500 Internal error')
+    app.logger.info('Error_500 Internal error.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error_500',
                            errortitle='Something went wrong. (500)',
