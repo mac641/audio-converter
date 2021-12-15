@@ -30,6 +30,7 @@ LANGUAGES = ['en', 'de']
 # Convert feature - Dropzone
 UPLOAD_PATH = os.getcwd() + '/uploads'
 CONVERSION_PATH = os.getcwd() + '/converted'
+DOWNLOAD_PATH = os.getcwd() + '/downloadable'
 ALLOWED_AUDIO_FILE_TYPES = [
     '.wav',
     '.flac',

@@ -34,7 +34,6 @@ def process(request):
         output_file = os.path.join(conversion_path, Path(file).stem + destination_file_type)
         return_code = subprocess.call(['ffmpeg', '-i', input_file, output_file])
         app.logger.debug('Input path: ' + input_file + ', Output path: ' + output_file)
-    # if _do_file_types_of_uploaded_files_match() or len(converted_files) > 0:
 
     # Delete uploads after successful conversion
     utils.delete_path(upload_path)

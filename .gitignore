@@ -6,6 +6,7 @@ database.sqlite
 local_config.py
 uploads/
 converted/
+downloadable/
 
 # C extensions
 *.so

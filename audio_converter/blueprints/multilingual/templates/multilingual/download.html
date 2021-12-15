@@ -11,6 +11,30 @@
         <div id="convert-download-icon-background">
             <img id="convert-download-icon" src="https://img.icons8.com/doodle/96/000000/zip.png"/>
         </div>
-        <button id="convert-download-button">Download</button>
+        <a id="convert-download-link" href="{{ url_for('multilingual.convert_download') }}">
+{#            <button id="convert-download-button">{{ _('Download') }}</button>#}
+            {{ _('Download') }}
+        </a>
     </div>
+
+{#    <script type="text/javascript">#}
+{#        const downloadButton = document.getElementById('convert-download-button');#}
+{##}
+{#        downloadButton.addEventListener('click', e => {#}
+{#            if (e.button !== 0) return;#}
+{#            const link = document.getElementById('convert-download-link');#}
+{#            link.click();#}
+            {#window.location.replace("{{ url_for('multilingual.convert_download') }}");#}
+            {#window.location.replace("{{ url_for('multilingual.index') }}")#}
+            {#fetch("{{ url_for('multilingual.convert_download') }}").then((res) => {#}
+            {#    if (res.status === 301 || res.status === 200) {#}
+            {#        res.blob().then(blob => {#}
+            {#            const link = document.createElement('a');#}
+            {#            link.href = blob.stream();#}
+            {#            link.click();#}
+            {#        });#}
+            {#    }#}
+            {# });#}
+{#        });#}
+{#    </script>#}
 {% endblock %}

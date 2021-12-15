@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for, Response
+from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for, send_file
 from flask_babelex import _
 from flask_login import current_user
 from flask_security import RegisterForm, ConfirmRegisterForm, views, unauth_csrf, auth_required
@@ -14,8 +14,9 @@ from werkzeug.datastructures import MultiDict
 from werkzeug.local import LocalProxy
 
 from audio_converter import app
-from audio_converter.blueprints.multilingual.convert_feature.upload import upload
 from audio_converter.blueprints.multilingual.convert_feature.convert import process
+from audio_converter.blueprints.multilingual.convert_feature.download import zip_converted_files
+from audio_converter.blueprints.multilingual.convert_feature.upload import upload
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
 
@@ -35,6 +36,13 @@ def before_request():
     if g.lang_code not in app.config['LANGUAGES']:
         abort(404)
         # TODO: create error page as HTML
+
+
+# @multilingual.after_request
+# def after_request(response):
+#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+#     response.headers['Cache-Control'] = 'public, max-age=0'
+#     return response
 
 
 @multilingual.route('/')
@@ -476,15 +484,32 @@ def convert_process():
     process_return_value = process(request)
     app.logger.debug('Processed audio file template: ' + ''.join(map(str, process_return_value)))
     if process_return_value[1] == 301:
-        return redirect(url_for('multilingual.convert_download'), process_return_value[1])
+        return redirect(url_for('multilingual.convert_done'), 301)
     else:
-        return process_return_value
+        abort(process_return_value[1])
+
+
+@multilingual.route('/convert_done', methods=['GET'])
+def convert_done():
+    return render_template('multilingual/download.html', title='Audio Converter - ' + _('Conversion Results'),
+                           lang=g.lang_code)
 
 
 @multilingual.route('/convert_download', methods=['POST', 'GET'])
 def convert_download():
-    return render_template('multilingual/download.html', title='Audio Converter - ' + _('Conversion Results'),
-                           lang=g.lang_code)
+    zip_archive = zip_converted_files()
+    app.logger.debug(zip_archive)
+    if zip_archive[2] == 200:
+        try:
+            app.logger.debug('Send ' + zip_archive[0])
+            # TODO: Get download_name dynamically
+            return send_file(zip_archive[0], as_attachment=True, download_name='converted.zip',
+                             attachment_filename='converted.zip')
+        except FileNotFoundError:
+            app.logger.debug('File not found!')
+            return abort(404)
+    else:
+        return abort(zip_archive[2])
 
 
 @multilingual.route('/settings')
