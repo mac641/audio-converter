@@ -37,3 +37,6 @@ update-translate: scan-translations update-translations
 
 compile-translations:
 	pybabel compile -d audio_converter/translations
+
+user_config: .scripts/create_user_config.sh
+	sh .scripts/create_user_config.sh

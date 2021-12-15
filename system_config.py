@@ -1,4 +1,4 @@
-from local_config import Settings
+from user_config import Settings
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.sqlite'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
