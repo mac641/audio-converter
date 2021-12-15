@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 database.sqlite
-local_config.py
+user_config.py
 uploads/
 converted/
 downloadable/
@@ -135,5 +135,4 @@ dmypy.json
 # misc
 .DS_Store
 .idea/
-.vscode
-*.wav
+.vscode/

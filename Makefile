@@ -56,3 +56,6 @@ clean: clean-logs
 .PHONY: clean-logs
 clean-logs:
 	/bin/rm -f *.log
+
+user_config: .scripts/create_user_config.sh
+	sh .scripts/create_user_config.sh

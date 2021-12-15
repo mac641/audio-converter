@@ -1,7 +1,7 @@
 import os
 from flask_babelex import _
 
-from local_config import Settings
+from user_config import Settings
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.sqlite'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -11,12 +11,19 @@ SECURITY_REGISTERABLE = True
 SECURITY_RECOVERABLE = True
 SECURITY_CHANGEABLE = False
 SECURITY_CONFIRMABLE = True
+SECURITY_TRACKABLE = True
 SECURITY_BLUEPRINT_NAME = 'multilingual'
 
 SECURITY_EMAIL_SENDER = Settings.MAIL_USERNAME
 SECURITY_SEND_REGISTER_EMAIL = True
 SEND_PASSWORD_RESET_EMAIL = True
+
 FLASK_ADMIN_SWATCH = 'cerulean'
+ADMIN_PASSWORD = Settings.ADMIN_PASSWORD
+ADMIN_ROLE_ADMIN_NAME = 'admin'
+ADMIN_ROLE_ADMIN_DESCRIPTION = 'Administrator'
+ADMIN_ROLE_USER_NAME = 'user'
+ADMIN_ROLE_USER_DESCRIPTION = 'normal user'
 
 MAIL_SERVER = 'smtp.web.de'
 MAIL_PORT = 465
