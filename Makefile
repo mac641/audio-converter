@@ -38,16 +38,5 @@ update-translate: scan-translations update-translations
 compile-translations:
 	pybabel compile -d audio_converter/translations
 
-user_config:
-	if [ -f ./user_config.py ]; \
-	then \
-	  echo "RESULT: File exists"; \
-	else \
-	  echo "class Settings:\
-	  \n	MAIL_PASSWORD = '********'  # Record here the passwort of your mail server.\
-	  \n	MAIL_USERNAME = 'example@example.com'  # Record here the email address of your mail server.\
-	  \n	SECRET_KEY = 'secretkey'  # Record here a safety secretkey.\
-	  \n	SECURITY_PASSWORD_SALT = 'secretsalt'  # Record here a safety secretsalt.\
-	  \n	ADMIN_PASSWORD = '********'  # Record here a individual passwort for the admin account." > user_config.py\
-	  && echo "RESULT: File created"; \
-	fi;
+user_config: .scripts/create_user_config.sh
+	sh .scripts/create_user_config.sh
