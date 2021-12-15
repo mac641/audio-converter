@@ -2,6 +2,8 @@ import os
 import uuid
 import zipfile
 
+import glob
+
 import audio_converter.blueprints.multilingual.utils as utils
 from audio_converter import app
 
@@ -20,10 +22,9 @@ def zip_converted_files():
     try:
         with zipfile.ZipFile(download_file, 'w', zipfile.ZIP_DEFLATED) as zf:
             # TODO: Adjust walking path when implementing logged in user specific features
-            for dirname, sub_dirs, files in os.walk(conversion_path):
-                zf.write(dirname)
-                for file in files:
-                    zf.write(os.path.join(dirname, file))
+            for filename in glob.iglob(os.path.join(conversion_path + '**/**'), recursive=True):
+                file = filename.strip(conversion_path)
+                zf.write(filename, file)
     except FileNotFoundError:
         app.logger.error('Error zipping file! - ' + download_file)
         return download_file, 'File not found!', 404
