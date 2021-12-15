@@ -1,7 +1,7 @@
 @import "base.css";
 
 .dropzone {
-    border: 2px dashed var(--link-color);
+    border: 2px dashed darkblue;
     border-radius: 20px;
     height: 50vh;
     width: 80vw;
@@ -10,6 +10,7 @@
     left: 50%;
     margin: 0 -50% 0 0;
     transform: translate(-50%, -50%);
+    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
 }
 
 #upload-convert-submit {
@@ -21,12 +22,8 @@
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: inherit;
-    border-radius: 15px;
-    background: var(--button-color);
-    padding: 0;
-    width: 120px;
-    height: 55px;
     color: var(--main-color);
+    font-size: 1.5vh;
 }
 
 #convert-audio-file-format-label {

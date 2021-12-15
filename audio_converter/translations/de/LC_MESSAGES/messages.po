@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 14:07+0100\n"
+"POT-Creation-Date: 2021-12-15 17:06+0100\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -48,6 +48,9 @@ msgid "The logo should be here somewhere..."
 msgstr "Hier sollte das Logo irgendwo sein..."
 
 #: audio_converter/blueprints/multilingual/templates/header.html:4
+msgid "Home"
+msgstr "Home"
+
 #: audio_converter/blueprints/multilingual/templates/header.html:9
 #: audio_converter/blueprints/multilingual/templates/header.html:14
 msgid "Language"
@@ -79,6 +82,45 @@ msgstr "Historie"
 msgid "Admin"
 msgstr "Admin"
 
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:11
+#, fuzzy
+msgid "Convert"
+msgstr "Audio converter"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:13
+msgid "Destination file format"
+msgstr ""
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:21
+msgid ""
+"Note: In case you upload files which have been converted already, the "
+"server will ignore them."
+msgstr ""
+"Hinweis: Falls Sie bereits konvertierte Dateien hochladen, werden diese "
+"durch den Server ignoriert."
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:22
+#, fuzzy
+msgid "Upload And Convert"
+msgstr "Audio converter"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:44
+msgid "The server ran into an error converting your files!"
+msgstr "Beim Konvertieren Ihrer Dateien ist auf dem Server ein Fehler aufgetreten!"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:45
+msgid "Press OK to be redirected to the start page..."
+msgstr "Drücken Sie OK, um zur Startseite weitergeleitet zu werden..."
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/download.html:10
+#: audio_converter/blueprints/multilingual/templates/multilingual/download.html:15
+msgid "Download"
+msgstr "Download"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/download.html:17
+msgid "Convert again"
+msgstr "Nochmal konvertieren"
+
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:15
 msgid "Get started"
 msgstr "Los geht's"
@@ -97,7 +139,7 @@ msgstr "Passwort zurücksetzen"
 msgid "Audio converter"
 msgstr "Audio converter"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:38
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:41
 msgid "Save"
 msgstr "Speichern"
 
@@ -177,3 +219,4 @@ msgstr ""
 #: audio_converter/templates/security/email/welcome.html:6
 msgid "Confirm my account"
 msgstr "Bestätige dein Konto"
+
