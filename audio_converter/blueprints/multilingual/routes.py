@@ -38,11 +38,11 @@ def before_request():
         # TODO: create error page as HTML
 
 
-# @multilingual.after_request
-# def after_request(response):
-#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-#     response.headers['Cache-Control'] = 'public, max-age=0'
-#     return response
+@multilingual.after_request
+def after_request(response):
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
 
 
 @multilingual.route('/')
@@ -489,13 +489,13 @@ def convert_process():
         abort(process_return_value[1])
 
 
-@multilingual.route('/convert_done', methods=['GET'])
+@multilingual.route('/convert_done')
 def convert_done():
     return render_template('multilingual/download.html', title='Audio Converter - ' + _('Conversion Results'),
                            lang=g.lang_code)
 
 
-@multilingual.route('/convert_download', methods=['POST', 'GET'])
+@multilingual.route('/convert_download')
 def convert_download():
     zip_archive = zip_converted_files()
     app.logger.debug(zip_archive)

@@ -26,6 +26,4 @@ def zip_converted_files():
         app.logger.debug('Error zipping file! ' + download_file)
         return download_file, 'File not found!', 404
 
-    app.logger.debug(download_file)
-    app.logger.debug(download_uuid)
     return download_file, 'All converted files have been zipped successfully!', 200
