@@ -1,22 +1,23 @@
 import logging
-import system_config
 
 from flask import Flask, request, g, redirect, url_for
-from flask_dropzone import Dropzone
 from flask_admin import Admin, AdminIndexView, expose
 from flask_admin.menu import MenuLink
+from flask_babelex import Babel
+from flask_dropzone import Dropzone
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_sqlalchemy import SQLAlchemy
-from flask_mail import Mail
-from flask_babelex import Babel
+
+import system_config
 
 app = Flask(__name__)
 app.config.from_object(system_config)
 
 # Instantiate logging
 logging.basicConfig(filename='audio-converter.log', level=logging.DEBUG,
-                    format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+                    format=f'%(asctime)s %(levelname)s %(name)s : %(message)s')
 
 app.logger.info('Set up database...')
 db = SQLAlchemy(app)
@@ -73,6 +74,7 @@ def get_locale():
 def home():
     g.lang_code = request.accept_languages.best_match(app.config['LANGUAGES'])
     return redirect(url_for('multilingual.index'))
+
 
 # link: https://medium.com/@nicolas_84494/flask-create-a-multilingual-web-application-with-language-specific-urls-5d994344f5fd
 

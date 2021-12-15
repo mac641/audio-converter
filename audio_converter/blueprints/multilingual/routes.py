@@ -472,24 +472,27 @@ def login_token_status(token):
 
     :param token: The login token
     """
+    app.logger.info('Retrieve login token status...')
     return get_token_status(token, "login", "LOGIN")
 
 
 @multilingual.route('/convert', methods=['POST', 'GET'])
 def convert():
+    app.logger.info('Redirecting to convert route...')
     return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code,
                            allowed_audio_file_types=app.config['ALLOWED_AUDIO_FILE_TYPES'])
 
 
 @multilingual.route('/convert_upload', methods=['POST', 'GET'])
 def convert_upload():
+    app.logger.info('Processing uploads and returning status codes...')
     return upload(request)
 
 
 @multilingual.route('/convert_process', methods=['POST', 'GET'])
 def convert_process():
     process_return_value = process(request)
-    app.logger.debug('Processed audio file template: ' + ''.join(map(str, process_return_value)))
+    app.logger.info('Processed audio file template: ' + ', '.join(map(str, process_return_value)))
     if process_return_value[1] == 301:
         return redirect(url_for('multilingual.convert_done'), 301)
     else:
@@ -498,6 +501,7 @@ def convert_process():
 
 @multilingual.route('/convert_done')
 def convert_done():
+    app.logger.info('Redirecting to download route and display conversion results...')
     return render_template('multilingual/download.html', title='Audio Converter - ' + _('Conversion Results'),
                            lang=g.lang_code)
 
@@ -505,15 +509,15 @@ def convert_done():
 @multilingual.route('/convert_download')
 def convert_download():
     zip_archive = zip_converted_files()
-    app.logger.debug(zip_archive)
+    app.logger.info('Received zip compression status: ' + ', '.join(map(str, zip_archive)))
     if zip_archive[2] == 200:
         try:
-            app.logger.debug('Send ' + zip_archive[0])
+            app.logger.info('Send ' + zip_archive[0])
             # TODO: Get download_name dynamically
             return send_file(zip_archive[0], as_attachment=True, download_name='converted.zip',
                              attachment_filename='converted.zip')
         except FileNotFoundError:
-            app.logger.debug('File not found!')
+            app.logger.error('File not found!')
             return abort(404)
     else:
         return abort(zip_archive[2])
@@ -523,10 +527,10 @@ def convert_download():
 @auth_required()
 def settings():
     if not current_user.is_authenticated:
-        app.logger.info('Attempted access to setting route, detour to login.')
+        app.logger.info('Attempted access to settings route, detour to login.')
         return redirect(url_for('multilingual.login'))
     else:
-        app.logger.info('Redirecting to setting route...')
+        app.logger.info('Redirecting to settings route...')
         return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
                                lang=g.lang_code)
 
@@ -546,7 +550,7 @@ def privacy():
 # TODO: Add translations to the error pages
 @multilingual.app_errorhandler(403)
 def error_403(error):
-    app.logger.info('Error_403 attempted access to a forbidden page.')
+    app.logger.error('Error_403 attempted access to a forbidden page.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error_403',
                            errortitle="You don't have permission to do that. (403)",
@@ -555,7 +559,7 @@ def error_403(error):
 
 @multilingual.app_errorhandler(404)
 def error_404(error):
-    app.logger.info('Error_403 attempted access to a non-existent page.')
+    app.logger.error('Error_403 attempted access to a non-existent page.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error 404',
                            errortitle='Oops. Page Not Found. (404)',
@@ -564,7 +568,7 @@ def error_404(error):
 
 @multilingual.app_errorhandler(500)
 def error_500(error):
-    app.logger.info('Error_500 Internal error.')
+    app.logger.error('Error_500 Internal error.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error_500',
                            errortitle='Something went wrong. (500)',
