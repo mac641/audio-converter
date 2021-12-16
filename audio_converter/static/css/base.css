@@ -19,6 +19,9 @@ button, input[type="button"], input[type="submit"] {
     border: solid darkblue thin;
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
     padding: 1em 2em;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 button:hover, input[type="button"]:hover, input[type="submit"]:hover {
@@ -31,6 +34,7 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
 }
 
 .mainButton {
+    position: absolute;
     padding: 1.5em 1.5em;
     font-size: 2vh;
     border-radius: 40vh;
