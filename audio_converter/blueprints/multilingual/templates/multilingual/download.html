@@ -12,9 +12,9 @@
         <img id="convert-download-icon" src="{{ url_for('static', filename='img/Download-music.png') }}"/>
     </div>
     <div class="buttons">
-        <button id="convert-download-button">{{ _('Download') }}</button>
-        <form class="convert-again-button" method="get" action="{{ url_for('multilingual.convert') }}">
-            <button type="submit">{{ _('Convert again') }}</button>
+        <button class="download-button" id="convert-download-button">{{ _('Download') }}</button>
+        <form method="get" action="{{ url_for('multilingual.convert') }}">
+            <button class="convert-again-button" type="submit">{{ _('Convert again') }}</button>
         </form>
     </div>
 

@@ -24,14 +24,19 @@
 .convert-again-button {
     position: absolute;
     right: 0;
+    font-size: 1.5vh;
+}
+.download-button {
+    position: absolute;
+    left: 0;
+    font-size: 1.5vh;
 }
 
 .buttons {
     position: absolute;
     display: flex;
-    width: 20vw;
-    top: 86%;
+    width: 50vh;
+    top: 80%;
     left: 50vw;
     transform: translate(-50%, -50%);
-    font-size: 1.5vh;
 }
