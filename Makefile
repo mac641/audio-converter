@@ -1,21 +1,21 @@
 # Docker
 run_docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
-	docker-compose -f .docker/docker-compose.yml build --no-cache --force-rm dev;
-	docker-compose -f .docker/docker-compose.yml up -d --remove-orphans dev
+	docker-compose -f .docker/docker-compose.yml build --no-cache --force-rm dev; \
+docker-compose -f .docker/docker-compose.yml up -d --remove-orphans dev
 
 run_docker_prod: .docker/docker-compose.yml .docker/prod.Dockerfile
-	docker-compose -f .docker/docker-compose.yml build --no-cache --force-rm prod;
-	docker-compose -f .docker/docker-compose.yml up -d --remove-orphans prod
+	docker-compose -f .docker/docker-compose.yml build --no-cache --force-rm prod; \
+docker-compose -f .docker/docker-compose.yml up -d --remove-orphans prod
 
 .PHONY: stop_docker_dev
 stop_docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
-	docker-compose -f .docker/docker-compose.yml down --remove-orphans dev ||
-	docker-compose -f .docker/docker-compose.yml kill dev
+	docker-compose -f .docker/docker-compose.yml down --remove-orphans dev || \
+docker-compose -f .docker/docker-compose.yml kill dev
 
 .PHONY: stop_docker_prod
 stop_docker_prod: .docker/docker-compose.yml .docker/dev.Dockerfile
-	docker-compose -f .docker/docker-compose.yml down --remove-orphans prod ||
-	docker-compose -f .docker/docker-compose.yml kill prod
+	docker-compose -f .docker/docker-compose.yml down --remove-orphans prod || \
+docker-compose -f .docker/docker-compose.yml kill prod
 
 # pip requirements
 update-requirements: requirements.txt
@@ -28,8 +28,8 @@ uninstall-requirements:
 	pip3 uninstall -y -r <(pip3 freeze)
 
 update-packages:
-	pip3 list -o | grep -v -i warning | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 |
-	xargs -n1 pip3 install -U
+	pip3 list -o | grep -v -i warning | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 | \
+xargs -n1 pip3 install -U
 
 # Babel
 .PHONY: scan-translations

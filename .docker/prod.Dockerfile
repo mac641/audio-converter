@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 ENV FLASK_ENV=production
 # TODO: figure out how to send emails for registration etc. without using Lukas's web.de account :D
@@ -11,7 +11,7 @@ RUN if [ ! -f database.sqlite ]; then \
       python3 create_db.py; \
     fi
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
-RUN apt-get update && apt-get upgrade && apt-get install -y ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
 
 RUN python3 -m pip install gunicorn
 
