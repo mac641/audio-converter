@@ -1,5 +1,5 @@
-from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for
-from flask_babelex import _
+from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for, send_file
+from flask_babelex import gettext
 from flask_login import current_user
 from flask_security import RegisterForm, ConfirmRegisterForm, views, unauth_csrf, auth_required
 from flask_security.changeable import change_user_password
@@ -14,6 +14,9 @@ from werkzeug.datastructures import MultiDict
 from werkzeug.local import LocalProxy
 
 from audio_converter import app
+from audio_converter.blueprints.multilingual.convert_feature.convert import process
+from audio_converter.blueprints.multilingual.convert_feature.download import zip_converted_files
+from audio_converter.blueprints.multilingual.convert_feature.upload import upload
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
 
@@ -34,6 +37,13 @@ def before_request():
         abort(404)
 
 
+@multilingual.after_request
+def after_request(response):
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
+
+
 @multilingual.route('/')
 def index():
     app.logger.info('Redirecting to index route...')
@@ -42,10 +52,7 @@ def index():
 
 @multilingual.route('/login', methods=['GET', 'POST'])
 def login():
-    # return render_template('security/login_user.html', title='Audio-Converter - ' + _('Sign In'), lang=g.lang_code,
-    #                        login_user_form=LoginForm())
-
-    # Source code copied from flask_security/views.py - login() method
+    # NOTE: Source code copied from flask_security/views.py - login() method
     # Only minor import and template variable adjustments
     if current_user.is_authenticated and request.method == "POST":
         if _security._want_json(request):
@@ -114,7 +121,7 @@ def login():
             config_value("LOGIN_USER_TEMPLATE"),
             login_user_form=form,
             **_ctx("login"),
-            title='Audio-Converter - ' + _('Sign In'),
+            title='Audio-Converter - ' + gettext('Sign In'),
             lang=g.lang_code
         )
 
@@ -165,7 +172,7 @@ def register():
         config_value('REGISTER_USER_TEMPLATE'),
         register_user_form=form,
         **_ctx('register'),
-        title='Audio-Converter - ' + _('Register'),
+        title='Audio-Converter - ' + gettext('Register'),
         lang=g.lang_code
     )
 
@@ -241,7 +248,7 @@ def reset_password(token=None):
             reset_password_form=form,
             reset_password_token=token,
             **_ctx("reset_password"),
-            title='Audio-Converter - ' + _('Reset Password'),
+            title='Audio-Converter - ' + gettext('Reset Password'),
             lang=g.lang_code,
         )
 
@@ -297,7 +304,7 @@ def reset_password(token=None):
         reset_password_form=form,
         reset_password_token=token,
         **_ctx("reset_password"),
-        title='Audio-Converter - ' + _('Reset Password'),
+        title='Audio-Converter - ' + gettext('Reset Password'),
         lang=g.lang_code,
     )
 
@@ -329,7 +336,7 @@ def send_login():
         config_value("SEND_LOGIN_TEMPLATE"),
         send_login_form=form,
         **_ctx("send_login"),
-        title='Audio-Converter - ' + _('Send Login'),
+        title='Audio-Converter - ' + gettext('Send Login'),
         lang=g.lang_code
     )
 
@@ -381,10 +388,7 @@ def token_login(token=None):
 
 @multilingual.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
-    # return render_template('security/forgot_password.html', title='Audio-Converter - ' + _('Forgot Password'),
-    #                        lang=g.lang_code, forgot_password_form=ForgotPasswordForm())
-
-    # Source code copied from flask_security/views.py - forgot_password() method
+    # NOTE: Source code copied from flask_security/views.py - forgot_password() method
     # Only minor import and template variable adjustments
     form_class = _security.forgot_password_form
 
@@ -415,7 +419,7 @@ def forgot_password():
         config_value("FORGOT_PASSWORD_TEMPLATE"),
         forgot_password_form=form,
         **_ctx("forgot_password"),
-        title='Audio-Converter - ' + _('Forgot Password'),
+        title='Audio-Converter - ' + gettext('Forgot Password'),
         lang=g.lang_code
     )
 
@@ -454,39 +458,9 @@ def change_password():
         config_value("CHANGE_PASSWORD_TEMPLATE"),
         change_password_form=form,
         **_ctx("change_password"),
-        title='Audio-Converter - ' + _('Change password'),
+        title='Audio-Converter - ' + gettext('Change password'),
         lang=g.lang_code,
     )
-
-
-@multilingual.route('/convert')
-def convert():
-    app.logger.info('Redirecting to convert route...')
-    return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code)
-
-
-@multilingual.route('/settings')
-@auth_required()
-def settings():
-    if not current_user.is_authenticated:
-        app.logger.info('Attempted access to setting route, detour to login.')
-        return redirect(url_for('multilingual.login'))
-    else:
-        app.logger.info('Redirecting to setting route...')
-        return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
-                               lang=g.lang_code)
-
-
-@multilingual.route('/imprint')
-def imprint():
-    app.logger.info('Redirecting to imprint route...')
-    return render_template('multilingual/imprint.html', title='Audio-Converter - ' + _('Imprint'), lang=g.lang_code)
-
-
-@multilingual.route('/privacy')
-def privacy():
-    app.logger.info('Redirecting to privacy route...')
-    return render_template('multilingual/privacy.html', title='Audio-Converter - ' + _('Privacy'), lang=g.lang_code)
 
 
 def login_token_status(token):
@@ -498,13 +472,85 @@ def login_token_status(token):
 
     :param token: The login token
     """
+    app.logger.info('Retrieve login token status...')
     return get_token_status(token, "login", "LOGIN")
+
+
+@multilingual.route('/convert', methods=['POST', 'GET'])
+def convert():
+    app.logger.info('Redirecting to convert route...')
+    return render_template('multilingual/convert.html', title='Audio-Converter - ' + gettext('Convert'), lang=g.lang_code,
+                           allowed_audio_file_types=app.config['ALLOWED_AUDIO_FILE_TYPES'])
+
+
+@multilingual.route('/convert_upload', methods=['POST', 'GET'])
+def convert_upload():
+    app.logger.info('Processing uploads and returning status codes...')
+    return upload(request)
+
+
+@multilingual.route('/convert_process', methods=['POST', 'GET'])
+def convert_process():
+    process_return_value = process(request)
+    app.logger.info('Processed audio file template: ' + ', '.join(map(str, process_return_value)))
+    if process_return_value[1] == 301:
+        return redirect(url_for('multilingual.convert_done'), 301)
+    else:
+        abort(process_return_value[1])
+
+
+@multilingual.route('/convert_done')
+def convert_done():
+    app.logger.info('Redirecting to download route and display conversion results...')
+    return render_template('multilingual/download.html', title='Audio Converter - ' + gettext('Conversion Results'),
+                           lang=g.lang_code)
+
+
+@multilingual.route('/convert_download')
+def convert_download():
+    zip_archive = zip_converted_files()
+    app.logger.info('Received zip compression status: ' + ', '.join(map(str, zip_archive)))
+    if zip_archive[2] == 200:
+        try:
+            app.logger.info('Send ' + zip_archive[0])
+            # TODO: Get download_name dynamically
+            return send_file(zip_archive[0], as_attachment=True, download_name='converted.zip',
+                             attachment_filename='converted.zip')
+        except FileNotFoundError:
+            app.logger.error('File not found!')
+            return abort(404)
+    else:
+        return abort(zip_archive[2])
+
+
+@multilingual.route('/settings')
+@auth_required()
+def settings():
+    if not current_user.is_authenticated:
+        app.logger.info('Attempted access to settings route, detour to login.')
+        return redirect(url_for('multilingual.login'))
+    else:
+        app.logger.info('Redirecting to settings route...')
+        return render_template('multilingual/settings.html', title='Audio-Converter - ' + gettext('Settings'),
+                               lang=g.lang_code)
+
+
+@multilingual.route('/imprint')
+def imprint():
+    app.logger.info('Redirecting to imprint route...')
+    return render_template('multilingual/imprint.html', title='Audio-Converter - ' + gettext('Imprint'), lang=g.lang_code)
+
+
+@multilingual.route('/privacy')
+def privacy():
+    app.logger.info('Redirecting to privacy route...')
+    return render_template('multilingual/privacy.html', title='Audio-Converter - ' + gettext('Privacy'), lang=g.lang_code)
 
 
 # TODO: Add translations to the error pages
 @multilingual.app_errorhandler(403)
 def error_403(error):
-    app.logger.info('Error_403 attempted access to a forbidden page.')
+    app.logger.error('Error_403 attempted access to a forbidden page.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error_403',
                            errortitle="You don't have permission to do that. (403)",
@@ -513,7 +559,7 @@ def error_403(error):
 
 @multilingual.app_errorhandler(404)
 def error_404(error):
-    app.logger.info('Error_403 attempted access to a non-existent page.')
+    app.logger.error('Error_403 attempted access to a non-existent page.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error 404',
                            errortitle='Oops. Page Not Found. (404)',
@@ -522,7 +568,7 @@ def error_404(error):
 
 @multilingual.app_errorhandler(500)
 def error_500(error):
-    app.logger.info('Error_500 Internal error.')
+    app.logger.error('Error_500 Internal error.')
     return render_template('multilingual/error.html',
                            title='Audio-Converter - Error_500',
                            errortitle='Something went wrong. (500)',

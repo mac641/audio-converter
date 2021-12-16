@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/download.css') }}">
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    <div id="convert-download-dialog">
+        <img id="convert-download-icon" src="{{ url_for('static', filename='img/Download-music.png') }}"/>
+    </div>
+    <div class="buttons">
+        <button class="download-button" id="convert-download-button">{{ _('Download') }}</button>
+        <form method="get" action="{{ url_for('multilingual.convert') }}">
+            <button class="convert-again-button" type="submit">{{ _('Convert again') }}</button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        const downloadButton = document.getElementById('convert-download-button');
+
+        downloadButton.addEventListener('click', e => {
+            if (e.button !== 0) return;
+            const link = document.createElement('a');
+            link.href = '{{ url_for('multilingual.convert_download') }}';
+            link.click();
+        });
+    </script>
+{% endblock %}

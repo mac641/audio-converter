@@ -1,1 +1,51 @@
 @import "base.css";
+
+.dropzone {
+    border: 2px dashed darkblue;
+    border-radius: 20px;
+    height: 50vh;
+    width: 80vw;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+}
+
+#upload-convert-submit {
+    position: absolute;
+    top: 86%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: inherit;
+    color: var(--main-color);
+    font-size: 1.5vh;
+}
+
+#convert-audio-file-format-label {
+    position: absolute;
+    top: 76%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+}
+
+#convert-audio-file-format-select {
+    position: absolute;
+    top: 79%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+}
+
+#convert-download-dialog {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+}

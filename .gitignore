@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 database.sqlite
 user_config.py
+uploads/
+converted/
+downloadable/
 
 # C extensions
 *.so
@@ -132,4 +135,4 @@ dmypy.json
 # misc
 .DS_Store
 .idea/
-.vscode
+.vscode/

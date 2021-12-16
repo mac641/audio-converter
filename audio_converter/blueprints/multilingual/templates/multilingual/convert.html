@@ -2,10 +2,69 @@
 
 {% block head %}
     {% block styles %}
+        {{ dropzone.load_css() }}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/convert.css') }}">
     {% endblock styles %}
 {% endblock head %}
 
 {% block content %}
-    <!--TODO: fill me up :D-->
+    {{ dropzone.create(action='multilingual.convert_upload') }}
+    <label id="convert-audio-file-format-label">{{ _('Destination file format') }}:</label>
+    <select name="convert-audio-file-format-select" id="convert-audio-file-format-select">
+        {% for file_type in allowed_audio_file_types %}
+            <option value="{{ file_type }}">{{ file_type }}</option>
+        {% endfor %}
+    </select>
+
+    <button id="upload-convert-submit"
+            title="{{ _('Note: In case you upload files which have been converted already, the server will ignore them') }}.">
+        {{ _('Upload And Convert') }}
+    </button>
+
+    <script type="text/javascript">
+        function handleConvert() {
+            const fileType = document.getElementById('convert-audio-file-format-select').value;
+
+            // TODO: display loading screen
+            fetch('{{ url_for('multilingual.convert_process') }}', {
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                method: 'POST',
+                body: `${fileType}`
+            }).then((res) => {
+                console.log(res);
+                if (res.status === 301 || res.status === 200) {
+                    window.location.replace(res.url);
+                    return;
+                }
+                res.text().then(value => {
+                    // TODO: Delete files from server, if conversion fails
+                    window.alert('{{ _('The server ran into an error converting your files') }}!' + '\n\n' +
+                        `${value}\n\n` + '{{ _('Press OK to be redirected to the start page') }}...');
+                    window.location.replace("{{ url_for('multilingual.index') }}");
+                });
+            });
+        }
+    </script>
+
+    {{ dropzone.load_js() }}
+    {{ dropzone.config(custom_init='dz = this;
+        // Fix issue where uploading stopped after maximum number of parallel uploads was exceeded
+        dz.on(\'success\', function() {
+            dz.options.autoProcessQueue = true;
+        });
+        document.getElementById("upload-convert-submit").addEventListener("click", function handler(e) {
+            if (e.button !== 0) return;
+            dz.processQueue()
+        });
+        window.addEventListener("keydown", function handler(e) {
+            if (e.key !== "Enter") return;
+            dz.processQueue()
+        });
+        // Call handleConvert() after every file has been uploaded
+        dz.on(\'queuecomplete\', function(file) {
+            handleConvert();
+        });',
+    custom_options='autoProcessQueue: false, createImageThumbnails: false, disablePreviews: true') }}
 {% endblock %}
