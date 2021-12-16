@@ -541,7 +541,7 @@ def history():
     if not current_user.is_authenticated:
         return redirect(url_for('multilingual.login'))
     else:
-        return render_template('multilingual/history.html', title='Audio-Converter - ' + _('History'),
+        return render_template('multilingual/history.html', title='Audio-Converter - ' + gettext('History'),
                                lang=g.lang_code)
 
 
