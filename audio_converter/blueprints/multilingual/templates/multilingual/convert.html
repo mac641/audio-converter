@@ -46,6 +46,10 @@
                 });
             });
         }
+
+        function displayAlertOnEmptyUploadQueue() {
+            window.alert('{{ _('Please upload some files before starting the conversion process') }}.');
+        }
     </script>
 
     {{ dropzone.load_js() }}
@@ -56,10 +60,18 @@
         });
         document.getElementById("upload-convert-submit").addEventListener("click", function handler(e) {
             if (e.button !== 0) return;
+            if (dz.getQueuedFiles().length === 0) {
+                displayAlertOnEmptyUploadQueue();
+                return;
+            }
             dz.processQueue()
         });
         window.addEventListener("keydown", function handler(e) {
             if (e.key !== "Enter") return;
+            if (dz.getQueuedFiles().length === 0) {
+                displayAlertOnEmptyUploadQueue();
+                return;
+            }
             dz.processQueue()
         });
         // Call handleConvert() after every file has been uploaded
