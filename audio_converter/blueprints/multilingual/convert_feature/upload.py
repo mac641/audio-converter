@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from flask_babelex import gettext
 
 from audio_converter import app
 from audio_converter.blueprints.multilingual import utils
@@ -16,6 +17,6 @@ def upload(request):
                 if Path(file.filename).suffix not in allowed_audio_file_types:
                     return 'Only ' + ', '.join(allowed_audio_file_types) + ' allowed!', 406
                 file.save(os.path.join(upload_path, file.filename))
-        return 'Upload successful', 200
+        return gettext('Upload successful'), 200
 
-    return 'There was a problem uploading your files. Please try again!', 400
+    return gettext('There was a problem uploading your files') + '. ' + gettext('Please try again') + '!', 400

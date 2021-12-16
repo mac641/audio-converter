@@ -1,13 +1,15 @@
-# German translations for PROJECT.
-# Copyright (C) 2021 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# German translations for Audio-Converter.
+# Copyright (C) 2021 Audio-Converter
+# This file is distributed under the same license as the Audio-Converter
+# project.
+# Marcel Arndt, 2021.
+# Lukas Diehm, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-15 17:06+0100\n"
+"POT-Creation-Date: 2021-12-16 12:15+0000\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -17,6 +19,113 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
+
+#: system_config.py:57
+#, fuzzy
+msgid ""
+"Drag and drop your music files here or click into the dropzone to open a "
+"file browser"
+msgstr ""
+"\"Drag and Drop\" deine Musikdateien in dieses Feld oder klicke hinein, "
+"um einen Dateiexplorer zu öffnen"
+
+#: audio_converter/blueprints/multilingual/routes.py:124
+#: audio_converter/templates/security/login_user.html:7
+msgid "Sign In"
+msgstr "Einloggen"
+
+#: audio_converter/blueprints/multilingual/routes.py:175
+msgid "Register"
+msgstr "Registrieren"
+
+#: audio_converter/blueprints/multilingual/routes.py:251
+#: audio_converter/blueprints/multilingual/routes.py:307
+#, fuzzy
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
+
+#: audio_converter/blueprints/multilingual/routes.py:339
+msgid "Send Login"
+msgstr "Anmeldedaten senden"
+
+#: audio_converter/blueprints/multilingual/routes.py:422
+#, fuzzy
+msgid "Forgot Password"
+msgstr "Passwort vergessen"
+
+#: audio_converter/blueprints/multilingual/routes.py:461
+#: audio_converter/templates/security/change_password.html:7
+msgid "Change password"
+msgstr "Passwort zurücksetzen"
+
+#: audio_converter/blueprints/multilingual/routes.py:482
+msgid "Convert"
+msgstr "Konvertieren"
+
+#: audio_converter/blueprints/multilingual/routes.py:505
+msgid "Conversion Results"
+msgstr "Ergebnis der Konvertierung"
+
+#: audio_converter/blueprints/multilingual/routes.py:534
+#: audio_converter/blueprints/multilingual/templates/header.html:30
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: audio_converter/blueprints/multilingual/routes.py:541
+#: audio_converter/blueprints/multilingual/templates/footer.html:5
+msgid "Imprint"
+msgstr "Impressum"
+
+#: audio_converter/blueprints/multilingual/routes.py:547
+msgid "Privacy"
+msgstr "Datenschutz"
+
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:23
+#, fuzzy
+msgid ""
+"The requested files can't be converted due to unknown destination file "
+"type"
+msgstr ""
+"Die angeforderten Dateien konnten, aufgrund eines unbekannten "
+"Zieldateiformats, nicht konvertiert werden"
+
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:24
+msgid "Please select a preferred file type and try again"
+msgstr "Bitte wählen Sie ein Zieldateiformat aus und versuchen Sie es erneut"
+
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:27
+#, fuzzy
+msgid "No files have been uploaded"
+msgstr "Es wurden keine Dateien hochgeladen"
+
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:27
+#: audio_converter/blueprints/multilingual/convert_feature/upload.py:22
+msgid "Please try again"
+msgstr "Bitte versuchen Sie es erneut"
+
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:47
+#, fuzzy
+msgid "This conversion was successful with file type"
+msgstr "Die Konvertierung mit nachfolgendem Dateityp war erfolgreich"
+
+#: audio_converter/blueprints/multilingual/convert_feature/download.py:30
+#, fuzzy
+msgid "File not found"
+msgstr "Die Datei wurde nicht gefunden"
+
+#: audio_converter/blueprints/multilingual/convert_feature/download.py:38
+#, fuzzy
+msgid "All converted files have been zipped successfully"
+msgstr "Alle konvertierten Dateien wurde erfolgreich dem ZIP-Archiv hinzugefügt"
+
+#: audio_converter/blueprints/multilingual/convert_feature/upload.py:20
+msgid "Upload successful"
+msgstr "Das Hochladen war erfolgreich"
+
+#: audio_converter/blueprints/multilingual/convert_feature/upload.py:22
+#, fuzzy
+msgid "There was a problem uploading your files"
+msgstr "Leider gab es ein Problem beim Hochladen Ihrer Dateien"
 
 #: audio_converter/blueprints/multilingual/templates/base.html:9
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:12
@@ -39,13 +148,10 @@ msgstr ""
 msgid "Privacy Notice"
 msgstr "Datenschutzerklärung"
 
-#: audio_converter/blueprints/multilingual/templates/footer.html:5
-msgid "Imprint"
-msgstr "Impressum"
-
 #: audio_converter/blueprints/multilingual/templates/header.html:4
-msgid "The logo should be here somewhere..."
-msgstr "Hier sollte das Logo irgendwo sein..."
+#, fuzzy
+msgid "The logo should be here somewhere"
+msgstr "Hier sollte das Logo irgendwo sein"
 
 #: audio_converter/blueprints/multilingual/templates/header.html:4
 msgid "Home"
@@ -62,17 +168,11 @@ msgstr "Anmelden"
 
 #: audio_converter/blueprints/multilingual/templates/header.html:22
 msgid "Sign-up"
-msgstr "Regestrieren"
+msgstr "Registrieren"
 
 #: audio_converter/blueprints/multilingual/templates/header.html:27
-#, fuzzy
 msgid "Sign-out"
 msgstr "Abmelden"
-
-#: audio_converter/blueprints/multilingual/templates/header.html:30
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:10
-msgid "Settings"
-msgstr "Einstellungen"
 
 #: audio_converter/blueprints/multilingual/templates/header.html:33
 msgid "History"
@@ -82,79 +182,61 @@ msgstr "Historie"
 msgid "Admin"
 msgstr "Admin"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:11
-#, fuzzy
-msgid "Convert"
-msgstr "Audio converter"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:13
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:12
 msgid "Destination file format"
-msgstr ""
+msgstr "Zielformat der zu konvertierenden Dateien"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:21
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:20
+#, fuzzy
 msgid ""
 "Note: In case you upload files which have been converted already, the "
-"server will ignore them."
+"server will ignore them"
 msgstr ""
 "Hinweis: Falls Sie bereits konvertierte Dateien hochladen, werden diese "
-"durch den Server ignoriert."
+"durch den Server ignoriert"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:22
-#, fuzzy
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:21
 msgid "Upload And Convert"
-msgstr "Audio converter"
+msgstr "Hochladen Und Konvertieren"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:43
+#, fuzzy
+msgid "The server ran into an error converting your files"
+msgstr "Beim Konvertieren Ihrer Dateien ist auf dem Server ein Fehler aufgetreten"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:44
-msgid "The server ran into an error converting your files!"
-msgstr "Beim Konvertieren Ihrer Dateien ist auf dem Server ein Fehler aufgetreten!"
+#, fuzzy
+msgid "Press OK to be redirected to the start page"
+msgstr "Drücken Sie OK, um zur Startseite weitergeleitet zu werden"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:45
-msgid "Press OK to be redirected to the start page..."
-msgstr "Drücken Sie OK, um zur Startseite weitergeleitet zu werden..."
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/download.html:10
-#: audio_converter/blueprints/multilingual/templates/multilingual/download.html:15
+#: audio_converter/blueprints/multilingual/templates/multilingual/download.html:14
 msgid "Download"
-msgstr "Download"
+msgstr "Herunterladen"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/download.html:17
+#: audio_converter/blueprints/multilingual/templates/multilingual/download.html:16
 msgid "Convert again"
-msgstr "Nochmal konvertieren"
+msgstr "Erneut konvertieren"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:15
 msgid "Get started"
 msgstr "Los geht's"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:13
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:12
 msgid "Account"
 msgstr "Konto"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:17
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:16
 #: audio_converter/templates/security/reset_password.html:7
 msgid "Reset password"
 msgstr "Passwort zurücksetzen"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:28
-#, fuzzy
-msgid "Audio converter"
-msgstr "Audio converter"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:41
+#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:40
 msgid "Save"
 msgstr "Speichern"
-
-#: audio_converter/templates/security/change_password.html:7
-#, fuzzy
-msgid "Change password"
-msgstr "Passwort zurücksetzen"
 
 #: audio_converter/templates/security/forgot_password.html:7
 msgid "Send password reset instructions"
 msgstr "Fordere einen Link zum Zurücksetzen des Passworts an"
-
-#: audio_converter/templates/security/login_user.html:7
-msgid "Sign In"
-msgstr "Einloggen"
 
 #: audio_converter/templates/security/login_user.html:15
 msgid "Forgot password"
@@ -177,21 +259,20 @@ msgid "If you did not change your password,"
 msgstr "Wenn du dein Passwort nicht geänderst hast,"
 
 #: audio_converter/templates/security/email/change_notice.html:3
-#, fuzzy
 msgid "click here to reset it"
 msgstr "Hier klicken, um dein Passwort zurückzusetzen"
 
 #: audio_converter/templates/security/email/login_instructions.html:1
-#, fuzzy, python-format
+#, python-format
 msgid "Welcome %(email)s!"
 msgstr "Willkommen, %(email)"
 
 #: audio_converter/templates/security/email/login_instructions.html:3
 #, fuzzy
-msgid "You can log into your account through the link below:"
+msgid "You can log into your account through the link below"
 msgstr ""
 "Bestätige deine Email Adresse, indem Du auf den unten angegebenen Link "
-"klickst:"
+"klickst"
 
 #: audio_converter/templates/security/email/login_instructions.html:5
 msgid "Login now"

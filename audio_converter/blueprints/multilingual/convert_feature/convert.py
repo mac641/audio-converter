@@ -1,6 +1,7 @@
 import os
 import subprocess
 from pathlib import Path
+from flask_babelex import gettext
 
 import audio_converter.blueprints.multilingual.utils as utils
 from audio_converter import app
@@ -19,11 +20,11 @@ def process(request):
     files = utils.get_uploaded_files(upload_path)
 
     if request.method != 'POST' or len(request.data) == 0:
-        return 'The requested files can\'t be converted due to unknown destination file type.' \
-               'Please select a preferred file type and try again!', 400
+        return gettext('The requested files can\'t be converted due to unknown destination file type') + '. ' \
+               + gettext('Please select a preferred file type and try again') + '!', 400
 
     if len(files) == 0:
-        return 'No files have been uploaded. Please try again!', 400
+        return gettext('No files have been uploaded') + '. ' + gettext('Please try again') + '!', 400
 
     destination_file_type = str(request.data).removeprefix('b').strip('\'')
     converted_files = _filter_already_converted_files(destination_file_type)
@@ -43,7 +44,7 @@ def process(request):
     utils.create_path(upload_path)
 
     app.logger.info('Successfully converted all uploads!')
-    return 'conversion was successful with file type: ' + destination_file_type, 301
+    return gettext('This conversion was successful with file type') + ': ' + destination_file_type, 301
 
 
 def _do_file_types_of_uploaded_files_match():

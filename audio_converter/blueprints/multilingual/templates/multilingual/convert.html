@@ -8,7 +8,6 @@
 {% endblock head %}
 
 {% block content %}
-    <h1>&nbsp; {{ _('Convert') }}</h1>
     {{ dropzone.create(action='multilingual.convert_upload') }}
     <label id="convert-audio-file-format-label">{{ _('Destination file format') }}:</label>
     <select name="convert-audio-file-format-select" id="convert-audio-file-format-select">
@@ -18,7 +17,7 @@
     </select>
 
     <button id="upload-convert-submit"
-            title="{{ _('Note: In case you upload files which have been converted already, the server will ignore them.') }}">
+            title="{{ _('Note: In case you upload files which have been converted already, the server will ignore them') }}.">
         {{ _('Upload And Convert') }}
     </button>
 
@@ -41,8 +40,8 @@
                 }
                 res.text().then(value => {
                     // TODO: Delete files from server, if conversion fails
-                    window.alert('{{ _('The server ran into an error converting your files!') }}' + '\n\n' +
-                        `${value}\n\n` + '{{ _('Press OK to be redirected to the start page...') }}');
+                    window.alert('{{ _('The server ran into an error converting your files') }}!' + '\n\n' +
+                        `${value}\n\n` + '{{ _('Press OK to be redirected to the start page') }}...');
                     window.location.replace("{{ url_for('multilingual.index') }}");
                 });
             });

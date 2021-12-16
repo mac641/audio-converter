@@ -1,8 +1,8 @@
 import os
 import uuid
 import zipfile
-
 import glob
+from flask_babelex import gettext
 
 import audio_converter.blueprints.multilingual.utils as utils
 from audio_converter import app
@@ -27,7 +27,7 @@ def zip_converted_files():
                 zf.write(filename, file)
     except FileNotFoundError:
         app.logger.error('Error zipping file! - ' + download_file)
-        return download_file, 'File not found!', 404
+        return download_file, gettext('File not found') + '!', 404
 
     # Delete converted files
     app.logger.info('Clean up old converted files...')
@@ -35,4 +35,4 @@ def zip_converted_files():
     utils.create_path(conversion_path)
 
     app.logger.info('Successfully zipped all converted files!')
-    return download_file, 'All converted files have been zipped successfully!', 200
+    return download_file, gettext('All converted files have been zipped successfully') + '!', 200

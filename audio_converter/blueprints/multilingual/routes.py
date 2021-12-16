@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for, send_file
-from flask_babelex import _
+from flask_babelex import gettext
 from flask_login import current_user
 from flask_security import RegisterForm, ConfirmRegisterForm, views, unauth_csrf, auth_required
 from flask_security.changeable import change_user_password
@@ -121,7 +121,7 @@ def login():
             config_value("LOGIN_USER_TEMPLATE"),
             login_user_form=form,
             **_ctx("login"),
-            title='Audio-Converter - ' + _('Sign In'),
+            title='Audio-Converter - ' + gettext('Sign In'),
             lang=g.lang_code
         )
 
@@ -172,7 +172,7 @@ def register():
         config_value('REGISTER_USER_TEMPLATE'),
         register_user_form=form,
         **_ctx('register'),
-        title='Audio-Converter - ' + _('Register'),
+        title='Audio-Converter - ' + gettext('Register'),
         lang=g.lang_code
     )
 
@@ -248,7 +248,7 @@ def reset_password(token=None):
             reset_password_form=form,
             reset_password_token=token,
             **_ctx("reset_password"),
-            title='Audio-Converter - ' + _('Reset Password'),
+            title='Audio-Converter - ' + gettext('Reset Password'),
             lang=g.lang_code,
         )
 
@@ -304,7 +304,7 @@ def reset_password(token=None):
         reset_password_form=form,
         reset_password_token=token,
         **_ctx("reset_password"),
-        title='Audio-Converter - ' + _('Reset Password'),
+        title='Audio-Converter - ' + gettext('Reset Password'),
         lang=g.lang_code,
     )
 
@@ -336,7 +336,7 @@ def send_login():
         config_value("SEND_LOGIN_TEMPLATE"),
         send_login_form=form,
         **_ctx("send_login"),
-        title='Audio-Converter - ' + _('Send Login'),
+        title='Audio-Converter - ' + gettext('Send Login'),
         lang=g.lang_code
     )
 
@@ -419,7 +419,7 @@ def forgot_password():
         config_value("FORGOT_PASSWORD_TEMPLATE"),
         forgot_password_form=form,
         **_ctx("forgot_password"),
-        title='Audio-Converter - ' + _('Forgot Password'),
+        title='Audio-Converter - ' + gettext('Forgot Password'),
         lang=g.lang_code
     )
 
@@ -458,7 +458,7 @@ def change_password():
         config_value("CHANGE_PASSWORD_TEMPLATE"),
         change_password_form=form,
         **_ctx("change_password"),
-        title='Audio-Converter - ' + _('Change password'),
+        title='Audio-Converter - ' + gettext('Change password'),
         lang=g.lang_code,
     )
 
@@ -479,7 +479,7 @@ def login_token_status(token):
 @multilingual.route('/convert', methods=['POST', 'GET'])
 def convert():
     app.logger.info('Redirecting to convert route...')
-    return render_template('multilingual/convert.html', title='Audio-Converter - ' + _('Convert'), lang=g.lang_code,
+    return render_template('multilingual/convert.html', title='Audio-Converter - ' + gettext('Convert'), lang=g.lang_code,
                            allowed_audio_file_types=app.config['ALLOWED_AUDIO_FILE_TYPES'])
 
 
@@ -502,7 +502,7 @@ def convert_process():
 @multilingual.route('/convert_done')
 def convert_done():
     app.logger.info('Redirecting to download route and display conversion results...')
-    return render_template('multilingual/download.html', title='Audio Converter - ' + _('Conversion Results'),
+    return render_template('multilingual/download.html', title='Audio Converter - ' + gettext('Conversion Results'),
                            lang=g.lang_code)
 
 
@@ -531,20 +531,20 @@ def settings():
         return redirect(url_for('multilingual.login'))
     else:
         app.logger.info('Redirecting to settings route...')
-        return render_template('multilingual/settings.html', title='Audio-Converter - ' + _('Settings'),
+        return render_template('multilingual/settings.html', title='Audio-Converter - ' + gettext('Settings'),
                                lang=g.lang_code)
 
 
 @multilingual.route('/imprint')
 def imprint():
     app.logger.info('Redirecting to imprint route...')
-    return render_template('multilingual/imprint.html', title='Audio-Converter - ' + _('Imprint'), lang=g.lang_code)
+    return render_template('multilingual/imprint.html', title='Audio-Converter - ' + gettext('Imprint'), lang=g.lang_code)
 
 
 @multilingual.route('/privacy')
 def privacy():
     app.logger.info('Redirecting to privacy route...')
-    return render_template('multilingual/privacy.html', title='Audio-Converter - ' + _('Privacy'), lang=g.lang_code)
+    return render_template('multilingual/privacy.html', title='Audio-Converter - ' + gettext('Privacy'), lang=g.lang_code)
 
 
 # TODO: Add translations to the error pages
