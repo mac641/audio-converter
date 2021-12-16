@@ -1,1 +1,61 @@
 @import "root.css";
+
+
+.history-dialog {
+    border: 2px solid darkblue;
+    border-radius: 20px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+
+}
+
+.settingsBoxHyphen {
+    color: darkblue;
+    margin: 0;
+}
+
+.download-button {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 1vh;
+    margin: 5px;
+}
+
+.convert-button {
+    position: absolute;
+    top: 80%;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    font-size: 1.5vh;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0.2em;
+    width: max-content;
+}
+
+th, td {
+    padding: .2em .5em;
+    border-radius: .1em;
+}
+
+thead th {
+    background-color: #ffebe6;
+    color: #c32e04;
+}
+
+
+tr {
+    text-align: right;
+    box-shadow: inset 1px 3px 5px -3px rgba(0,0,0,.5);
+}
+
+td:empty{
+    box-shadow: none;
+}
