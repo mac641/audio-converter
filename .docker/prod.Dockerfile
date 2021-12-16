@@ -11,7 +11,7 @@ RUN if [ ! -f database.sqlite ]; then \
       python3 create_db.py; \
     fi
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
-RUN apt-get update && apt-get upgrade && apt-get install -y ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
 
 RUN python3 -m pip install gunicorn
 
