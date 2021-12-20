@@ -2,6 +2,7 @@ import os
 import subprocess
 from pathlib import Path
 from flask_babelex import gettext
+from flask_login import current_user
 
 import audio_converter.blueprints.multilingual.utils as utils
 from audio_converter import app
@@ -12,9 +13,14 @@ allowed_audio_file_types = app.config['ALLOWED_AUDIO_FILE_TYPES']
 
 
 def process(request):
-    app.logger.info('Clean up old converted files...')
-    utils.delete_path(conversion_path)
-    utils.create_path(conversion_path)
+    specific_conversion_path = utils.get_id_based_path(conversion_path)
+    app.logger.info(specific_conversion_path)
+
+    if not current_user.is_authenticated:
+        app.logger.info('Clean up old converted files...')
+        utils.delete_path(specific_conversion_path)
+
+    utils.create_path(specific_conversion_path)
 
     app.logger.info('Start converting all uploaded files...')
     files = utils.get_uploaded_files(upload_path)
@@ -34,7 +40,7 @@ def process(request):
 
     for file in convertable_files:
         input_file = os.path.join(upload_path, file)
-        output_file = os.path.join(conversion_path, Path(file).stem + destination_file_type)
+        output_file = os.path.join(specific_conversion_path, Path(file).stem + destination_file_type)
         return_code = subprocess.call(['ffmpeg', '-i', input_file, output_file])
         app.logger.info('Input path: ' + input_file + ', Output path: ' + output_file)
 
