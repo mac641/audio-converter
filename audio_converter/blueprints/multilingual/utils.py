@@ -1,5 +1,6 @@
 import os
 import shutil
+from datetime import datetime
 
 from flask import g
 from flask_login import current_user
@@ -21,10 +22,11 @@ def get_uploaded_files(upload_path):
     return files
 
 
-def get_id_based_path(path):
+def get_id_day_based_path(path):
     if current_user.is_authenticated:
         g.user = current_user.get_id()
-        return path + "/" + g.user
+        now = datetime.now()
+        return path + "/" + g.user + "/" + str(now)[:10]
     else:
         return path + "/anonymous"
 
