@@ -26,6 +26,7 @@ def get_id_day_based_path(path):
     if current_user.is_authenticated:
         g.user = current_user.get_id()
         now = datetime.now()
+        create_path(path + "/" + g.user)
         return path + "/" + g.user + "/" + str(now)[:10]
     else:
         return path + "/anonymous"
