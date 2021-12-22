@@ -34,13 +34,6 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
     background: var(--signal-color-effect);
 }
 
-.mainButton {
-    position: absolute;
-    padding: 1.5em 1.5em;
-    font-size: 2vh;
-    border-radius: 40vh;
-}
-
 #base-grey-layer {
     position: absolute;
     top: 0;
