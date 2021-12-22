@@ -52,6 +52,10 @@
             });
         }
 
+        function displayAlertOnDuplicates() {
+            window.alert('{{ _('Duplicates are not allowed') }}!');
+        }
+
         function displayAlertOnEmptyUploadQueue() {
             window.alert('{{ _('Please upload some files before starting the conversion process') }}.');
         }
@@ -70,6 +74,19 @@
         // Fix issue where uploading stopped after maximum number of parallel uploads was exceeded
         dz.on(\'success\', function() {
             dz.options.autoProcessQueue = true;
+        });
+        dz.on(\'addedfile\', function(file) {
+            if (this.files.length) {
+                // -1 to exclude current file
+                for (let i = 0; i < this.files.length - 1; i++) {
+                    if(this.files[i].name === file.name && this.files[i].size === file.size &&
+                            this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+                        this.removeFile(file);
+                        displayAlertOnDuplicates()
+                        break;
+                    }
+                }
+            }
         });
         document.getElementById("upload-convert-submit").addEventListener("click", function handler(e) {
             if (e.button !== 0) return;

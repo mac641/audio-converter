@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-22 10:05+0000\n"
+"POT-Creation-Date: 2021-12-22 13:11+0000\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -80,7 +80,7 @@ msgstr "Impressum"
 msgid "Privacy"
 msgstr "Datenschutz"
 
-#: audio_converter/blueprints/multilingual/convert_feature/convert.py:23
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:25
 #, fuzzy
 msgid ""
 "The requested files can't be converted due to unknown destination file "
@@ -89,21 +89,22 @@ msgstr ""
 "Die angeforderten Dateien konnten, aufgrund eines unbekannten "
 "Zieldateiformats, nicht konvertiert werden"
 
-#: audio_converter/blueprints/multilingual/convert_feature/convert.py:24
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:26
 msgid "Please select a preferred file type and try again"
 msgstr "Bitte wählen Sie ein Zieldateiformat aus und versuchen Sie es erneut"
 
-#: audio_converter/blueprints/multilingual/convert_feature/convert.py:27
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:29
 #, fuzzy
 msgid "No files have been uploaded"
 msgstr "Es wurden keine Dateien hochgeladen"
 
-#: audio_converter/blueprints/multilingual/convert_feature/convert.py:27
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:29
 #: audio_converter/blueprints/multilingual/convert_feature/upload.py:22
 msgid "Please try again"
 msgstr "Bitte versuchen Sie es erneut"
 
-#: audio_converter/blueprints/multilingual/convert_feature/convert.py:47
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:42
+#: audio_converter/blueprints/multilingual/convert_feature/convert.py:61
 #, fuzzy
 msgid "This conversion was successful with file type"
 msgstr "Die Konvertierung mit nachfolgendem Dateityp war erfolgreich"
@@ -218,6 +219,10 @@ msgid "Press OK to be redirected to the start page"
 msgstr "Drücken Sie OK, um zur Startseite weitergeleitet zu werden"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:56
+msgid "Duplicates are not allowed"
+msgstr "Dateien dürfen nicht mehrfach hochgeladen werden"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:60
 msgid "Please upload some files before starting the conversion process"
 msgstr "Bitte laden Sie vor der Konvertierung mindestens eine Datei hoch"
 
