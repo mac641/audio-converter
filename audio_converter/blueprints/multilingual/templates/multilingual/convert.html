@@ -10,8 +10,8 @@
 {% block content %}
     <div id="convert-loader-circle">
         <div class="loader"></div>
-        <p>Your files have been sent to the server and will be converted.</p>
-        <p>You will be redirected automatically...</p>
+        <p>{{ _('Your files have been sent to the server and will be converted') }}.</p>
+        <p>{{ _('You will be redirected automatically') }}...</p>
     </div>
     {{ dropzone.create(action='multilingual.convert_upload') }}
     <label id="convert-audio-file-format-label">{{ _('Destination file format') }}:</label>

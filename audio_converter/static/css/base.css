@@ -15,7 +15,7 @@ button, input[type="button"], input[type="submit"] {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: inherit;
-    background: var(--button-color);
+    background: var(--signal-color);
     border-radius: 20px;
     border: solid darkblue thin;
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
@@ -28,7 +28,7 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover {
 
 button:active, input[type="button"]:active, input[type="submit"]:active {
     animation: gradient 200ms;
-    background: var(--button-color-effect);
+    background: var(--signal-color-effect);
 }
 
 .mainButton {
@@ -65,7 +65,7 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
 #index-header-break {
     height: 5px;
     width: 100%;
-    background: var(--button-color);
+    background: var(--signal-color);
 }
 
 #index-logo {

@@ -1,8 +1,8 @@
 :root {
     --main-color: #000000FF;
     --main-complementary-color: #FFFFFFFF;
-    --button-color: linear-gradient(to bottom, #0070FF, #009AFF 50%, #0070FF);
-    --button-color-effect: linear-gradient(to bottom, #009AFF, #0070FF 50%, #009AFF);
+    --signal-color: linear-gradient(to bottom, #0070FF, #009AFF 50%, #0070FF);
+    --signal-color-effect: linear-gradient(to bottom, #009AFF, #0070FF 50%, #009AFF);
     --bg-color: #D3D3D3FF;
     --text-color: #A9A9A9FF;
     --text-color2: #6F6F6F;
