@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 from flask_babelex import gettext
 
 from audio_converter import app

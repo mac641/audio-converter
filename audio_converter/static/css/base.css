@@ -8,6 +8,7 @@ body {
     padding: 0;
     margin: 0;
     z-index: 0;
+    cursor: default;
 }
 
 
@@ -32,13 +33,6 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover {
 button:active, input[type="button"]:active, input[type="submit"]:active {
     animation: gradient 200ms;
     background: var(--signal-color-effect);
-}
-
-.mainButton {
-    position: absolute;
-    padding: 1.5em 1.5em;
-    font-size: 2vh;
-    border-radius: 40vh;
 }
 
 #base-grey-layer {
