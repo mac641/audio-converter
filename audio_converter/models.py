@@ -1,4 +1,3 @@
-# TODO: Enhance database models
 from flask_security.models import fsqla_v2 as fsqla
 from audio_converter import db
 
