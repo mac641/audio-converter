@@ -2,7 +2,6 @@ import os
 import subprocess
 from pathlib import Path
 
-import shutil
 from flask_babelex import gettext
 
 import audio_converter.blueprints.multilingual.utils as utils
