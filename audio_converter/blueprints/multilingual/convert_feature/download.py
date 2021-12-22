@@ -13,7 +13,7 @@ download_path = app.config['DOWNLOAD_PATH']
 
 
 def zip_converted_files():
-    specific_conversion_path = utils.get_id_day_based_path(conversion_path)
+    specific_conversion_path = utils.get_path(conversion_path)
 
     app.logger.info('Clean up old download files...')
     utils.delete_path(download_path)
