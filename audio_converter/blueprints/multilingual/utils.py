@@ -5,7 +5,6 @@ import shutil
 def delete_path(path):
     if os.path.isdir(path):
         shutil.rmtree(path)
-    create_path(path)
 
 
 def create_path(path):
