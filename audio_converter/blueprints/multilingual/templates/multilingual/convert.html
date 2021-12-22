@@ -8,6 +8,11 @@
 {% endblock head %}
 
 {% block content %}
+    <div id="convert-loader-circle">
+        <div class="loader"></div>
+        <p>{{ _('Your files have been sent to the server and will be converted') }}.</p>
+        <p>{{ _('You will be redirected automatically') }}...</p>
+    </div>
     {{ dropzone.create(action='multilingual.convert_upload') }}
     <label id="convert-audio-file-format-label">{{ _('Destination file format') }}:</label>
     <select name="convert-audio-file-format-select" id="convert-audio-file-format-select">
@@ -23,7 +28,7 @@
 
     <script type="text/javascript">
         function handleConvert() {
-            const fileType = document.getElementById('convert-audio-file-format-select').value;
+            const FILE_TYPE = document.getElementById('convert-audio-file-format-select').value;
 
             // TODO: display loading screen
             fetch('{{ url_for('multilingual.convert_process') }}', {
@@ -31,7 +36,7 @@
                     'Content-Type': 'text/plain'
                 },
                 method: 'POST',
-                body: `${fileType}`
+                body: `${FILE_TYPE}`
             }).then((res) => {
                 console.log(res);
                 if (res.status === 301 || res.status === 200) {
@@ -46,6 +51,22 @@
                 });
             });
         }
+
+        function displayAlertOnDuplicates() {
+            window.alert('{{ _('Duplicates are not allowed') }}!');
+        }
+
+        function displayAlertOnEmptyUploadQueue() {
+            window.alert('{{ _('Please upload some files before starting the conversion process') }}.');
+        }
+
+        function showLoadingCircle() {
+            const LOADER_CIRCLE = document.getElementById('convert-loader-circle');
+            const GREY_LAYER = document.getElementById('base-grey-layer');
+
+            LOADER_CIRCLE.style.display = 'block';
+            GREY_LAYER.style.display = 'block';
+        }
     </script>
 
     {{ dropzone.load_js() }}
@@ -54,12 +75,35 @@
         dz.on(\'success\', function() {
             dz.options.autoProcessQueue = true;
         });
+        dz.on(\'addedfile\', function(file) {
+            if (this.files.length) {
+                // -1 to exclude current file
+                for (let i = 0; i < this.files.length - 1; i++) {
+                    if(this.files[i].name === file.name && this.files[i].size === file.size &&
+                            this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+                        this.removeFile(file);
+                        displayAlertOnDuplicates()
+                        break;
+                    }
+                }
+            }
+        });
         document.getElementById("upload-convert-submit").addEventListener("click", function handler(e) {
             if (e.button !== 0) return;
+            if (dz.getQueuedFiles().length === 0) {
+                displayAlertOnEmptyUploadQueue();
+                return;
+            }
+            showLoadingCircle()
             dz.processQueue()
         });
         window.addEventListener("keydown", function handler(e) {
             if (e.key !== "Enter") return;
+            if (dz.getQueuedFiles().length === 0) {
+                displayAlertOnEmptyUploadQueue();
+                return;
+            }
+            showLoadingCircle()
             dz.processQueue()
         });
         // Call handleConvert() after every file has been uploaded

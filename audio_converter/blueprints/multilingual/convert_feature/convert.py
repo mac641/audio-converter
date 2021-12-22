@@ -1,10 +1,9 @@
 import hashlib
 import os
 import subprocess
+import uuid
 from datetime import datetime
 from pathlib import Path
-
-import uuid
 
 from flask import g
 from flask_babelex import gettext
@@ -45,22 +44,34 @@ def process(request):
 
     app.logger.info('converted_files: ' + str(converted_files) + ', convertable_files: ' + str(convertable_files))
 
+    if len(convertable_files) == 0:
+        # TODO: Adjust path for user specific conversion
+        utils.move_files(upload_path, files, conversion_path)
+
+        app.logger.info('Successfully moved all uploads due to them being already converted!')
+        return gettext('This conversion was successful with file type') + ': ' + destination_file_type, 301
+
     for file in convertable_files:
         input_file = os.path.join(upload_path, file)
         output_file = os.path.join(specific_conversion_path, Path(file).stem + destination_file_type)
-        return_code = subprocess.call(['ffmpeg', '-i', input_file, output_file])
-        app.logger.info('Input path: ' + input_file + ', Output path: ' + output_file)
+        if not os.path.exists(output_file):
+            subprocess.call(['ffmpeg', '-i', input_file, output_file])
+            app.logger.info('Input path: ' + input_file + ', Output path: ' + output_file)
 
-        if current_user.is_authenticated:
-            g.user = current_user.get_id()
-            track = Track(id=uuid.uuid4().__str__(),
-                          trackname=Path(file).stem,
-                          path=specific_conversion_path,
-                          format=destination_file_type,
-                          timestamp=datetime.now(),
-                          user=g.user)
-            db.session.add(track)
-            db.session.commit()
+            if current_user.is_authenticated:
+                g.user = current_user.get_id()
+                track = Track(id=uuid.uuid4().__str__(),
+                              trackname=Path(file).stem,
+                              path=specific_conversion_path,
+                              format=destination_file_type,
+                              timestamp=datetime.now(),
+                              user=g.user)
+                db.session.add(track)
+                db.session.commit()
+
+    if len(converted_files) != 0:
+        # TODO: Adjust path for user specific conversion
+        utils.move_files(upload_path, converted_files, conversion_path)
 
     # Delete uploads after successful conversion
     app.logger.info('Clean up old uploads...')
