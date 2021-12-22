@@ -19,6 +19,7 @@ allowed_audio_file_types = app.config['ALLOWED_AUDIO_FILE_TYPES']
 
 
 def process(request):
+    utils.create_path(conversion_path)
     specific_conversion_path = utils.set_path(conversion_path)
     app.logger.info(specific_conversion_path)
 

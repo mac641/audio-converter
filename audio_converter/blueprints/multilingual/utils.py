@@ -38,12 +38,11 @@ def move_files(source_path, files, dest_path):
 def set_path(path):
     if current_user.is_authenticated:
         g.user = current_user.get_id()
-        user = User.query.filter_by(fs_uniquifier=g.user).first()
-        user.username = str(int(user.username) + 1)
-        db.session.commit()
-        create_path(path)
         create_path(os.path.join(path, g.user))
-        return os.path.join(path, g.user, user.username)
+        user = User.query.filter_by(fs_uniquifier=g.user).first()
+        user.convert += 1
+        db.session.commit()
+        return os.path.join(path, g.user, str(user.convert))
     else:
         return os.path.join(path, "anonymous")
 
@@ -52,6 +51,6 @@ def get_path(path):
     if current_user.is_authenticated:
         g.user = current_user.get_id()
         user = User.query.filter_by(fs_uniquifier=g.user).first()
-        return os.path.join(path, g.user, user.username)
+        return os.path.join(path, g.user, str(user.convert))
     else:
         return os.path.join(path, "anonymous")

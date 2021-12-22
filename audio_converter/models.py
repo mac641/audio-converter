@@ -10,6 +10,8 @@ class Role(db.Model, fsqla.FsRoleMixin):
 
 
 class User(db.Model, fsqla.FsUserMixin):
+    convert = db.Column(db.Integer, default=0)
+
     def __str__(self):
         return self.email
 
