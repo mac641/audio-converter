@@ -1,11 +1,18 @@
+import hashlib
 import os
 import subprocess
+from datetime import datetime
 from pathlib import Path
+
+import uuid
+
+from flask import g
 from flask_babelex import gettext
 from flask_login import current_user
 
 import audio_converter.blueprints.multilingual.utils as utils
-from audio_converter import app
+from audio_converter import app, db
+from audio_converter.models import Track
 
 conversion_path = app.config['CONVERSION_PATH']
 upload_path = app.config['UPLOAD_PATH']
@@ -43,6 +50,17 @@ def process(request):
         output_file = os.path.join(specific_conversion_path, Path(file).stem + destination_file_type)
         return_code = subprocess.call(['ffmpeg', '-i', input_file, output_file])
         app.logger.info('Input path: ' + input_file + ', Output path: ' + output_file)
+
+        if current_user.is_authenticated:
+            g.user = current_user.get_id()
+            track = Track(id=uuid.uuid4().__str__(),
+                          trackname=Path(file).stem,
+                          path=specific_conversion_path,
+                          format=destination_file_type,
+                          timestamp=datetime.now(),
+                          user=g.user)
+            db.session.add(track)
+            db.session.commit()
 
     # Delete uploads after successful conversion
     app.logger.info('Clean up old uploads...')
