@@ -1,16 +1,15 @@
 :root {
     --main-color: #000000FF;
     --main-complementary-color: #FFFFFFFF;
-    --button-color: #FFFFFFFF;
+    --signal-color: linear-gradient(to bottom, #0070FF, #009AFF 50%, #0070FF);
+    --signal-color-effect: linear-gradient(to bottom, #009AFF, #0070FF 50%, #009AFF);
     --bg-color: #D3D3D3FF;
     --text-color: #A9A9A9FF;
     --text-color2: #6F6F6F;
     --link-color: #6F6F6F;
     --link-color-visited: #A0EF00FF;
-    --link-color-hover: #0070ff;
+    --link-color-hover: #0070FF;
     --link-color-active: #BBCC90FF;
-    --signal-color: linear-gradient(to bottom, #0070ff, #009aff 50%, #0070ff);
-    --signal-color-effect: linear-gradient(to bottom, #009aff, #0070ff 50%, #009aff);
     --error-color: red;
 }
 
