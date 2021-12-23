@@ -17,6 +17,7 @@ from audio_converter import app
 from audio_converter.blueprints.multilingual.convert_feature.convert import process
 from audio_converter.blueprints.multilingual.convert_feature.download import zip_converted_files
 from audio_converter.blueprints.multilingual.convert_feature.upload import upload
+from audio_converter.models import Track
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
 
@@ -541,8 +542,13 @@ def history():
     if not current_user.is_authenticated:
         return redirect(url_for('multilingual.login'))
     else:
+        g.user = current_user.get_id()
+        tracks = Track.query.filter_by(user=g.user).all()
+        for i in tracks:
+            i.timestamp = i.timestamp.date()
+
         return render_template('multilingual/history.html', title='Audio-Converter - ' + gettext('History'),
-                               lang=g.lang_code)
+                               lang=g.lang_code, tracks=tracks)
 
 
 @multilingual.route('/imprint')

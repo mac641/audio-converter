@@ -14,95 +14,32 @@
             {#TODO: Implement data from database #}
             <table>
                 <tr>
-                    {#TODO: make sorted by id #}
-                    <th>ID</th>
                     {#TODO: make sorted by name#}
                     <th>Filename</th>
-                    <th>Duration</th>
                     {#TODO: make sorted by format #}
                     <th>Format</th>
                     {#TODO: make sorted by date #}
                     <th>Date</th>
                     {#TODO: Implement checkbox download functionality #}
                     <th>
-                        <form>
-                            <input type="checkbox">
-                        </form>
                     </th>
                 </tr>
-                <tr>
-                    <th>ID</th>
-                    <td>Track1</td>
-                    <td>Duration</td>
-                    <td>Format</td>
-                    <td>Date</td>
-                    <td>
-                        <form>
-                            <input type="checkbox">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th>ID</th>
-                    <td>Track2</td>
-                    <td>Duration</td>
-                    <td>Format</td>
-                    <td>Date</td>
-                    <td>
-                        <form>
-                            <input type="checkbox">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th>ID</th>
-                    <td>Track3</td>
-                    <td>Duration</td>
-                    <td>Format</td>
-                    <td>Date</td>
-                    <td>
-                        <form>
-                            <input type="checkbox">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th>ID</th>
-                    <td>Track4</td>
-                    <td>Duration</td>
-                    <td>Format</td>
-                    <td>Date</td>
-                    <td>
-                        <form>
-                            <input type="checkbox">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th>ID</th>
-                    <td>Track5</td>
-                    <td>Duration</td>
-                    <td>Format</td>
-                    <td>Date</td>
-                    <td>
-                        <form>
-                            <input type="checkbox">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th>ID</th>
-                    <td>Track6</td>
-                    <td>Duration</td>
-                    <td>Format</td>
-                    <td>Date</td>
-                    <td>
-                        <form>
-                            <input type="checkbox">
-                        </form>
-                    </td>
-                </tr>
+                {% for item in tracks %}
+                    <tr>
+                        <td>{{item.trackname}}</td>
+                        <td>{{item.format}}</td>
+                        <td>{{item.timestamp}}</td>
+                        <td>
+                            <form>
+                                <input type="checkbox">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+
             </table>
+
+
         </div>
         <hr class="settingsBoxHyphen"/>
         <button class="download-button" >{{ _('Download') }}</button>
