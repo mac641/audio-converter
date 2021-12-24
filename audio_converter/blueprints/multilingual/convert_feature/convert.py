@@ -28,7 +28,7 @@ def process(request):
     utils.create_path(specific_conversion_path)
 
     app.logger.info('Start converting all uploaded files...')
-    files = utils.get_uploaded_files(upload_path)
+    files = utils.get_uploaded_files()
 
     if request.method != 'POST' or len(request.data) == 0:
         return gettext('The requested files can\'t be converted due to unknown destination file type') + '. ' \
@@ -83,7 +83,7 @@ def process(request):
 
 def _do_file_types_of_uploaded_files_match():
     suffixes = []
-    for file in utils.get_uploaded_files(upload_path):
+    for file in utils.get_uploaded_files():
         suffix = Path(file).suffix
         if suffix not in suffixes and suffix in allowed_audio_file_types:
             suffixes.append(suffix)
@@ -95,7 +95,7 @@ def _do_file_types_of_uploaded_files_match():
 
 def _filter_already_converted_files(destination_file_type):
     filtered_files = []
-    for file in utils.get_uploaded_files(upload_path):
+    for file in utils.get_uploaded_files():
         suffix = Path(file).suffix
         if suffix == destination_file_type:
             filtered_files.append(file)

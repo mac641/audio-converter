@@ -18,7 +18,7 @@ def delete_path(path):
 
 def create_path(path):
     if not os.path.isdir(path):
-        os.mkdir(path)
+        os.makedirs(path)
 
 
 def set_db_path(path):
