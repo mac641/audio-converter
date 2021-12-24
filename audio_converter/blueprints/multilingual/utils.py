@@ -8,6 +8,8 @@ from audio_converter import app
 from audio_converter import db
 from audio_converter.models import User
 
+upload_path = app.config['UPLOAD_PATH']
+
 
 def delete_path(path):
     if os.path.isdir(path):
@@ -51,10 +53,9 @@ def get_db_path(path):
         return os.path.join(path, 'anonymous')
 
 
-def get_uploaded_files(upload_path):
+def get_uploaded_files():
     """
     Get all files from the upload path and return them as list of strings.
-    :param upload_path: string
     :return: <string>[]
     """
     files: list[str] = [f for f in os.listdir(upload_path) if os.path.isfile(os.path.join(upload_path, f))]

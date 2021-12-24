@@ -1,7 +1,8 @@
+import glob
 import os
 import uuid
 import zipfile
-import glob
+
 from flask_babelex import gettext
 from flask_login import current_user
 
