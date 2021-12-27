@@ -1,3 +1,5 @@
+import os
+
 from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for, send_file
 from flask_babelex import gettext
 from flask_login import current_user
@@ -480,7 +482,8 @@ def login_token_status(token):
 @multilingual.route('/convert', methods=['POST', 'GET'])
 def convert():
     app.logger.info('Redirecting to convert route...')
-    return render_template('multilingual/convert.html', title='Audio-Converter - ' + gettext('Convert'), lang=g.lang_code,
+    return render_template('multilingual/convert.html', title='Audio-Converter - ' + gettext('Convert'),
+                           lang=g.lang_code,
                            allowed_audio_file_types=app.config['ALLOWED_AUDIO_FILE_TYPES'])
 
 
@@ -524,6 +527,33 @@ def convert_download():
         return abort(zip_archive[2])
 
 
+@multilingual.route('/convert_download_history', methods=['GET', 'POST'])
+def convert_download_history():
+    if not current_user.is_authenticated:
+        return redirect(url_for('multilingual.login'))
+    else:
+        if request.method == 'POST':
+            tracks_form = request.form.getlist('download-tracks')
+            links = []
+            for i in tracks_form:
+                track = Track.query.filter_by(id=i).first()
+                links.insert(-1, os.path.join(track.path, track.trackname + track.format))
+                app.logger.info(os.path.join(track.path, track.trackname + track.format))
+        zip_archive = zip_converted_files()
+        app.logger.info('Received zip compression status: ' + ', '.join(map(str, zip_archive)))
+        if zip_archive[2] == 200:
+            try:
+                app.logger.info('Send ' + zip_archive[0])
+                # TODO: Get download_name dynamically
+                return send_file(zip_archive[0], as_attachment=True, download_name='converted.zip',
+                                 attachment_filename='converted.zip')
+            except FileNotFoundError:
+                app.logger.error('File not found!')
+                return abort(404)
+        else:
+            return abort(zip_archive[2])
+
+
 @multilingual.route('/settings')
 @auth_required()
 def settings():
@@ -554,13 +584,15 @@ def history():
 @multilingual.route('/imprint')
 def imprint():
     app.logger.info('Redirecting to imprint route...')
-    return render_template('multilingual/imprint.html', title='Audio-Converter - ' + gettext('Imprint'), lang=g.lang_code)
+    return render_template('multilingual/imprint.html', title='Audio-Converter - ' + gettext('Imprint'),
+                           lang=g.lang_code)
 
 
 @multilingual.route('/privacy')
 def privacy():
     app.logger.info('Redirecting to privacy route...')
-    return render_template('multilingual/privacy.html', title='Audio-Converter - ' + gettext('Privacy'), lang=g.lang_code)
+    return render_template('multilingual/privacy.html', title='Audio-Converter - ' + gettext('Privacy'),
+                           lang=g.lang_code)
 
 
 # TODO: Add translations to the error pages

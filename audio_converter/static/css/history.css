@@ -10,7 +10,8 @@
     margin: 0 -50% 0 0;
     transform: translate(-50%, -50%);
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
-
+    min-width: 20vw;
+    min-height: 30vh;
 }
 
 .settingsBoxHyphen {
@@ -22,8 +23,8 @@
     position: relative;
     left: 50%;
     transform: translate(-50%);
-    font-size: 1vh;
-    margin: 5px;
+    font-size: 1.5vh;
+    margin: 1vh 0px;
 }
 
 .convert-button {
