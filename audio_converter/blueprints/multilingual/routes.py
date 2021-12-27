@@ -479,7 +479,8 @@ def login_token_status(token):
 @multilingual.route('/convert', methods=['POST', 'GET'])
 def convert():
     app.logger.info('Redirecting to convert route...')
-    return render_template('multilingual/convert.html', title='Audio-Converter - ' + gettext('Convert'), lang=g.lang_code,
+    return render_template('multilingual/convert.html', title='Audio-Converter - ' + gettext('Convert'),
+                           lang=g.lang_code,
                            allowed_audio_file_types=app.config['ALLOWED_AUDIO_FILE_TYPES'])
 
 
@@ -538,13 +539,15 @@ def settings():
 @multilingual.route('/imprint')
 def imprint():
     app.logger.info('Redirecting to imprint route...')
-    return render_template('multilingual/imprint.html', title='Audio-Converter - ' + gettext('Imprint'), lang=g.lang_code)
+    return render_template('multilingual/imprint.html', title='Audio-Converter - ' + gettext('Imprint'),
+                           lang=g.lang_code)
 
 
 @multilingual.route('/privacy')
 def privacy():
     app.logger.info('Redirecting to privacy route...')
-    return render_template('multilingual/privacy.html', title='Audio-Converter - ' + gettext('Privacy'), lang=g.lang_code)
+    return render_template('multilingual/privacy.html', title='Audio-Converter - ' + gettext('Privacy'),
+                           lang=g.lang_code)
 
 
 # TODO: Add translations to the error pages
