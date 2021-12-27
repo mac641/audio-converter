@@ -21,15 +21,16 @@
     transform: translate(-50%, -50%);
 }
 
-.convert-again-button {
-    position: absolute;
-    right: 0;
+#convert-again-button {
+    max-width: fit-content;
     font-size: 1.5vh;
-    transform: translate(50%);
+    left: 0;
+    float: right;
+    transform: translate(0%);
 }
 
-.download-button {
-    position: absolute;
+#convert-download-button {
+    max-width: fit-content;
     left: 0;
     font-size: 1.5vh;
     transform: translate(0%);
@@ -37,9 +38,10 @@
 
 .buttons {
     position: absolute;
-    display: flex;
+    display: inline-block;
+    justify-content: space-between;
     width: 50vh;
     top: 80%;
-    left: 50vw;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
