@@ -11,6 +11,7 @@
     --link-color-hover: #0070FF;
     --link-color-active: #BBCC90FF;
     --error-color: red;
+    --border-color: darkblue;
 }
 
 body {

@@ -9,6 +9,7 @@ from audio_converter.blueprints.multilingual import utils
 allowed_audio_file_types = app.config['ALLOWED_AUDIO_FILE_TYPES']
 upload_path = app.config['UPLOAD_PATH']
 
+
 def upload(request):
     utils.create_path(upload_path)
 

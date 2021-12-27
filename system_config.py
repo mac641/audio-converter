@@ -1,4 +1,5 @@
 import os
+
 from flask_babelex import gettext
 
 from user_config import Settings
@@ -56,4 +57,4 @@ DROPZONE_PARALLEL_UPLOADS = 2
 
 DROPZONE_DEFAULT_MESSAGE = gettext('Drag and drop your music files here or click into the dropzone to open a file '
                                    'browser') + '.'
-DROPZONE_TIMEOUT = 5*60*1000
+DROPZONE_TIMEOUT = 5 * 60 * 1000

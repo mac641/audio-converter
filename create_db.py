@@ -1,6 +1,7 @@
-from audio_converter import models, user_datastore
-import system_config
 import datetime
+
+import system_config
+from audio_converter import models, user_datastore
 
 models.db.create_all()
 
