@@ -11,19 +11,25 @@
         <img id="convert-download-icon" src="{{ url_for('static', filename='img/Download-music.png') }}"/>
     </div>
     <div class="buttons">
-        <button class="download-button" id="convert-download-button">{{ _('Download') }}</button>
-        <form method="get" action="{{ url_for('multilingual.convert') }}">
-            <button class="convert-again-button" type="submit">{{ _('Convert again') }}</button>
-        </form>
+        <button id="convert-download-button">{{ _('Download') }}</button>
+        <button id="convert-again-button">{{ _('Convert again') }}</button>
     </div>
 
     <script type="text/javascript">
-        const downloadButton = document.getElementById('convert-download-button');
+        const DOWNLOAD_BUTTON = document.getElementById('convert-download-button');
+        const CONVERT_AGAIN_BUTTON = document.getElementById('convert-again-button');
 
-        downloadButton.addEventListener('click', e => {
+        DOWNLOAD_BUTTON.addEventListener('click', e => {
             if (e.button !== 0) return;
             const link = document.createElement('a');
             link.href = '{{ url_for('multilingual.convert_download') }}';
+            link.click();
+        });
+
+        CONVERT_AGAIN_BUTTON.addEventListener('click', e => {
+            if (e.button !== 0) return;
+            const link = document.createElement('a');
+            link.href = '{{ url_for('multilingual.convert') }}';
             link.click();
         });
     </script>

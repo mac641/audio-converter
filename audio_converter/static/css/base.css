@@ -49,7 +49,7 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
 }
 
 #index-header {
-    background: #18171e;
+    background: var(--main-color);
     top: 0;
     left: 0;
     width: 100%;
@@ -131,7 +131,7 @@ button:active, input[type="button"]:active, input[type="submit"]:active {
 #index-language-button {
     height: 28px;
     width: 47px;
-    border: solid #d3d3d3 1px;
+    border: solid var(--border-color) 1px;
     margin-top: 24px;
     margin-right: 40px;
     float: right;

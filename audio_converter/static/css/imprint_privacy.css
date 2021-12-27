@@ -1,6 +1,6 @@
 @import "root.css";
 
-.textBox{
+.textBox {
     overflow-y: scroll !important;
     display: block;
     margin-left: auto;

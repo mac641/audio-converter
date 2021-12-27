@@ -1,14 +1,14 @@
 @import "base.css";
 
-.conversationBox{
-  display: block;
-  margin-top: 25vh;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10vw;
-  border: solid 1px var(--text-color);
-  padding: 3em;
-  border-radius: 20px;
-  box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
-  min-width: 190px;
+.conversationBox {
+    display: block;
+    margin-top: 25vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10vw;
+    border: solid 1px var(--border-color);
+    padding: 3em;
+    border-radius: 20px;
+    box-shadow: 0 .2em .4em var(--main-color);
+    min-width: 190px;
 }
