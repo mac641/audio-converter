@@ -1,9 +1,9 @@
 #convert-download-dialog {
-    border: 2px solid darkblue;
+    border: 2px solid var(--border-color);
     border-radius: 20px;
     height: 50vh;
     width: 50vh;
-    min-height: 100px ;
+    min-height: 100px;
     min-width: 100px;
     position: absolute;
     top: 45%;
