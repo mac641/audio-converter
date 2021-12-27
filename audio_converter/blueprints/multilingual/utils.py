@@ -21,7 +21,7 @@ def create_path(path):
         os.makedirs(path)
 
 
-def set_db_path(path):
+def set_audio_track_path(path):
     """
     Generate path based on user specific data. (Signed-In / Not Signed-In)
     Commit it to the specific user entry in the database
@@ -39,7 +39,7 @@ def set_db_path(path):
         return os.path.join(path, 'anonymous')
 
 
-def get_db_path(path):
+def get_audio_track_path(path):
     """
     Fetch a user specific path from the database.
     :param path: string
