@@ -25,9 +25,10 @@ def zip_converted_files():
     download_file = os.path.join(download_path, download_uuid + '.zip')
     try:
         with zipfile.ZipFile(download_file, 'w', zipfile.ZIP_DEFLATED) as zf:
-            for filename in glob.iglob(os.path.join(specific_conversion_path + '**/**'), recursive=True):
-                file = filename.strip(specific_conversion_path)
-                zf.write(filename, file)
+            for file_path in glob.iglob(os.path.join(specific_conversion_path, '**/**'), recursive=True):
+                split_file_path = file_path.split('/')
+                file = split_file_path.pop().__str__()
+                zf.write(file_path, file)
     except FileNotFoundError:
         app.logger.error('Error zipping file! - ' + download_file)
         return download_file, gettext('File not found') + '!', 404
