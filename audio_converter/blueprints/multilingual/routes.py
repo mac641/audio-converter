@@ -569,26 +569,35 @@ def settings():
                                lang=g.lang_code)
 
 
-@multilingual.route('/delete_history')
+@multilingual.route('/delete_history', methods=['GET', 'POST'])
 @auth_required()
 def delete_history():
     if not current_user.is_authenticated:
         return redirect(url_for('multilingual.login'))
     else:
-        g.user = current_user.get_id()
-        # delete audio files
-        conversion_path = app.config['CONVERSION_PATH']
-        path = os.path.join(conversion_path, g.user)
-        utils.delete_path(path)
-        # delete db entries
-        Track.query.filter_by(user=g.user).delete()
-        # reset convert count
-        user = User.query.filter_by(fs_uniquifier=g.user).first()
-        user.convert = 0
-        db.session.commit()
-        app.logger.info('Deleted history...')
+        if request.method == 'POST':
+            reply_form = request.form.get('reply')
+            if reply_form == "yes":
+                g.user = current_user.get_id()
+                # delete audio files
+                conversion_path = app.config['CONVERSION_PATH']
+                path = os.path.join(conversion_path, g.user)
+                utils.delete_path(path)
+                # delete db entries
+                Track.query.filter_by(user=g.user).delete()
+                # reset convert count
+                user = User.query.filter_by(fs_uniquifier=g.user).first()
+                user.convert = 0
+                db.session.commit()
+                app.logger.info('Deleted history...')
 
-        return redirect(url_for('multilingual.index'))
+                return redirect(url_for('multilingual.index'))
+            else:
+                return redirect(url_for('multilingual.settings'))
+        else:
+            return render_template('multilingual/delete_history.html',
+                                   title='Audio-Converter - ' + gettext('Delete_History'),
+                                   lang=g.lang_code)
 
 
 @multilingual.route('/history')

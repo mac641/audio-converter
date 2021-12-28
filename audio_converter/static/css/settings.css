@@ -6,6 +6,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 20vw;
+    min-width: 300px;
     border: solid 1px var(--border-color);
     padding: 3em;
     border-radius: 20px;
@@ -20,3 +21,25 @@
     color: #E6E2E2;
     margin: 0 -2.5vw;
 }
+.reply_buttons {
+    position: relative;
+    display: inline-block;
+    width: 10vw;
+    min-width: 200px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#yes-button {
+    max-width: fit-content;
+    left: 0;
+    float: right;
+    transform: translate(0%);
+}
+
+#no-button {
+    max-width: fit-content;
+    left: 0;
+    transform: translate(0%);
+}
+

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-28 10:51+0100\n"
+"POT-Creation-Date: 2021-12-28 11:35+0100\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -71,18 +71,23 @@ msgstr "Ergebnis der Konvertierung"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: audio_converter/blueprints/multilingual/routes.py:605
+#: audio_converter/blueprints/multilingual/routes.py:599
+#, fuzzy
+msgid "Delete_History"
+msgstr "Verlauf löschen"
+
+#: audio_converter/blueprints/multilingual/routes.py:614
 #: audio_converter/blueprints/multilingual/templates/header.html:33
 #: audio_converter/blueprints/multilingual/templates/multilingual/history.html:11
 msgid "History"
 msgstr "Verlauf"
 
-#: audio_converter/blueprints/multilingual/routes.py:612
+#: audio_converter/blueprints/multilingual/routes.py:621
 #: audio_converter/blueprints/multilingual/templates/footer.html:5
 msgid "Imprint"
 msgstr "Impressum"
 
-#: audio_converter/blueprints/multilingual/routes.py:619
+#: audio_converter/blueprints/multilingual/routes.py:628
 msgid "Privacy"
 msgstr "Datenschutz"
 
@@ -227,6 +232,18 @@ msgstr "Dateien dürfen nicht mehrfach hochgeladen werden"
 #: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:60
 msgid "Please upload some files before starting the conversion process"
 msgstr "Bitte laden Sie vor der Konvertierung mindestens eine Datei hoch"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/delete_history.html:11
+msgid "Are you sure to delete your history"
+msgstr "Möchten Sie Ihren Verlauf wirklich löschen"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/delete_history.html:18
+msgid "Yes"
+msgstr "Ja"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/delete_history.html:19
+msgid "No"
+msgstr "Nein"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/download.html:14
 #: audio_converter/blueprints/multilingual/templates/multilingual/history.html:37
