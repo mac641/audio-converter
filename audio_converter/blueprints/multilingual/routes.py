@@ -1,3 +1,5 @@
+import os
+
 from flask import redirect, render_template, request, Blueprint, g, abort, after_this_request, url_for, send_file
 from flask_babelex import gettext
 from flask_login import current_user
@@ -17,6 +19,7 @@ from audio_converter import app
 from audio_converter.blueprints.multilingual.convert_feature.convert import process
 from audio_converter.blueprints.multilingual.convert_feature.download import zip_converted_files
 from audio_converter.blueprints.multilingual.convert_feature.upload import upload
+from audio_converter.models import Track
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
 
@@ -524,6 +527,35 @@ def convert_download():
         return abort(zip_archive[2])
 
 
+@multilingual.route('/download_history', methods=['GET', 'POST'])
+def download_history():
+    if not current_user.is_authenticated:
+        return redirect(url_for('multilingual.login'))
+    else:
+        if request.method == 'POST':
+            tracks_form = request.form.getlist('download-tracks')
+            links = []
+            for i in tracks_form:
+                track = Track.query.filter_by(id=i).first()
+                links.insert(-1, os.path.join(track.path, track.trackname + track.format))
+
+                # TODO: add here functionality for download tracks with a list of paths.
+
+        zip_archive = zip_converted_files()
+        app.logger.info('Received zip compression status: ' + ', '.join(map(str, zip_archive)))
+        if zip_archive[2] == 200:
+            try:
+                app.logger.info('Send ' + zip_archive[0])
+                # TODO: Get download_name dynamically
+                return send_file(zip_archive[0], as_attachment=True, download_name='converted.zip',
+                                 attachment_filename='converted.zip')
+            except FileNotFoundError:
+                app.logger.error('File not found!')
+                return abort(404)
+        else:
+            return abort(zip_archive[2])
+
+
 @multilingual.route('/settings')
 @auth_required()
 def settings():
@@ -534,6 +566,21 @@ def settings():
         app.logger.info('Redirecting to settings route...')
         return render_template('multilingual/settings.html', title='Audio-Converter - ' + gettext('Settings'),
                                lang=g.lang_code)
+
+
+@multilingual.route('/history')
+@auth_required()
+def history():
+    if not current_user.is_authenticated:
+        return redirect(url_for('multilingual.login'))
+    else:
+        g.user = current_user.get_id()
+        tracks = Track.query.filter_by(user=g.user).all()
+        for i in tracks:
+            i.timestamp = i.timestamp.date()
+
+        return render_template('multilingual/history.html', title='Audio-Converter - ' + gettext('History'),
+                               lang=g.lang_code, tracks=tracks)
 
 
 @multilingual.route('/imprint')

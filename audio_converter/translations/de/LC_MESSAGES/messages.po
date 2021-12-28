@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-27 15:05+0000\n"
+"POT-Creation-Date: 2021-12-28 08:02+0100\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -29,54 +29,60 @@ msgstr ""
 "\"Drag and Drop\" deine Musikdateien in dieses Feld oder klicke hinein, "
 "um einen Dateiexplorer zu öffnen"
 
-#: audio_converter/blueprints/multilingual/routes.py:124
+#: audio_converter/blueprints/multilingual/routes.py:127
 #: audio_converter/templates/security/login_user.html:7
 msgid "Sign In"
 msgstr "Einloggen"
 
-#: audio_converter/blueprints/multilingual/routes.py:175
+#: audio_converter/blueprints/multilingual/routes.py:178
 msgid "Register"
 msgstr "Registrieren"
 
-#: audio_converter/blueprints/multilingual/routes.py:251
-#: audio_converter/blueprints/multilingual/routes.py:307
+#: audio_converter/blueprints/multilingual/routes.py:254
+#: audio_converter/blueprints/multilingual/routes.py:310
 #, fuzzy
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
-#: audio_converter/blueprints/multilingual/routes.py:339
+#: audio_converter/blueprints/multilingual/routes.py:342
 msgid "Send Login"
 msgstr "Anmeldedaten senden"
 
-#: audio_converter/blueprints/multilingual/routes.py:422
+#: audio_converter/blueprints/multilingual/routes.py:425
 #, fuzzy
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: audio_converter/blueprints/multilingual/routes.py:461
+#: audio_converter/blueprints/multilingual/routes.py:464
 #: audio_converter/templates/security/change_password.html:7
 msgid "Change password"
 msgstr "Passwort zurücksetzen"
 
-#: audio_converter/blueprints/multilingual/routes.py:482
+#: audio_converter/blueprints/multilingual/routes.py:485
 msgid "Convert"
 msgstr "Konvertieren"
 
-#: audio_converter/blueprints/multilingual/routes.py:506
+#: audio_converter/blueprints/multilingual/routes.py:509
 msgid "Conversion Results"
 msgstr "Ergebnis der Konvertierung"
 
-#: audio_converter/blueprints/multilingual/routes.py:535
+#: audio_converter/blueprints/multilingual/routes.py:565
 #: audio_converter/blueprints/multilingual/templates/header.html:30
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: audio_converter/blueprints/multilingual/routes.py:542
+#: audio_converter/blueprints/multilingual/routes.py:580
+#: audio_converter/blueprints/multilingual/templates/header.html:33
+#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:11
+msgid "History"
+msgstr "Verlauf"
+
+#: audio_converter/blueprints/multilingual/routes.py:587
 #: audio_converter/blueprints/multilingual/templates/footer.html:5
 msgid "Imprint"
 msgstr "Impressum"
 
-#: audio_converter/blueprints/multilingual/routes.py:549
+#: audio_converter/blueprints/multilingual/routes.py:594
 msgid "Privacy"
 msgstr "Datenschutz"
 
@@ -175,10 +181,6 @@ msgstr "Registrieren"
 msgid "Sign-out"
 msgstr "Abmelden"
 
-#: audio_converter/blueprints/multilingual/templates/header.html:33
-msgid "History"
-msgstr "Historie"
-
 #: audio_converter/blueprints/multilingual/templates/header.html:37
 msgid "Admin"
 msgstr "Admin"
@@ -227,11 +229,29 @@ msgid "Please upload some files before starting the conversion process"
 msgstr "Bitte laden Sie vor der Konvertierung mindestens eine Datei hoch"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/download.html:14
+#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:37
 msgid "Download"
 msgstr "Herunterladen"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/download.html:15
 msgid "Convert again"
+msgstr "Erneut konvertieren"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:17
+#, fuzzy
+msgid "File name"
+msgstr "Dateiname"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:19
+msgid "Format"
+msgstr "Format"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:21
+msgid "Date"
+msgstr "Datum"
+
+#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:42
+msgid "Convert a new one"
 msgstr "Erneut konvertieren"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/index.html:15
@@ -246,10 +266,6 @@ msgstr "Konto"
 #: audio_converter/templates/security/reset_password.html:7
 msgid "Reset password"
 msgstr "Passwort zurücksetzen"
-
-#: audio_converter/blueprints/multilingual/templates/multilingual/settings.html:40
-msgid "Save"
-msgstr "Speichern"
 
 #: audio_converter/templates/security/forgot_password.html:7
 msgid "Send password reset instructions"
@@ -317,4 +333,7 @@ msgstr ""
 #: audio_converter/templates/security/email/welcome.html:6
 msgid "Confirm my account"
 msgstr "Bestätige dein Konto"
+
+#~ msgid "Save"
+#~ msgstr "Speichern"
 

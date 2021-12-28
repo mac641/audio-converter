@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
+    {% endblock styles %}
+{% endblock head %}
+
+{% block content %}
+    <div class="history-dialog">
+        <h2>&nbsp; {{ _('History') }}</h2>
+        <hr class="settingsBoxHyphen"/>
+        <form method="POST" action="{{ url_for('multilingual.download_history') }}">
+                <table>
+                    <tr>
+                        {#TODO: make sorted by name#}
+                        <th>{{ _('File name') }}</th>
+                        {#TODO: make sorted by format #}
+                        <th>{{ _('Format') }}</th>
+                        {#TODO: make sorted by date #}
+                        <th>{{ _('Date') }}</th>
+                        <th>
+                        </th>
+                    </tr>
+                    {% for item in tracks %}
+                        <tr>
+                            <td>{{ item.trackname }}</td>
+                            <td>{{ item.format }}</td>
+                            <td>{{ item.timestamp }}</td>
+                            <td>
+                                <input name="download-tracks" value="{{ item.id }}" type="checkbox">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            <hr class="settingsBoxHyphen"/>
+        <input type="submit" value="{{ _('Download') }}" class="download-button">
+        </form>
+    </div>
+
+    <form method="get" action="{{ url_for('multilingual.convert') }}">
+        <button class="convert-button" type="submit">{{ _('Convert a new one') }}</button>
+    </form>
+
+{% endblock %}
