@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-27 18:20+0100\n"
+"POT-Creation-Date: 2021-12-28 08:02+0100\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -75,7 +75,7 @@ msgstr "Einstellungen"
 #: audio_converter/blueprints/multilingual/templates/header.html:33
 #: audio_converter/blueprints/multilingual/templates/multilingual/history.html:11
 msgid "History"
-msgstr "Historie"
+msgstr "Verlauf"
 
 #: audio_converter/blueprints/multilingual/routes.py:587
 #: audio_converter/blueprints/multilingual/templates/footer.html:5
@@ -238,7 +238,8 @@ msgid "Convert again"
 msgstr "Erneut konvertieren"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/history.html:17
-msgid "Filename"
+#, fuzzy
+msgid "File name"
 msgstr "Dateiname"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/history.html:19
