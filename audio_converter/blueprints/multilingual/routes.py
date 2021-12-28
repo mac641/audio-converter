@@ -527,8 +527,8 @@ def convert_download():
         return abort(zip_archive[2])
 
 
-@multilingual.route('/convert_download_history', methods=['GET', 'POST'])
-def convert_download_history():
+@multilingual.route('/download_history', methods=['GET', 'POST'])
+def download_history():
     if not current_user.is_authenticated:
         return redirect(url_for('multilingual.login'))
     else:
