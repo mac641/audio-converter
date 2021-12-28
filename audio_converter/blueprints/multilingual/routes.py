@@ -538,7 +538,9 @@ def convert_download_history():
             for i in tracks_form:
                 track = Track.query.filter_by(id=i).first()
                 links.insert(-1, os.path.join(track.path, track.trackname + track.format))
-                app.logger.info(os.path.join(track.path, track.trackname + track.format))
+
+                # TODO: add here functionality for download tracks with a list of paths.
+
         zip_archive = zip_converted_files()
         app.logger.info('Received zip compression status: ' + ', '.join(map(str, zip_archive)))
         if zip_archive[2] == 200:
