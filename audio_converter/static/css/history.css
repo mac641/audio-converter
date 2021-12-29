@@ -12,8 +12,8 @@
     transform: translate(-50%, -50%);
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
     width: 50vh;
+    height: 65vh;
     min-height: 30vh;
-    max-height: 65vh;
 }
 
 .settingsBoxHyphen {

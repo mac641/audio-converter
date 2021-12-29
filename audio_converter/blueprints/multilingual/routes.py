@@ -536,9 +536,16 @@ def history():
         return redirect(url_for('multilingual.login'))
     else:
         g.user = current_user.get_id()
-        tracks = Track.query.filter_by(user=g.user).all()
-        for i in tracks:
-            i.timestamp = i.timestamp.date()
+        track_list = Track.query.filter_by(user=g.user).all()
+        tracks = []
+        for track in track_list:
+            is_duplicate = False
+            for t in tracks:
+                if t.trackname == track.trackname and t.format == track.format:
+                    is_duplicate = True
+            if not is_duplicate:
+                track.timestamp = track.timestamp.date()
+                tracks.append(track)
 
         return render_template('multilingual/history.html', title='Audio-Converter - ' + gettext('History'),
                                lang=g.lang_code, tracks=tracks)
