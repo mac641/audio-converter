@@ -11,30 +11,32 @@
         <h2>&nbsp;{{ _('History') }}</h2>
         <hr class="settingsBoxHyphen"/>
         <form id="history-form" method="POST" action="{{ url_for('multilingual.history_download') }}">
-            <table>
-                <tr>
-                    {#TODO: sort by name#}
-                    <th>{{ _('File name') }}</th>
-                    {#TODO: sort by format #}
-                    <th>{{ _('Format') }}</th>
-                    {#TODO: sort by date #}
-                    <th>{{ _('Date') }}</th>
-                    <th>
-                    </th>
-                </tr>
-                {% for track in tracks %}
+            <div class="history-table">
+                <table>
                     <tr>
-                        <td>{{ track.trackname }}</td>
-                        <td>{{ track.format }}</td>
-                        <td>{{ track.timestamp }}</td>
-                        <td>
-                            <label>
-                                <input name="download-tracks" value="{{ track.id }}" type="checkbox">
-                            </label>
-                        </td>
+                        {#TODO: sort by name#}
+                        <th>{{ _('File name') }}</th>
+                        {#TODO: sort by format #}
+                        <th>{{ _('Format') }}</th>
+                        {#TODO: sort by date #}
+                        <th>{{ _('Date') }}</th>
+                        <th>
+                        </th>
                     </tr>
-                {% endfor %}
-            </table>
+                    {% for track in tracks %}
+                        <tr>
+                            <td>{{ track.trackname }}</td>
+                            <td>{{ track.format }}</td>
+                            <td>{{ track.timestamp }}</td>
+                            <td>
+                                <label>
+                                    <input name="download-tracks" value="{{ track.id }}" type="checkbox">
+                                </label>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </form>
     </div>
     <div id="history-buttons">

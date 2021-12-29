@@ -2,7 +2,6 @@
 
 
 .history-dialog {
-    overflow-y: scroll !important;
     border: 2px solid var(--border-color);
     border-radius: 20px;
     position: absolute;
@@ -13,6 +12,15 @@
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
     width: 50vh;
     height: 65vh;
+    min-height: 30vh;
+    min-width: 300px;
+}
+
+.history-table {
+    overflow-y: scroll !important;
+    scrollbar-width: thin;
+    width: auto;
+    height: 55vh;
     min-height: 30vh;
 }
 
@@ -49,7 +57,7 @@
 table {
     border-collapse: separate;
     border-spacing: 0.2em;
-    width: max-content;
+    width: 100%;
 }
 
 th, td {
