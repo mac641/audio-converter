@@ -26,9 +26,12 @@ def zip_converted_files():
     try:
         with zipfile.ZipFile(download_file, 'w', zipfile.ZIP_DEFLATED) as zf:
             for file_path in glob.iglob(os.path.join(specific_conversion_path, '**/**'), recursive=True):
-                split_file_path = file_path.split('/')
-                file = split_file_path.pop().__str__()
-                zf.write(file_path, file)
+                if is_audio_file(file_path):
+                    split_file_path = file_path.split('/')
+                    file = split_file_path.pop().__str__()
+                    zf.write(file_path, file)
+                else:
+                    app.logger.info('Skipped: ' + file_path)
     except FileNotFoundError:
         app.logger.error('Error zipping file! - ' + download_file)
         return download_file, gettext('File not found') + '!', 404
@@ -41,3 +44,8 @@ def zip_converted_files():
 
     app.logger.info('Successfully zipped all converted files!')
     return download_file, gettext('All converted files have been zipped successfully') + '!', 200
+
+
+def is_audio_file(file_path):
+    # TODO: Check if zipped files are audio files
+    return True
