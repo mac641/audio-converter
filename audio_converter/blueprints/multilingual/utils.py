@@ -1,12 +1,5 @@
 import os
 import shutil
-from datetime import datetime
-
-from flask import g
-from flask_login import current_user
-
-from audio_converter import db
-from audio_converter.models import User
 
 from flask import g
 from flask_login import current_user

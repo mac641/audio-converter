@@ -1,3 +1,5 @@
+@import "base.css";
+
 #convert-download-dialog {
     border: 2px solid var(--border-color);
     border-radius: 20px;
@@ -23,9 +25,9 @@
 
 #convert-again-button {
     max-width: fit-content;
-    font-size: 1.5vh;
     left: 0;
     float: right;
+    font-size: 1.5vh;
     transform: translate(0%);
 }
 

@@ -8,40 +8,65 @@
 
 {% block content %}
     <div class="history-dialog">
-        <h2>&nbsp; {{ _('History') }}</h2>
+        <h2>&nbsp;{{ _('History') }}</h2>
         <hr class="settingsBoxHyphen"/>
-        <form method="POST" action="{{ url_for('multilingual.download_history') }}">
-            <table>
-                <tr>
-                    {#TODO: make sorted by name#}
-                    <th>{{ _('File name') }}</th>
-                    {#TODO: make sorted by format #}
-                    <th>{{ _('Format') }}</th>
-                    {#TODO: make sorted by date #}
-                    <th>{{ _('Date') }}</th>
-                    <th>
-                    </th>
-                </tr>
-                {% for item in tracks %}
+        <form id="history-form" method="POST" action="{{ url_for('multilingual.history_download') }}">
+            <div class="history-table">
+                <table>
                     <tr>
-                        <td>{{ item.trackname }}</td>
-                        <td>{{ item.format }}</td>
-                        <td>{{ item.timestamp }}</td>
-                        <td>
-                            <input name="download-tracks" value="{{ item.id }}" type="checkbox">
-                        </td>
+                        {#TODO: sort by name#}
+                        <th>{{ _('File name') }}</th>
+                        {#TODO: sort by format #}
+                        <th>{{ _('Format') }}</th>
+                        {#TODO: sort by date #}
+                        <th>{{ _('Date') }}</th>
+                        <th>
+                        </th>
                     </tr>
-                {% endfor %}
-            </table>
-            <hr class="settingsBoxHyphen"/>
-            {% if tracks %}
-                <input type="submit" value="{{ _('Download') }}" class="download-button">
-            {% endif %}
+                    {% for track in tracks %}
+                        <tr>
+                            <td>{{ track.trackname }}</td>
+                            <td>{{ track.format }}</td>
+                            <td>{{ track.timestamp }}</td>
+                            <td>
+                                <label>
+                                    <input name="download-tracks" value="{{ track.id }}" type="checkbox">
+                                </label>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </form>
     </div>
+    <div id="history-buttons">
+        <button id="history-convert-button" type="submit">{{ _('Convert more') }}...</button>
+        {% if tracks %}
+            <button id="history-download-button" type="submit">{{ _('Download') }}</button>
+        {% endif %}
+    </div>
 
-    <form method="get" action="{{ url_for('multilingual.convert') }}">
-        <button class="convert-button" type="submit">{{ _('Convert a new one') }}</button>
-    </form>
+    <script type="text/javascript">
+        const HISTORY_FORM = document.getElementById('history-form');
+        const HISTORY_DOWNLOAD_BUTTON = document.getElementById('history-download-button');
+        const HISTORY_CONVERT_BUTTON = document.getElementById('history-convert-button');
 
+        if (document.body.contains(HISTORY_DOWNLOAD_BUTTON)) {
+            HISTORY_DOWNLOAD_BUTTON.addEventListener('click', e => {
+                if (e.button !== 0) return;
+                HISTORY_FORM.submit();
+            })
+        } else {
+            HISTORY_CONVERT_BUTTON.style.left = '50%';
+            HISTORY_CONVERT_BUTTON.style.float = 'none';
+            HISTORY_CONVERT_BUTTON.style.transform = 'translate(-50%)';
+        }
+
+        HISTORY_CONVERT_BUTTON.addEventListener('click', e => {
+            if (e.button !== 0) return;
+            const link = document.createElement('a');
+            link.href = '{{ url_for('multilingual.convert') }}';
+            link.click();
+        });
+    </script>
 {% endblock %}

@@ -1,43 +1,63 @@
-@import "root.css";
+@import "base.css";
 
 
 .history-dialog {
-    border: 2px solid darkblue;
+    border: 2px solid var(--border-color);
     border-radius: 20px;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     margin: 0 -50% 0 0;
     transform: translate(-50%, -50%);
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+    width: 50vh;
+    height: 65vh;
+    min-height: 30vh;
+    min-width: 300px;
+}
+
+.history-table {
+    overflow-y: scroll !important;
+    scrollbar-width: thin;
+    width: auto;
+    height: 55vh;
     min-height: 30vh;
 }
 
 .settingsBoxHyphen {
-    color: darkblue;
+    color: var(--border-color);
     margin: 0;
 }
 
-.download-button {
-    position: relative;
+#history-buttons {
+    position: absolute;
+    display: inline-block;
+    justify-content: space-between;
+    width: 50vh;
+    top: 90%;
     left: 50%;
-    transform: translate(-50%);
-    font-size: 1.5vh;
-    margin: 1vh 0px;
+    transform: translate(-50%, -50%);
 }
 
-.convert-button {
-    position: absolute;
-    top: 80%;
-    left: 50vw;
-    transform: translate(-50%, -50%);
+#history-download-button {
+    max-width: fit-content;
+    left: 0;
     font-size: 1.5vh;
+    transform: translate(0%);
+}
+
+#history-convert-button {
+    max-width: fit-content;
+    left: 0;
+    float: right;
+    font-size: 1.5vh;
+    transform: translate(0%);
 }
 
 table {
     border-collapse: separate;
     border-spacing: 0.2em;
-    width: max-content;
+    width: 100%;
 }
 
 th, td {
@@ -50,12 +70,11 @@ thead th {
     color: #c32e04;
 }
 
-
 tr {
     text-align: right;
-    box-shadow: inset 1px 3px 5px -3px rgba(0,0,0,.5);
+    box-shadow: inset 1px 3px 5px -3px rgba(0, 0, 0, .5);
 }
 
-td:empty{
+td:empty {
     box-shadow: none;
 }
