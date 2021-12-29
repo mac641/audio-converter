@@ -37,24 +37,28 @@
             </table>
         </form>
     </div>
-    {% if tracks %}
-        <div id="history-buttons">
-            <button id="history-convert-button" type="submit">{{ _('Convert more') }}...</button>
+    <div id="history-buttons">
+        <button id="history-convert-button" type="submit">{{ _('Convert more') }}...</button>
+        {% if tracks %}
             <button id="history-download-button" type="submit">{{ _('Download') }}</button>
-        </div>
-    {% else %}
-        {# TODO: Add convert button in else #}
-    {% endif %}
+        {% endif %}
+    </div>
 
     <script type="text/javascript">
         const HISTORY_FORM = document.getElementById('history-form');
         const HISTORY_DOWNLOAD_BUTTON = document.getElementById('history-download-button');
         const HISTORY_CONVERT_BUTTON = document.getElementById('history-convert-button');
 
-        HISTORY_DOWNLOAD_BUTTON.addEventListener('click', e => {
-            if (e.button !== 0) return;
-            HISTORY_FORM.submit();
-        })
+        if (document.body.contains(HISTORY_DOWNLOAD_BUTTON)) {
+            HISTORY_DOWNLOAD_BUTTON.addEventListener('click', e => {
+                if (e.button !== 0) return;
+                HISTORY_FORM.submit();
+            })
+        } else {
+            HISTORY_CONVERT_BUTTON.style.left = '50%';
+            HISTORY_CONVERT_BUTTON.style.float = 'none';
+            HISTORY_CONVERT_BUTTON.style.transform = 'translate(-50%)';
+        }
 
         HISTORY_CONVERT_BUTTON.addEventListener('click', e => {
             if (e.button !== 0) return;
