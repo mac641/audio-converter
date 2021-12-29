@@ -37,11 +37,14 @@
             </table>
         </form>
     </div>
-
-    <div id="history-buttons">
-        <button id="history-convert-button" type="submit">{{ _('Convert more') }}...</button>
-        <button id="history-download-button" type="submit">{{ _('Download') }}</button>
-    </div>
+    {% if tracks %}
+        <div id="history-buttons">
+            <button id="history-convert-button" type="submit">{{ _('Convert more') }}...</button>
+            <button id="history-download-button" type="submit">{{ _('Download') }}</button>
+        </div>
+    {% else %}
+        {# TODO: Add convert button in else #}
+    {% endif %}
 
     <script type="text/javascript">
         const HISTORY_FORM = document.getElementById('history-form');

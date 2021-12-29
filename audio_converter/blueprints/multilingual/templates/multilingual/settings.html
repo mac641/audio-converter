@@ -16,30 +16,22 @@
                     <a href="{{ url_for('multilingual.change_password') }}">{{ _('Reset password') }}</a>
                 </li>
 {#                TODO: Add more setting functionality for account, e.g. change email address#}
-{#                <li>#}
-{#                    another cool stuff...#}
-{#                </li>#}
             </ul>
         </div>
         </br>
-{#        TODO: Add functionality for general settings, e.g. frame rate for converting, zip yes or no#}
-{#        <hr class="settingsBoxHyphen2"/>#}
-{#        </br>#}
-{#        <div class="converterSettings">#}
-{#            <h2>&nbsp; Audio-Converter</h2>#}
-{#            <hr class="settingsBoxHyphen"/>#}
-{#            <ul>#}
-{#                <li>#}
-{#                    awesome general settings...#}
-{#                </li>#}
-{#            </ul>#}
-{#        </div>#}
-{#        </br>#}
-{#        <hr class="settingsBoxHyphen2"/>#}
-{#        </br>#}
-{#        </br>#}
-{#        <div>#}
-{#            <button type="submit">{{ _('Save') }}</button>#}
-{#        </div>#}
+
+        <hr class="settingsBoxHyphen2"/>
+        </br>
+        <div class="converterSettings">
+            <h2>&nbsp; Audio-Converter</h2>
+            <hr class="settingsBoxHyphen"/>
+            <ul>
+                  <li>
+                    <a href="{{ url_for('multilingual.delete_history') }}">{{ _('Clear history') }}</a>
+                </li>
+{#                  TODO: Add more functionality for general settings, e.g. frame rate for converting, zip yes or no#}
+            </ul>
+        </div>
+        </br>
     </div>
 {% endblock %}
