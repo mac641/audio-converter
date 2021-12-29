@@ -51,11 +51,17 @@ compile-translations:
 
 # Misc
 .PHONY: clean
-clean: clean-logs
+clean: clean-logs clean-converting-directories clean-db
 
 .PHONY: clean-logs
 clean-logs:
 	/bin/rm -f *.log
+
+clean-converting-directories: uploaded converted downloadable
+	/bin/rm -rf uploaded converted downloadable
+
+clean-db: database.sqlite
+	/Bin/rm -f database.sqlite
 
 user_config: .scripts/create_user_config.sh
 	sh .scripts/create_user_config.sh
