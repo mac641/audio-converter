@@ -2,36 +2,48 @@
 
 
 .history-dialog {
-    border: 2px solid darkblue;
+    overflow-y: scroll !important;
+    border: 2px solid var(--border-color);
     border-radius: 20px;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     margin: 0 -50% 0 0;
     transform: translate(-50%, -50%);
     box-shadow: 0 .2em .4em rgba(0, 0, 0, .5);
+    width: 50vh;
     min-height: 30vh;
+    max-height: 65vh;
 }
 
 .settingsBoxHyphen {
-    color: darkblue;
+    color: var(--border-color);
     margin: 0;
 }
 
-.download-button {
-    position: relative;
+#history-buttons {
+    position: absolute;
+    display: inline-block;
+    justify-content: space-between;
+    width: 50vh;
+    top: 90%;
     left: 50%;
-    transform: translate(-50%);
-    font-size: 1.5vh;
-    margin: 1vh 0px;
+    transform: translate(-50%, -50%);
 }
 
-.convert-button {
-    position: absolute;
-    top: 80%;
-    left: 50vw;
-    transform: translate(-50%, -50%);
+#history-download-button {
+    max-width: fit-content;
+    left: 0;
     font-size: 1.5vh;
+    transform: translate(0%);
+}
+
+#history-convert-button {
+    max-width: fit-content;
+    left: 0;
+    float: right;
+    font-size: 1.5vh;
+    transform: translate(0%);
 }
 
 table {
@@ -49,7 +61,6 @@ thead th {
     background-color: #ffebe6;
     color: #c32e04;
 }
-
 
 tr {
     text-align: right;

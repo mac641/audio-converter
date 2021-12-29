@@ -8,9 +8,9 @@
 
 {% block content %}
     <div class="history-dialog">
-        <h2>&nbsp; {{ _('History') }}</h2>
+        <h2>&nbsp;{{ _('History') }}</h2>
         <hr class="settingsBoxHyphen"/>
-        <form method="POST" action="{{ url_for('multilingual.history_download') }}">
+        <form id="history-form" method="POST" action="{{ url_for('multilingual.history_download') }}">
             <table>
                 <tr>
                     {#TODO: sort by name#}
@@ -22,11 +22,11 @@
                     <th>
                     </th>
                 </tr>
-                {% for item in tracks %}
+                {% for track in tracks %}
                     <tr>
-                        <td>{{ item.trackname }}</td>
-                        <td>{{ item.format }}</td>
-                        <td>{{ item.timestamp }}</td>
+                        <td>{{ track.trackname }}</td>
+                        <td>{{ track.format }}</td>
+                        <td>{{ track.timestamp }}</td>
                         <td>
                             <label>
                                 <input name="download-tracks" value="{{ item.id }}" type="checkbox">
@@ -35,13 +35,30 @@
                     </tr>
                 {% endfor %}
             </table>
-            <hr class="settingsBoxHyphen"/>
-            <input type="submit" value="{{ _('Download') }}" class="download-button">
         </form>
     </div>
 
-    <form method="get" action="{{ url_for('multilingual.convert') }}">
-        <button class="convert-button" type="submit">{{ _('Convert again') }}</button>
-    </form>
+    <div id="history-buttons">
+        <button id="history-convert-button" type="submit">{{ _('Convert more') }}...</button>
+        <button id="history-download-button" type="submit">{{ _('Download') }}</button>
+    </div>
+
+    <script type="text/javascript">
+        const HISTORY_FORM = document.getElementById('history-form');
+        const HISTORY_DOWNLOAD_BUTTON = document.getElementById('history-download-button');
+        const HISTORY_CONVERT_BUTTON = document.getElementById('history-convert-button');
+
+        HISTORY_DOWNLOAD_BUTTON.addEventListener('click', e => {
+            if (e.button !== 0) return;
+            HISTORY_FORM.submit();
+        })
+
+        HISTORY_CONVERT_BUTTON.addEventListener('click', e => {
+            if (e.button !== 0) return;
+            const link = document.createElement('a');
+            link.href = '{{ url_for('multilingual.convert') }}';
+            link.click();
+        });
+    </script>
 
 {% endblock %}
