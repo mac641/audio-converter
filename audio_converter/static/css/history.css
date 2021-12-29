@@ -1,4 +1,4 @@
-@import "root.css";
+@import "base.css";
 
 
 .history-dialog {
@@ -53,9 +53,9 @@ thead th {
 
 tr {
     text-align: right;
-    box-shadow: inset 1px 3px 5px -3px rgba(0,0,0,.5);
+    box-shadow: inset 1px 3px 5px -3px rgba(0, 0, 0, .5);
 }
 
-td:empty{
+td:empty {
     box-shadow: none;
 }
