@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-28 11:35+0100\n"
+"POT-Creation-Date: 2021-12-29 16:44+0100\n"
 "PO-Revision-Date: 2021-06-28 18:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -234,8 +234,9 @@ msgid "Please upload some files before starting the conversion process"
 msgstr "Bitte laden Sie vor der Konvertierung mindestens eine Datei hoch"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/delete_history.html:11
-msgid "Are you sure to delete your history"
-msgstr "Möchten Sie Ihren Verlauf wirklich löschen"
+#, fuzzy
+msgid "Do you want to delete your history"
+msgstr "Möchten Sie Ihren Verlauf löschen"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/delete_history.html:18
 msgid "Yes"
@@ -246,7 +247,7 @@ msgid "No"
 msgstr "Nein"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/download.html:14
-#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:37
+#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:38
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -267,7 +268,7 @@ msgstr "Format"
 msgid "Date"
 msgstr "Datum"
 
-#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:42
+#: audio_converter/blueprints/multilingual/templates/multilingual/history.html:44
 msgid "Convert a new one"
 msgstr "Erneut konvertieren"
 
