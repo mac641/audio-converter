@@ -557,7 +557,7 @@ def delete_history():
                 return redirect(url_for('multilingual.settings'))
         else:
             return render_template('multilingual/delete_history.html',
-                                   title='Audio-Converter - ' + gettext('Delete_History'),
+                                   title='Audio-Converter - ' + gettext('Delete history'),
                                    lang=g.lang_code)
 
 
@@ -571,6 +571,7 @@ def history():
         track_list = Track.query.filter_by(user=g.user).all()
         tracks = []
         for track in track_list:
+            # TODO: compare duplicates with mime types instead of file names / endings
             is_duplicate = False
             for t in tracks:
                 if t.trackname == track.trackname and t.format == track.format:
