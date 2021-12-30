@@ -22,7 +22,13 @@ def zip_converted_files():
     utils.create_path(download_path)
 
     app.logger.info('Start to zip all converted files...')
-    download_uuid = uuid.uuid4().__str__()
+    if not current_user.is_authenticated:
+        download_uuid = uuid.uuid4().__str__()
+    else:
+        download_number = specific_conversion_path.split('/').pop()
+        user_id = specific_conversion_path.split('/')[-2]
+        download_uuid = user_id + '_conversion-' + download_number
+
     download_file = os.path.join(download_path, download_uuid + '.zip')
     try:
         with zipfile.ZipFile(download_file, 'w', zipfile.ZIP_DEFLATED) as zf:
@@ -57,7 +63,7 @@ def zip_list(files):
                 if is_audio_file(file):
                     split_file = file.split('/')
                     app.logger.debug(split_file)
-                    file_name = split_file.pop().__str__()
+                    file_name = split_file[-1]
                     app.logger.debug(file)
                     zf.write(file, file_name)
                 else:
@@ -74,9 +80,9 @@ def send_archive(archive):
     if archive[2] == 200:
         try:
             app.logger.info('Send ' + archive[0])
-            # TODO: Get download_name dynamically
-            return send_file(archive[0], as_attachment=True, download_name='converted.zip',
-                             attachment_filename='converted.zip')
+            download_name = archive[0].split('/')[-1]
+            return send_file(archive[0], as_attachment=True, download_name=download_name,
+                             attachment_filename=download_name)
         except FileNotFoundError:
             app.logger.error('File not found!')
             return abort(404)
