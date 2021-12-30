@@ -9,7 +9,7 @@
 {% block content %}
     <div class="settingsBox">
         <div class="accountSettings">
-            <h2>&nbsp; {{ _('Account') }}</h2>
+            <h2>&nbsp;{{ _('Account') }}</h2>
             <hr class="settingsBoxHyphen"/>
             <ul>
                 <li>
@@ -28,6 +28,9 @@
             <ul>
                 <li>
                     <a href="{{ url_for('multilingual.delete_history') }}">{{ _('Delete history') }}</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('multilingual.clear_cache') }}">{{ _('Clear cache') }}</a>
                 </li>
                 {#                  TODO: Add more functionality for general settings, e.g. frame rate for converting, zip yes or no#}
             </ul>

@@ -24,6 +24,9 @@ from audio_converter.models import Track, User
 
 multilingual = Blueprint('multilingual', __name__, template_folder='templates', url_prefix='/<lang_code>')
 
+upload_path = app.config['UPLOAD_PATH']
+download_path = app.config['DOWNLOAD_PATH']
+
 
 @multilingual.url_defaults
 def add_language_code(endpoint, values):
@@ -43,6 +46,7 @@ def before_request():
 
 @multilingual.after_request
 def after_request(response):
+    # Reduce browser caching
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
@@ -522,43 +526,65 @@ def convert_download():
 @auth_required()
 def settings():
     if not current_user.is_authenticated:
-        app.logger.info('Attempted access to settings route, detour to login.')
+        app.logger.info('Settings attempted access to settings route, detour to login.')
         return redirect(url_for('multilingual.login'))
-    else:
-        app.logger.info('Redirecting to settings route...')
-        return render_template('multilingual/settings.html', title='Audio-Converter - ' + gettext('Settings'),
-                               lang=g.lang_code)
 
+    app.logger.info('Redirecting to settings route...')
+    return render_template('multilingual/settings.html', title='Audio-Converter - ' + gettext('Settings'),
+                           lang=g.lang_code)
+
+
+@multilingual.route('/clear_cache', methods=['GET', 'POST'])
+@auth_required()
+def clear_cache():
+    if not current_user.is_authenticated:
+        app.logger.info('Clear_cache attempted access to settings route, detour to login.')
+        return redirect(url_for('multilingual.login'))
+
+    if request.method == 'POST':
+        reply_form = request.form.get('reply')
+        if reply_form == "yes":
+            utils.delete_path(upload_path)
+            utils.delete_path(download_path)
+            app.logger.info('Cache cleared...')
+            return redirect(url_for('multilingual.index'))
+        else:
+            return redirect(url_for('multilingual.settings'))
+    else:
+        return render_template('multilingual/clear_cache.html',
+                               title='Audio-Converter - ' + gettext('Clear cache'),
+                               lang=g.lang_code)
 
 @multilingual.route('/delete_history', methods=['GET', 'POST'])
 @auth_required()
 def delete_history():
     if not current_user.is_authenticated:
+        app.logger.info('Delete_history attempted access to settings route, detour to login.')
         return redirect(url_for('multilingual.login'))
-    else:
-        if request.method == 'POST':
-            reply_form = request.form.get('reply')
-            if reply_form == "yes":
-                g.user = current_user.get_id()
-                # delete audio files
-                conversion_path = app.config['CONVERSION_PATH']
-                path = os.path.join(conversion_path, g.user)
-                utils.delete_path(path)
-                # delete db entries
-                Track.query.filter_by(user=g.user).delete()
-                # reset convert count
-                user = User.query.filter_by(fs_uniquifier=g.user).first()
-                user.convert = 0
-                db.session.commit()
-                app.logger.info('Deleted history...')
 
-                return redirect(url_for('multilingual.index'))
-            else:
-                return redirect(url_for('multilingual.settings'))
+    if request.method == 'POST':
+        reply_form = request.form.get('reply')
+        if reply_form == "yes":
+            g.user = current_user.get_id()
+            # delete audio files
+            conversion_path = app.config['CONVERSION_PATH']
+            path = os.path.join(conversion_path, g.user)
+            utils.delete_path(path)
+            # delete db entries
+            Track.query.filter_by(user=g.user).delete()
+            # reset convert count
+            user = User.query.filter_by(fs_uniquifier=g.user).first()
+            user.convert = 0
+            db.session.commit()
+            app.logger.info('Deleted history...')
+
+            return redirect(url_for('multilingual.index'))
         else:
-            return render_template('multilingual/delete_history.html',
-                                   title='Audio-Converter - ' + gettext('Delete history'),
-                                   lang=g.lang_code)
+            return redirect(url_for('multilingual.settings'))
+    else:
+        return render_template('multilingual/delete_history.html',
+                               title='Audio-Converter - ' + gettext('Delete history'),
+                               lang=g.lang_code)
 
 
 @multilingual.route('/history')
@@ -566,22 +592,22 @@ def delete_history():
 def history():
     if not current_user.is_authenticated:
         return redirect(url_for('multilingual.login'))
-    else:
-        g.user = current_user.get_id()
-        track_list = Track.query.filter_by(user=g.user).all()
-        tracks = []
-        for track in track_list:
-            # TODO: compare duplicates with mime types instead of file names / endings
-            is_duplicate = False
-            for t in tracks:
-                if t.trackname == track.trackname and t.format == track.format:
-                    is_duplicate = True
-            if not is_duplicate:
-                track.timestamp = track.timestamp.date()
-                tracks.append(track)
 
-        return render_template('multilingual/history.html', title='Audio-Converter - ' + gettext('History'),
-                               lang=g.lang_code, tracks=tracks)
+    g.user = current_user.get_id()
+    track_list = Track.query.filter_by(user=g.user).all()
+    tracks = []
+    for track in track_list:
+        # TODO: compare duplicates with mime types instead of file names / endings
+        is_duplicate = False
+        for t in tracks:
+            if t.trackname == track.trackname and t.format == track.format:
+                is_duplicate = True
+        if not is_duplicate:
+            track.timestamp = track.timestamp.date()
+            tracks.append(track)
+
+    return render_template('multilingual/history.html', title='Audio-Converter - ' + gettext('History'),
+                           lang=g.lang_code, tracks=tracks)
 
 
 @multilingual.route('/history_download', methods=['GET', 'POST'])

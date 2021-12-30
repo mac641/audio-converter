@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+    {% endblock styles %}
+{% endblock head %}
+
+{% block content %}
+    <div class="settingsBox">
+        <h2>{{ _('Do you want to clear your upload and download cache') }}?</h2>
+        </br>
+        <hr class="settingsBoxHyphen2"/>
+        </br>
+        </br>
+        <div class="reply_buttons">
+            <form method="post" action="{{ url_for('multilingual.clear_cache') }}">
+                <button id="yes-button" type="submit" name="reply" value="yes">{{ _('Yes') }}</button>
+                <button id="no-button" type="submit" name="reply" value="no">{{ _('No') }}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
