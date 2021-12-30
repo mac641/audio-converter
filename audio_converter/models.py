@@ -1,4 +1,5 @@
 from flask_security.models import fsqla_v2 as fsqla
+
 from audio_converter import db
 
 fsqla.FsModels.set_db_info(db)
