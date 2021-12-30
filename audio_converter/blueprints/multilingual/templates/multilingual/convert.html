@@ -30,7 +30,6 @@
         function handleConvert() {
             const FILE_TYPE = document.getElementById('convert-audio-file-format-select').value;
 
-            // TODO: display loading screen
             fetch('{{ url_for('multilingual.convert_process') }}', {
                 headers: {
                     'Content-Type': 'text/plain'
@@ -47,7 +46,7 @@
                     // TODO: Delete files from server, if conversion fails
                     window.alert('{{ _('The server ran into an error converting your files') }}!' + '\n\n' +
                         `${value}\n\n` + '{{ _('Press OK to be redirected to the start page') }}...');
-                    window.location.replace("{{ url_for('multilingual.index') }}");
+                    window.location.replace('{{ url_for('multilingual.index') }}');
                 });
             });
         }

@@ -55,7 +55,6 @@ def zip_converted_files():
 
 def zip_list(files):
     app.logger.info('Start to zip all selected files from history...')
-    # TODO: find better zip file name
     zip_file_name = os.path.join(download_path, current_user.get_id() + '.zip')
     try:
         with zipfile.ZipFile(zip_file_name, 'w', zipfile.ZIP_DEFLATED) as zf:
