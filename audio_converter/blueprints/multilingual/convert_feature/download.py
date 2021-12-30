@@ -15,8 +15,8 @@ download_path = app.config['DOWNLOAD_PATH']
 
 
 def zip_converted_files():
+    # Ensure correct download folder structure
     specific_conversion_path = utils.get_audio_track_path(conversion_path)
-
     app.logger.info('Clean up old download files...')
     utils.delete_path(download_path)
     utils.create_path(download_path)
@@ -35,13 +35,14 @@ def zip_converted_files():
             for file_path in glob.iglob(os.path.join(specific_conversion_path, '**/**'), recursive=True):
                 if is_audio_file(file_path):
                     split_file_path = file_path.split('/')
-                    file = split_file_path.pop().__str__()
+                    file = split_file_path[-1]
                     zf.write(file_path, file)
                 else:
                     app.logger.info('Excluded ' + file + ' from zip archive.')
     except FileNotFoundError:
         app.logger.error('Error zipping file! - ' + download_file)
-        return download_file, gettext('File not found') + '!', 404
+        utils.delete_path(download_file)
+        return file, gettext('File not found') + '!', 404
 
     # Delete converted files
     if not current_user.is_authenticated:
@@ -69,7 +70,8 @@ def zip_list(files):
                     app.logger.info('Excluded ' + file + ' from zip archive.')
     except FileNotFoundError:
         app.logger.error('Error zipping file! - ' + zip_file_name)
-        return zip_file_name, gettext('File not found') + '!', 404
+        utils.delete_path(zip_file_name)
+        return file_name, gettext('File not found') + '!', 404
 
     app.logger.info('Successfully zipped all selected files!')
     return zip_file_name, gettext('All selected files have been zipped successfully') + '!', 200
