@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - name: Set up docker
         uses: docker/setup-buildx-action@v1
       - name: Log in to docker hub
@@ -26,11 +28,11 @@ jobs:
       - name: Get release tag
         run: echo "RELEASE_TAG=$(git tag --sort=committerdate | tail -1)" >> $GITHUB_ENV
       - name: Generate image tag
-        run: |
-          if [ {{ env.RELEASE_TAG }} != "" ]; then \
-            echo "IMAGE_TAG=$REPOSITORY_NAME/$IMAGE_NAME:{{ env.RELEASE_TAG }}" >> $GITHUB_ENV \
-          else \
-            echo "IMAGE_TAG=$REPOSITORY_NAME/$IMAGE_NAME:dev" >> $GITHUB_ENV \
+        run: >-
+          if [ {{ env.RELEASE_TAG }} != "" ]; then
+            echo "IMAGE_TAG=$REPOSITORY_NAME/$IMAGE_NAME:{{ env.RELEASE_TAG }}" >> $GITHUB_ENV
+          else
+            echo "IMAGE_TAG=$REPOSITORY_NAME/$IMAGE_NAME:dev" >> $GITHUB_ENV
           fi
       - name: Build image
         run: docker build -t {{ env.IMAGE_TAG }}
