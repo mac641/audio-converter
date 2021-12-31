@@ -21,7 +21,6 @@ msgstr ""
 "Generated-By: Babel 2.9.1\n"
 
 #: system_config.py:58
-#, fuzzy
 msgid ""
 "Drag and drop your music files here or click into the dropzone to open a "
 "file browser"
@@ -40,7 +39,6 @@ msgstr "Registrieren"
 
 #: audio_converter/blueprints/multilingual/routes.py:259
 #: audio_converter/blueprints/multilingual/routes.py:315
-#, fuzzy
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
@@ -49,7 +47,6 @@ msgid "Send Login"
 msgstr "Anmeldedaten senden"
 
 #: audio_converter/blueprints/multilingual/routes.py:430
-#, fuzzy
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
@@ -97,7 +94,6 @@ msgid "Privacy"
 msgstr "Datenschutz"
 
 #: audio_converter/blueprints/multilingual/convert_feature/convert.py:35
-#, fuzzy
 msgid ""
 "The requested files can't be converted due to unknown destination file "
 "type"
@@ -110,7 +106,6 @@ msgid "Please select a preferred file type and try again"
 msgstr "Bitte wählen Sie ein Zieldateiformat aus und versuchen Sie es erneut"
 
 #: audio_converter/blueprints/multilingual/convert_feature/convert.py:41
-#, fuzzy
 msgid "No files have been uploaded"
 msgstr "Es wurden keine Dateien hochgeladen"
 
@@ -121,23 +116,19 @@ msgstr "Bitte versuchen Sie es erneut"
 
 #: audio_converter/blueprints/multilingual/convert_feature/convert.py:53
 #: audio_converter/blueprints/multilingual/convert_feature/convert.py:82
-#, fuzzy
 msgid "This conversion was successful with file type"
 msgstr "Die Konvertierung mit nachfolgendem Dateityp war erfolgreich"
 
 #: audio_converter/blueprints/multilingual/convert_feature/download.py:45
 #: audio_converter/blueprints/multilingual/convert_feature/download.py:74
-#, fuzzy
 msgid "File not found"
 msgstr "Die Datei wurde nicht gefunden"
 
 #: audio_converter/blueprints/multilingual/convert_feature/download.py:54
-#, fuzzy
 msgid "All converted files have been zipped successfully"
 msgstr "Alle konvertierten Dateien wurde erfolgreich dem ZIP-Archiv hinzugefügt"
 
 #: audio_converter/blueprints/multilingual/convert_feature/download.py:77
-#, fuzzy
 msgid "All selected files have been zipped successfully"
 msgstr "Alle konvertierten Dateien wurde erfolgreich dem ZIP-Archiv hinzugefügt"
 
@@ -146,7 +137,6 @@ msgid "Upload successful"
 msgstr "Das Hochladen war erfolgreich"
 
 #: audio_converter/blueprints/multilingual/convert_feature/upload.py:24
-#, fuzzy
 msgid "There was a problem uploading your files"
 msgstr "Leider gab es ein Problem beim Hochladen Ihrer Dateien"
 
@@ -172,7 +162,6 @@ msgid "Privacy Notice"
 msgstr "Datenschutzerklärung"
 
 #: audio_converter/blueprints/multilingual/templates/header.html:4
-#, fuzzy
 msgid "The logo should be here somewhere"
 msgstr "Hier sollte das Logo irgendwo sein"
 
@@ -228,7 +217,6 @@ msgid "Destination file format"
 msgstr "Gewünschtes Zielformat"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:25
-#, fuzzy
 msgid ""
 "Note: In case you upload files which have been converted already, the "
 "server will ignore them"
@@ -241,12 +229,10 @@ msgid "Upload And Convert"
 msgstr "Hochladen Und Konvertieren"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:46
-#, fuzzy
 msgid "The server ran into an error converting your files"
 msgstr "Beim Konvertieren Ihrer Dateien ist auf dem Server ein Fehler aufgetreten"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/convert.html:47
-#, fuzzy
 msgid "Press OK to be redirected to the start page"
 msgstr "Drücken Sie OK, um zur Startseite weitergeleitet zu werden"
 
@@ -272,7 +258,6 @@ msgid "Convert again"
 msgstr "Erneut konvertieren"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/history.html:18
-#, fuzzy
 msgid "File name"
 msgstr "Dateiname"
 
@@ -285,7 +270,6 @@ msgid "Date"
 msgstr "Datum"
 
 #: audio_converter/blueprints/multilingual/templates/multilingual/history.html:43
-#, fuzzy
 msgid "Convert more"
 msgstr "Weitere Dateien konvertieren"
 
@@ -336,7 +320,6 @@ msgid "Welcome %(email)s!"
 msgstr "Willkommen, %(email)"
 
 #: audio_converter/templates/security/email/login_instructions.html:3
-#, fuzzy
 msgid "You can log into your account through the link below"
 msgstr ""
 "Bestätige deine Email Adresse, indem Du auf den unten angegebenen Link "
@@ -355,7 +338,7 @@ msgid "Your password has been reset"
 msgstr "Dein Passwort wurde zurückgesetzt"
 
 #: audio_converter/templates/security/email/welcome.html:1
-#, fuzzy, python-format
+#, python-format
 msgid "Welcome %(email)s"
 msgstr "Willkommen, %(email)"
 

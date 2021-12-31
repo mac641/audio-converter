@@ -546,6 +546,7 @@ def clear_cache():
         if reply_form == "yes":
             utils.delete_path(upload_path)
             utils.delete_path(download_path)
+            utils.create_path(download_path)
             app.logger.info('Cache cleared...')
             return redirect(url_for('multilingual.index'))
         else:
