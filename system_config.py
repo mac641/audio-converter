@@ -3,7 +3,7 @@ import sys
 
 from flask_babelex import gettext
 
-sys.path.append("./media")
+sys.path.append("/app/media")
 print(sys.path)
 import user_config
 
