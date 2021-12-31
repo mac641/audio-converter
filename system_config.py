@@ -4,7 +4,7 @@ import sys
 from flask_babelex import gettext
 
 sys.path.insert(0, './media')
-from user_config import Settings
+from media.user_config import Settings
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///../media/database.sqlite'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
