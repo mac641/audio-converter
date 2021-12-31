@@ -9,6 +9,7 @@ services:
     image: audio_converter:dev
     volumes:
       - "..:/app:rw"
+      - "../media:/app/media:rw"
     ports:
       - "5000:5000"
 
@@ -18,5 +19,7 @@ services:
       context: ..
       dockerfile: ./.docker/prod.Dockerfile
     image: audio_converter:latest
+    volumes:
+      - "../media:/app/media:rw"
     ports:
       - "8080:8080"

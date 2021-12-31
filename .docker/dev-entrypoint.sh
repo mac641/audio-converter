@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-if [ ! -f database.sqlite ]; then
+if [ ! -f media/database.sqlite ]; then
   python3 create_db.py
 fi
 

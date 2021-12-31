@@ -55,14 +55,14 @@ clean: clean-logs clean-converting-directories clean-db
 
 .PHONY: clean-logs
 clean-logs:
-	/bin/rm -f *.log
+	/bin/rm -f **/**.log
 
 .PHONY: clean-converting-directories
 clean-converting-directories:
-	/bin/rm -rf uploaded converted downloadable
+	cd media; /bin/rm -rf uploads converted downloadable; cd ..
 
-clean-db: database.sqlite
-	/Bin/rm -f database.sqlite
+clean-db: media/database.sqlite
+	/bin/rm -f media/database.sqlite
 
 user_config: .scripts/create_user_config.sh
 	sh .scripts/create_user_config.sh

@@ -1,7 +1,7 @@
 FROM python:3.10-slim
 
 ENV FLASK_ENV=production
-# TODO: figure out how to send emails for registration etc. without using Lukas's web.de account :D
+# TODO: figure out how to send emails for registration etc. without using a private web.de account
 
 WORKDIR /app
 
@@ -15,8 +15,7 @@ RUN python3 -m pip install gunicorn
 
 ADD . /app
 
-# TODO: persist database (maybe use volumes)
-RUN if [ ! -f database.sqlite ]; then \
+RUN if [ ! -f media/database.sqlite ]; then \
       python3 create_db.py; \
     fi
 

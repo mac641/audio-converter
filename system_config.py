@@ -2,9 +2,9 @@ import os
 
 from flask_babelex import gettext
 
-from user_config import Settings
+from media.user_config import Settings
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.sqlite'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../media/database.sqlite'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SECRET_KEY = Settings.SECRET_KEY
 SECURITY_PASSWORD_SALT = Settings.SECURITY_PASSWORD_SALT
@@ -36,9 +36,9 @@ MAIL_PASSWORD = Settings.MAIL_PASSWORD
 LANGUAGES = ['en', 'de']
 
 # Convert feature - Dropzone
-UPLOAD_PATH = os.getcwd() + '/uploads'
-CONVERSION_PATH = os.getcwd() + '/converted'
-DOWNLOAD_PATH = os.getcwd() + '/downloadable'
+UPLOAD_PATH = os.path.join(os.getcwd(), 'media', 'uploads')
+CONVERSION_PATH = os.path.join(os.getcwd(), 'media', 'converted')
+DOWNLOAD_PATH = os.path.join(os.getcwd(), 'media', 'downloadable')
 ALLOWED_AUDIO_FILE_TYPES = [
     '.wav',
     '.flac',
