@@ -1,11 +1,10 @@
 name: Deploy audio-converter image
 
-#on:
-#  push:
-#    branches: [ main ]
-#  release:
-#    types: [ published ]
-on: [ push ]
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ published ]
 
 env:
    PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
