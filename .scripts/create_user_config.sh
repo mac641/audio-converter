@@ -6,6 +6,7 @@ if [ -f ./media/user_config.py ];
 then
   echo "RESULT: File exists"
 else
+mkdir -p media
 cat << EOF > media/user_config.py
 class Settings:
     MAIL_PASSWORD = '********'  # Enter the password of your mail server.
