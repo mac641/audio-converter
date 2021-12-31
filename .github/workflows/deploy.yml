@@ -35,7 +35,7 @@ jobs:
             echo "IMAGE_TAG=$REPOSITORY_NAME/$IMAGE_NAME:dev" >> $GITHUB_ENV
           fi
       - name: Build image
-        run: docker build -t {{ env.IMAGE_TAG }}
+        run: docker build -f .docker/prod.Dockerfile -t {{ env.IMAGE_TAG }} .
       - name: Tag built image as latest if not dev
         run: docker image tag {{ env.IMAGE_TAG }} $REPOSITORY_NAME/$IMAGE_NAME:latest
       - name: Push image to docker hub
