@@ -9,8 +9,7 @@ on: [ push ]
 
 env:
    PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-   USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-   REPOSITORY_NAME: audio-converter
+   USER_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}
    IMAGE_NAME: audio-converter
 
 jobs:
@@ -24,15 +23,15 @@ jobs:
       - name: Set up docker
         uses: docker/setup-buildx-action@v1
       - name: Log in to docker hub
-        run: docker login --username=$USERNAME --password=$PASSWORD
+        run: docker login --username=$USER_NAME --password=$PASSWORD
       - name: Get release tag
         run: echo "RELEASE_TAG=$(git tag --sort=committerdate | tail -1)" >> $GITHUB_ENV
       - name: Generate image tag
         run: >-
           if [ {{ env.RELEASE_TAG }} != "" ]; then
-            echo "IMAGE_TAG=$REPOSITORY_NAME/$IMAGE_NAME:${{ env.RELEASE_TAG }}" >> $GITHUB_ENV
+            echo "IMAGE_TAG=$USER_NAME/$IMAGE_NAME:${{ env.RELEASE_TAG }}" >> $GITHUB_ENV
           else
-            echo "IMAGE_TAG=$REPOSITORY_NAME/$IMAGE_NAME:dev" >> $GITHUB_ENV
+            echo "IMAGE_TAG=$USER_NAME/$IMAGE_NAME:dev" >> $GITHUB_ENV
           fi
       - name: Build image
         run: docker build -f .docker/prod.Dockerfile -t ${{ env.IMAGE_TAG }} .
@@ -41,6 +40,6 @@ jobs:
       - name: Tag built image as latest and push it to docker hub if not dev
         run: >-
           if [[ "${{ env.IMAGE_TAG }}" != *"dev"* ]]; then
-            docker image tag ${{ env.IMAGE_TAG }} $REPOSITORY_NAME/$IMAGE_NAME:latest
-            docker push $REPOSITORY_NAME/$IMAGE_NAME:latest
+            docker image tag ${{ env.IMAGE_TAG }} $USER_NAME/$IMAGE_NAME:latest
+            docker push $USER_NAME/$IMAGE_NAME:latest
           fi
