@@ -57,7 +57,8 @@ clean: clean-logs clean-converting-directories clean-db
 clean-logs:
 	/bin/rm -f *.log
 
-clean-converting-directories: uploaded converted downloadable
+.PHONY: clean-converting-directories
+clean-converting-directories:
 	/bin/rm -rf uploaded converted downloadable
 
 clean-db: database.sqlite

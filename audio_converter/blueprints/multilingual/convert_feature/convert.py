@@ -18,23 +18,26 @@ allowed_audio_file_types = app.config['ALLOWED_AUDIO_FILE_TYPES']
 
 
 def process(request):
+    # Ensure correct folder structure in converted
     utils.create_path(conversion_path)
     specific_conversion_path = utils.set_audio_track_path(conversion_path)
-
     if not current_user.is_authenticated:
         app.logger.info('Clean up old converted files...')
         utils.delete_path(specific_conversion_path)
-
     utils.create_path(specific_conversion_path)
 
     app.logger.info('Start converting all uploaded files...')
     files = utils.get_uploaded_files()
 
     if request.method != 'POST' or len(request.data) == 0:
+        utils.delete_path(upload_path)
+        utils.delete_path(specific_conversion_path)
         return gettext('The requested files can\'t be converted due to unknown destination file type') + '. ' \
                + gettext('Please select a preferred file type and try again') + '!', 400
 
     if len(files) == 0:
+        utils.delete_path(upload_path)
+        utils.delete_path(specific_conversion_path)
         return gettext('No files have been uploaded') + '. ' + gettext('Please try again') + '!', 400
 
     destination_file_type = str(request.data).removeprefix('b').strip('\'')
