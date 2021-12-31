@@ -16,8 +16,8 @@ RUN python3 -m pip install gunicorn
 
 ADD . /app
 
-RUN if [ ! -f media/database.sqlite ]; then \
-      python3 create_db.py; \
-    fi
+#RUN if [ ! -f media/database.sqlite ]; then \
+#      python3 create_db.py; \
+#    fi
 
 CMD ["gunicorn", "-c", "gunicorn.conf.py", "wsgi"]
