@@ -2,6 +2,7 @@ docker-compose.yml
 *.Dockerfile
 .dockerignore
 .gitignore
+.github/
 LICENSE
 README.md
 media/
