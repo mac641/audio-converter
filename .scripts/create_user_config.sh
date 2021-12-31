@@ -14,5 +14,6 @@ class Settings:
     SECURITY_PASSWORD_SALT = 'secretsalt'  # Enter a safety secretsalt.
     ADMIN_PASSWORD = '********'  # Enter an individual password for the admin account."
 EOF
+chmod 666 media/user_config.py
 echo "RESULT: File created" 
 fi
