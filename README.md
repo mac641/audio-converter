@@ -1,4 +1,8 @@
-# audio-converter
+![docker hub deployment](https://github.com/mac641/audio-converter/actions/workflows/deploy.yml/badge.svg)
+
+<div align="center">
+  <img width="300px" src="./audio_converter/static/img/Logo.png" alt="audio-converter logo">
+</div>
 
 audio-converter allows you to convert audio files from within your web browser.
 
