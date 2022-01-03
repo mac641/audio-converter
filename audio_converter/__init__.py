@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.config.from_object(system_config)
 
 # Instantiate logging
-logging.basicConfig(filename='audio-converter.log', level=logging.DEBUG,
+logging.basicConfig(filename='media/audio-converter.log', level=logging.DEBUG,
                     format=f'%(asctime)s %(levelname)s %(name)s : %(message)s')
 
 app.logger.info('Set up database...')

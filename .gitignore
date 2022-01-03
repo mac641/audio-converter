@@ -2,11 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-database.sqlite
-user_config.py
-uploads/
-converted/
-downloadable/
+media/
 
 # C extensions
 *.so

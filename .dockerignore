@@ -1,7 +1,8 @@
 docker-compose.yml
 *.Dockerfile
 .dockerignore
-.designs
 .gitignore
+.github/
 LICENSE
 README.md
+media/
