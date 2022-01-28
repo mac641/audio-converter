@@ -5,9 +5,9 @@ on:
     branches: [ main ]
 
 env:
-   PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-   USER_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-   IMAGE_NAME: audio-converter
+  PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+  USER_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+  IMAGE_NAME: audio-converter
 
 jobs:
   build-and-deploy:

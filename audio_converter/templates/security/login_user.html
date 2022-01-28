@@ -5,7 +5,8 @@
     <div class="conversationBox">
         {% include "security/_messages.html" %}
         <h1>{{ _('Sign In') }}</h1>
-        <form action="{{ url_for('multilingual.login') }}" method="POST" name="login_user_form" class="formSec">
+        <form action="{{ url_for('multilingual.login') }}" method="POST" name="login_user_form"
+              class="formSec">
             {{ login_user_form.hidden_tag() }}
             {{ render_field_with_errors(login_user_form.email) }}
             {{ render_field_with_errors(login_user_form.password) }}
