@@ -14,9 +14,9 @@ audio-converter allows you to convert audio files from within your web browser.
     1. Open the new file (media/user_config.py) and fill up the example placeholder between the quotation marks.
     2. Save the file.
 3. Start the server!
-   * If you want to build and start the production server locally, type `make run_docker_prod` in your terminal.
-   * Alternatively you can pull a pre-built image from [DockerHub](https://hub.docker.com/r/mac641/audio-converter).
-     Follow the instructions on DockerHub to run the server.
+    * If you want to build and start the production server locally, type `make run_docker_prod` in your terminal.
+    * Alternatively you can pull a pre-built image from [DockerHub](https://hub.docker.com/r/mac641/audio-converter).
+      Follow the instructions on DockerHub to run the server.
 
 ## How to contribute
 
