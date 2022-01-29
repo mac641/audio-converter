@@ -94,7 +94,7 @@ def reset_password(token=None):
 def send_login():
     return user_management.send_login(request)
 
-
+# TODO: Figure out if still needed and remove if not...
 def token_login(token=None):
     return user_management.token_login(request, token)
 
@@ -105,7 +105,7 @@ def index():
     return render_template('multilingual/index.html', title='Audio-Converter', lang=g.lang_code)
 
 
-@multilingual.route('/convert', methods=['POST', 'GET'])
+@multilingual.route('/convert')
 def convert():
     app.logger.info('Redirecting to convert route...')
     return render_template('multilingual/convert.html', title='Audio-Converter - ' + gettext('Convert'),
@@ -113,13 +113,13 @@ def convert():
                            allowed_audio_file_types=app.config['ALLOWED_AUDIO_FILE_TYPES'])
 
 
-@multilingual.route('/convert_upload', methods=['POST', 'GET'])
+@multilingual.route('/convert_upload', methods=['GET', 'POST'])
 def convert_upload():
     app.logger.info('Processing uploads and returning status codes...')
     return upload(request)
 
 
-@multilingual.route('/convert_process', methods=['POST', 'GET'])
+@multilingual.route('/convert_process', methods=['GET', 'POST'])
 def convert_process():
     process_return_value = process(request)
     app.logger.info('Processed audio file template: ' + ', '.join(map(str, process_return_value)))

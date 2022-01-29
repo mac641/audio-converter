@@ -366,6 +366,7 @@ def send_login(request):
     )
 
 
+# TODO: Make function private if no longer needed
 # FIXME: Set token not on None and delete "if token is None:" statement.
 def token_login(request, token):
     """A view function that handles logins without the need of passwords, similar to reset_password and
