@@ -84,7 +84,6 @@ def register():
 
 
 @multilingual.route('/reset_password', methods=['GET', 'POST'])
-@auth_required()
 def reset_password(token=None):
     return user_management.reset_password(request, token)
 
