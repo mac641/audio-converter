@@ -75,14 +75,6 @@ def register():
     return user_management.register(request)
 
 
-# TODO: Figure out if still needed and remove if not...
-# _datastore = LocalProxy(lambda: _security.datastore)
-#
-# def _commit(response=None):
-#     _datastore.commit()
-#     return response
-
-
 @multilingual.route('/reset_password', methods=['GET', 'POST'])
 def reset_password(token=None):
     return user_management.reset_password(request, token)
@@ -92,10 +84,6 @@ def reset_password(token=None):
 @unauth_csrf(fall_through=True)
 def send_login():
     return user_management.send_login(request)
-
-# TODO: Figure out if still needed and remove if not...
-def token_login(token=None):
-    return user_management.token_login(request, token)
 
 
 @multilingual.route('/')
@@ -159,7 +147,7 @@ def settings():
 @auth_required()
 def clear_cache():
     if not current_user.is_authenticated:
-        app.logger.info('Clear_cache attempted access to settings route, detour to login.')
+        app.logger.info('Clear_cache attempted to access settings route, redirect to login.')
         return redirect(url_for('multilingual.login'))
 
     if request.method == 'POST':
@@ -290,3 +278,8 @@ def error_500(error):
                            title='Audio-Converter - Error_500',
                            errortitle='Something went wrong. (500)',
                            msg="We're experiencing some trouble on our end. Please try again in the near future."), 500
+
+
+# Help methods - no direct endpoints
+def token_login(token=None):
+    return user_management.token_login(request, token)
