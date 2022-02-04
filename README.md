@@ -32,13 +32,3 @@ audio-converter allows you to convert audio files from within your web browser.
     1. Open the new file (media/user_config.py) and fill up the example placeholder between the quotation
        marks.
     2. Save the file.
-4. For testing your code, you can either start `audio-converter_dev` by typing `make run_docker_dev` in your
-   terminal or add a configuration to your PyCharm.
-
-## Zoom Meeting
-
-[Click here](https://hs-augsburg.zoom.us/j/94338900433?pwd=a2NhUDJMRk1OeTYwMnZpQ3lJbXo1UT09)
-
-## HackMD - Report
-
-[Click here](https://hackmd.io/ymKcuO0yQ0azINDnV-Y3rw?both#)
