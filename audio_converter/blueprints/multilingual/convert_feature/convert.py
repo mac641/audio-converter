@@ -44,7 +44,8 @@ def process(request):
     converted_files = _filter_already_converted_files(destination_file_type)
     convertable_files = [f for f in files if f not in converted_files]
 
-    app.logger.info('converted_files: ' + str(converted_files) + ', convertable_files: ' + str(convertable_files))
+    app.logger.info(
+        'converted_files: ' + str(converted_files) + ', convertable_files: ' + str(convertable_files))
 
     if len(convertable_files) == 0:
         utils.move_files(upload_path, files, specific_conversion_path)
