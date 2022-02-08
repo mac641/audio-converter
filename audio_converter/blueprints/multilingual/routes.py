@@ -43,18 +43,18 @@ def after_request(response):
     return response
 
 
-@multilingual.route('/change_password', methods=['GET', 'POST'])
+@multilingual.route('/password/change', methods=['GET', 'POST'])
 @auth_required()
 def change_password():
     return user_management.change_password(request)
 
 
-@multilingual.route('/confirm_email', methods=['GET', 'POST'])
+@multilingual.route('/api/email/confirm', methods=['GET', 'POST'])
 def confirm_email(token=None):
     return user_management.confirm_email(request, token)
 
 
-@multilingual.route('/forgot_password', methods=['GET', 'POST'])
+@multilingual.route('/password/forgot', methods=['GET', 'POST'])
 def forgot_password():
     return user_management.forgot_password(request)
 
@@ -64,7 +64,7 @@ def login():
     return user_management.login(request)
 
 
-@multilingual.route('/logout')
+@multilingual.route('/api/logout')
 @auth_required()
 def logout():
     return user_management.logout()
@@ -75,12 +75,12 @@ def register():
     return user_management.register(request)
 
 
-@multilingual.route('/reset_password', methods=['GET', 'POST'])
+@multilingual.route('/password/reset', methods=['GET', 'POST'])
 def reset_password(token=None):
     return user_management.reset_password(request, token)
 
 
-@multilingual.route('/send_login', methods=['GET', 'POST'])
+@multilingual.route('/login/send', methods=['GET', 'POST'])
 @unauth_csrf(fall_through=True)
 def send_login():
     return user_management.send_login(request)
@@ -100,13 +100,13 @@ def convert():
                            allowed_audio_file_types=app.config['ALLOWED_AUDIO_FILE_TYPES'])
 
 
-@multilingual.route('/convert_upload', methods=['GET', 'POST'])
+@multilingual.route('/api/convert/upload', methods=['GET', 'POST'])
 def convert_upload():
     app.logger.info('Processing uploads and returning status codes...')
     return upload(request)
 
 
-@multilingual.route('/convert_process', methods=['GET', 'POST'])
+@multilingual.route('/api/convert/process', methods=['GET', 'POST'])
 def convert_process():
     process_return_value = process(request)
     app.logger.info('Processed audio file template: ' + ', '.join(map(str, process_return_value)))
@@ -116,7 +116,7 @@ def convert_process():
         abort(process_return_value[1])
 
 
-@multilingual.route('/convert_done')
+@multilingual.route('/convert/done')
 def convert_done():
     app.logger.info('Redirecting to download route and display conversion results...')
     return render_template('multilingual/download.html',
@@ -124,7 +124,7 @@ def convert_done():
                            lang=g.lang_code)
 
 
-@multilingual.route('/convert_download')
+@multilingual.route('/api/convert/download')
 def convert_download():
     zip_archive = zip_converted_files()
     app.logger.info('Received zip compression status: ' + ', '.join(map(str, zip_archive)))
@@ -143,7 +143,7 @@ def settings():
                            lang=g.lang_code)
 
 
-@multilingual.route('/clear_cache', methods=['GET', 'POST'])
+@multilingual.route('/cache/clear', methods=['GET', 'POST'])
 @auth_required()
 def clear_cache():
     if not current_user.is_authenticated:
@@ -166,7 +166,7 @@ def clear_cache():
                                lang=g.lang_code)
 
 
-@multilingual.route('/delete_history', methods=['GET', 'POST'])
+@multilingual.route('/history/delete', methods=['GET', 'POST'])
 @auth_required()
 def delete_history():
     if not current_user.is_authenticated:
@@ -221,7 +221,7 @@ def history():
                            lang=g.lang_code, tracks=tracks)
 
 
-@multilingual.route('/history_download', methods=['GET', 'POST'])
+@multilingual.route('/api/history/download', methods=['GET', 'POST'])
 def history_download():
     if not current_user.is_authenticated:
         return redirect(url_for('multilingual.login'))
