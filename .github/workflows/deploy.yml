@@ -25,9 +25,11 @@ jobs:
         run: docker login --username=$USER_NAME --password=$PASSWORD
       - name: Get release tag
         run: git fetch && echo "RELEASE_TAG=$(git tag --sort=committerdate | tail -1)" >> $GITHUB_ENV
+      - name: Get current branch
+        run: git fetch && echo "CURRENT_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
       - name: Generate image tag
         run: >-
-          if [ "${{ env.RELEASE_TAG }}" != "" ]; then
+          if [ "${{ env.CURRENT_BRANCH }}" == "main" ]; then
             echo "IMAGE_TAG=$USER_NAME/$IMAGE_NAME:${{ env.RELEASE_TAG }}" >> $GITHUB_ENV
           else
             echo "IMAGE_TAG=$USER_NAME/$IMAGE_NAME:dev" >> $GITHUB_ENV
