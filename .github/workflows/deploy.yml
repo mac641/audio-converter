@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Satisfy dependencies
-        run: apt install -y curl jq
+        run: sudo apt-get install -y curl jq
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
