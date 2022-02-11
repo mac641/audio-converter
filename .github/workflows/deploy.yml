@@ -15,6 +15,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Satisfy dependencies
+        run: sudo apt-get install -y curl jq
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
@@ -24,7 +26,7 @@ jobs:
       - name: Log in to docker hub
         run: docker login --username=$USER_NAME --password=$PASSWORD
       - name: Get release tag
-        run: git fetch && echo "RELEASE_TAG=$(git tag --sort=committerdate | tail -1)" >> $GITHUB_ENV
+        run: echo "RELEASE_TAG=$(curl https://api.github.com/repos/mac641/audio-converter/releases/latest -s | jq .name -r)" >> $GITHUB_ENV
       - name: Get current branch
         run: git fetch && echo "CURRENT_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
       - name: Generate image tag
