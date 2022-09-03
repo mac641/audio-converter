@@ -10,13 +10,11 @@ docker-compose -f .docker/docker-compose.yml up -d --remove-orphans prod
 
 .PHONY: stop_docker_dev
 stop_docker_dev: .docker/docker-compose.yml .docker/dev.Dockerfile
-	docker-compose -f .docker/docker-compose.yml down --remove-orphans dev || \
-docker-compose -f .docker/docker-compose.yml kill dev
+	docker-compose -f .docker/docker-compose.yml kill dev
 
 .PHONY: stop_docker_prod
 stop_docker_prod: .docker/docker-compose.yml .docker/dev.Dockerfile
-	docker-compose -f .docker/docker-compose.yml down --remove-orphans prod || \
-docker-compose -f .docker/docker-compose.yml kill prod
+	docker-compose -f .docker/docker-compose.yml kill prod
 
 # Misc
 .PHONY: clean

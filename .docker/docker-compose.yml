@@ -7,9 +7,9 @@ services:
       context: ..
       dockerfile: ./.docker/dev.Dockerfile
     image: audio_converter:dev
+    environment:
+      - TZ=Europe/Berlin
     volumes:
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/localtime:/etc/localtime:ro"
       - "..:/app:rw"
       - "../media:/app/media:rw"
     ports:
@@ -21,9 +21,9 @@ services:
       context: ..
       dockerfile: ./.docker/prod.Dockerfile
     image: audio_converter:latest
+    environment:
+      - TZ=Europe/Berlin
     volumes:
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/localtime:/etc/localtime:ro"
       - "../media:/app/media:rw"
     ports:
       - "8080:8080"
