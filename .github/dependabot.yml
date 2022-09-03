@@ -5,8 +5,19 @@
 
 version: 2
 updates:
+  # pip
   - package-ecosystem: "pip" # See documentation for possible values
     directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "diehmlukas"
+    assignees:
+      - "mac641"
+      
+  # docker
+   - package-ecosystem: "docker" # See documentation for possible values
+    directory: "/.docker/" # Location of package manifests
     schedule:
       interval: "weekly"
     reviewers:
