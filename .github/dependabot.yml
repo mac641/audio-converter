@@ -10,6 +10,6 @@ updates:
     schedule:
       interval: "weekly"
     reviewers:
-      - "diehnlukas"
+      - "diehmlukas"
     assignees:
       - "mac641"
