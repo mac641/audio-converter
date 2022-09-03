@@ -2,9 +2,9 @@ name: Deploy audio-converter image
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 env:
   PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
@@ -31,8 +31,9 @@ jobs:
         run: git fetch && echo "CURRENT_BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
       - name: Generate image tag
         run: >-
-          if [ "${{ env.CURRENT_BRANCH }}" == "main" ]; then
-            echo "IMAGE_TAG=$USER_NAME/$IMAGE_NAME:${{ env.RELEASE_TAG }}" >> $GITHUB_ENV
+          IMAGE_TAG="$USER_NAME/$IMAGE_NAME:${{ env.RELEASE_TAG }}";
+          if [[ "${{ env.CURRENT_BRANCH }}" == "main" && "$(docker manifest inspect ${IMAGE_TAG} > /dev/null ; echo $?)" == "1" ]]; then
+            echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_ENV
           else
             echo "IMAGE_TAG=$USER_NAME/$IMAGE_NAME:dev" >> $GITHUB_ENV
           fi
