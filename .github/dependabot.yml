@@ -16,7 +16,7 @@ updates:
       - "mac641"
       
   # docker
-   - package-ecosystem: "docker" # See documentation for possible values
+  - package-ecosystem: "docker" # See documentation for possible values
     directory: "/.docker/" # Location of package manifests
     schedule:
       interval: "weekly"
